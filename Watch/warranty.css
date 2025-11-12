@@ -1,0 +1,476 @@
+/* ------------------------------------------- */
+/* --- COLOR VARIABLES FOR BRAND CONSISTENCY --- */
+/* ------------------------------------------- */
+:root {
+  /* Primary colors for main content, background, and structure */
+  --color-primary: #000000; /* Space Black (Primary action color / strong text) */
+  --color-secondary: #53565a; /* Deep Grey (Secondary text / subtle backgrounds) */
+  --color-light-neutral: #ffffff; /* Jade White (Main background) */
+  --color-light-bg-tint: #f8f8f8; /* Subtle light grey tint */
+
+  /* Accent colors for interactive elements, warnings, and highlights */
+  --color-accent: #ff6900; /* Xiaomi Orange (ACCENT ONLY) */
+  --color-accent-light: #ff8533;
+
+  --color-dark-text: #000000;
+  --max-width: 1000px;
+}
+
+/* ------------------------------------------- */
+/* --- GLOBAL RESET & BASE STYLES --- */
+/* ------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  background-color: var(--color-light-neutral);
+}
+
+/* Ensure consistent font weights */
+h1,
+h2,
+h3 {
+  font-weight: 700;
+}
+
+h4,
+h5,
+h6 {
+  font-weight: 600;
+}
+
+/* Smooth transitions for all interactive elements */
+a,
+button,
+.interactive {
+  transition: all 0.3s ease;
+}
+
+/* ------------------------------------------- */
+/* --- NAVIGATION --- */
+/* ------------------------------------------- */
+
+.nav-container {
+  background-color: var(--color-light-neutral);
+  position: relative;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+nav {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700; /* Increased font weight for prominence */
+  letter-spacing: 2px;
+  color: var(--color-primary); /* Black Logo */
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--color-dark-text);
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 0;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: var(--color-accent); /* Orange Hover (Small accent) */
+}
+
+.arrow {
+  font-size: 12px;
+  transition: transform 0.3s;
+  color: var(--color-secondary); /* Deep Grey Arrow */
+}
+
+.nav-item:hover .arrow {
+  transform: rotate(180deg);
+  color: var(--color-accent); /* Orange Hover */
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-light-neutral);
+  min-width: 200px;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 101;
+  border-top: 2px solid var(--color-primary); /* Black Border */
+}
+
+.nav-item:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.dropdown-link {
+  display: block;
+  padding: 10px 15px;
+  color: var(--color-dark-text);
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.2s;
+  border-radius: 4px;
+}
+
+.dropdown-link:hover {
+  background-color: var(
+    --color-light-bg-tint
+  ); /* Subtle Grey Hover Background */
+  color: var(--color-dark-text);
+}
+
+.cart-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  stroke: var(--color-dark-text);
+  transition: stroke 0.3s;
+}
+
+.cart-icon:hover {
+  stroke: var(--color-accent); /* Orange Hover (Small accent) */
+}
+
+/* ------------------------------------------- */
+/* --- WARRANTY PAGE CONTENT --- */
+/* ------------------------------------------- */
+.warranty-page-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 60px 20px 80px 20px;
+  color: #333;
+}
+
+.warranty-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.warranty-header h1 {
+  font-size: 2.5rem;
+  color: var(--color-primary); /* Black Header */
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--color-secondary); /* Deep Grey Subtitle */
+}
+
+/* --- SECTION STYLING --- */
+.warranty-section {
+  margin-bottom: 40px;
+  padding: 20px 0;
+}
+
+.warranty-section h2 {
+  font-size: 1.8rem;
+  color: var(--color-primary); /* Black Section Title */
+  border-bottom: 2px solid var(--color-light-bg-tint); /* Subtle Border */
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* --- 1. WARRANTY SUMMARY TABLE --- */
+.warranty-summary table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.warranty-summary th,
+.warranty-summary td {
+  border: 1px solid #ddd;
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.warranty-summary thead th {
+  background-color: var(--color-primary); /* Black Header Row */
+  color: var(--color-light-neutral);
+  font-weight: 600;
+}
+
+.warranty-summary tbody tr:nth-child(even) {
+  background-color: var(--color-light-bg-tint); /* Subtle Grey Background */
+}
+
+.warranty-summary .note {
+  font-style: italic;
+  color: var(--color-secondary);
+}
+
+/* --- 2. COVERAGE & 3. EXCLUSIONS LISTS --- */
+.warranty-coverage ul,
+.warranty-exclusions ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.warranty-coverage li,
+.warranty-exclusions li {
+  padding: 10px 0 10px 30px;
+  position: relative;
+  line-height: 1.5;
+  border-bottom: 1px dashed #eee;
+}
+
+/* Custom bullet points for clarity */
+.warranty-coverage li::before {
+  content: "✓";
+  color: #4caf50; /* Green (Stays green for 'good') */
+  font-weight: 700;
+  position: absolute;
+  left: 0;
+}
+
+.warranty-exclusions .exclusion-title {
+  color: var(--color-primary); /* Black Title */
+}
+
+.warranty-exclusions li::before {
+  content: "✕";
+  color: var(--color-accent); /* Orange for exclusion/warning (Small accent) */
+  font-weight: 700;
+  position: absolute;
+  left: 0;
+}
+
+/* --- 4. CLAIM PROCESS --- */
+.warranty-claim ol {
+  padding-left: 25px;
+}
+
+.warranty-claim li {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.warranty-claim a {
+  color: var(--color-primary); /* Black Link */
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.warranty-claim a:hover {
+  text-decoration: underline;
+  color: var(--color-accent); /* Orange Hover (Small accent) */
+}
+
+/* --- 5. LEGAL ASSURANCE --- */
+.legal-assurance p {
+  margin-bottom: 15px;
+  color: var(--color-dark-text);
+}
+
+/* ------------------------------------------- */
+/* --- FOOTER --- */
+/* ------------------------------------------- */
+footer {
+  background-color: var(--color-primary); /* Black Footer */
+  color: var(--color-light-neutral);
+}
+
+.footercontainer {
+  background-color: var(--color-primary); /* Black Footer */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footercol {
+  margin: 20px;
+  text-align: center;
+}
+
+.footercol h1 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: var(--color-light-neutral); /* White Heading on Black */
+  font-weight: 600;
+}
+
+.footercol ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footercol ul:not(#menu) {
+  margin-bottom: 10px;
+}
+
+.footercol a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.footercol a:hover {
+  color: var(--color-accent); /* Orange Hover (Small accent) */
+}
+
+.footercol a:visited {
+  color: #cccccc;
+}
+
+ul#menu {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+ul#menu li {
+  display: inline-block;
+}
+
+.footer-img {
+  width: 35px;
+  height: 35px;
+  transition: transform 0.3s ease;
+  filter: brightness(0.9);
+}
+
+.footer-img:hover {
+  transform: scale(1.1);
+  filter: brightness(1) drop-shadow(0 0 8px var(--color-accent)); /* Orange Shadow (Small accent) */
+}
+
+.footer-code {
+  width: 160px;
+  height: 160px;
+  border: 2px solid var(--color-accent); /* Orange Border (Small accent) */
+  padding: 5px;
+  border-radius: 8px;
+}
+
+.footer-text {
+  max-width: 300px;
+  font-style: italic;
+  font-size: 14px;
+  margin: 15px auto;
+  color: #cccccc;
+  line-height: 1.5;
+}
+
+.subscribe-form {
+  display: flex;
+  width: 100%;
+  max-width: 300px;
+  margin: 20px auto;
+  height: 45px;
+  border: 1px solid var(--color-accent); /* Orange Border (Small accent) */
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.email-input {
+  flex-grow: 1;
+  padding: 0 15px;
+  background: transparent;
+  border: none;
+  color: var(--color-light-neutral);
+  font-size: 14px;
+  outline: none;
+}
+
+.email-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.submit-button {
+  background: var(--color-accent); /* Orange Button (Small accent) */
+  color: var(--color-light-neutral);
+  width: 45px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: background 0.3s ease;
+}
+
+.submit-button:hover {
+  background: var(--color-accent-light);
+}
+
+@media (max-width: 768px) {
+  .footercontainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footercol {
+    margin: 15px 0;
+  }
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 20px;
+  color: #888888;
+  font-size: 14px;
+  background-color: #0a0a0a;
+  border-top: 1px solid var(--color-secondary); /* Deep Grey border */
+}
+
+/* ------------------------------------------- */
+/* --- UTILITY CLASSES (Matching Homepage) --- */
+/* ------------------------------------------- */
+.text-primary {
+  color: var(--color-dark-text);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+}
+
+.text-muted {
+  color: #888888;
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
