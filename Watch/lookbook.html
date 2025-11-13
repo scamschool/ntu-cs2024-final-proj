@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Lookbook - Xiaomi Smart Band 10</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* Color Variables */
+    :root {
+      --color-primary: #000000;
+      --color-secondary: #53565a;
+      --color-accent: #ff6900;
+      --color-accent-light: #ff8533;
+      --color-light-neutral: #ffffff;
+      --color-dark-text: #000000;
+      --color-light-bg-tint: #f8f8f8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, sans-serif;
+      background-color: var(--color-light-neutral);
+    }
+
+    h1, h2, h3 {
+      font-weight: 700;
+    }
+
+    /* Announcement Bar */
+    .announcement-bar {
+      background-color: var(--color-secondary);
+      text-align: center;
+      padding: 12px 20px;
+      font-size: 14px;
+      color: var(--color-light-neutral);
+      border-bottom: 1px solid #4a4d51;
+      font-weight: 500;
+    }
+
+    /* Navigation */
+    .nav-container {
+      background-color: var(--color-light-neutral);
+      position: relative;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    nav {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--color-primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--color-dark-text);
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 0;
+      transition: color 0.3s;
+      font-weight: 500;
+    }
+
+    .nav-link:hover {
+      color: var(--color-accent);
+    }
+
+    .arrow {
+      font-size: 12px;
+      transition: transform 0.3s;
+      color: var(--color-secondary);
+    }
+
+    .nav-item:hover .arrow {
+      transform: rotate(180deg);
+      color: var(--color-accent);
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--color-light-neutral);
+      min-width: 200px;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      z-index: 101;
+      border-top: 2px solid var(--color-accent);
+    }
+
+    .nav-item:hover .dropdown {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .dropdown-link {
+      display: block;
+      padding: 10px 15px;
+      color: var(--color-dark-text);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.2s;
+      border-radius: 4px;
+    }
+
+    .dropdown-link:hover {
+      background-color: var(--color-light-bg-tint);
+      color: var(--color-dark-text);
+    }
+
+    .cart-icon {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      stroke: var(--color-dark-text);
+      transition: stroke 0.3s;
+    }
+
+    .cart-icon:hover {
+      stroke: var(--color-accent);
+    }
+
+    /* Lookbook Section */
+    .lookbook-section {
+      max-width: 1600px;
+      margin: 60px auto;
+      padding: 0 40px;
+    }
+
+    .lookbook-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .lookbook-badge {
+      display: inline-block;
+      background-color: var(--color-secondary);
+      color: var(--color-light-neutral);
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .lookbook-header h1 {
+      font-size: 3rem;
+      color: var(--color-primary);
+      margin-bottom: 15px;
+    }
+
+    .lookbook-header p {
+      font-size: 1.125rem;
+      color: var(--color-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Masonry Grid */
+    .lookbook-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      grid-auto-rows: 250px;
+      position: relative;
+      margin-bottom: 100px;
+    }
+
+    .lookbook-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .lookbook-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+    }
+
+    /* Grid item sizes */
+    .lookbook-item:nth-child(1) {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .lookbook-item:nth-child(4) {
+      grid-row: span 2;
+    }
+
+    .lookbook-item:nth-child(6) {
+      grid-column: span 2;
+    }
+
+    .lookbook-item:nth-child(9) {
+      grid-row: span 2;
+    }
+
+    .lookbook-item:nth-child(11) {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .lookbook-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .lookbook-item:hover .lookbook-image {
+      transform: scale(1.1);
+    }
+
+    .lookbook-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 25px;
+    }
+
+    .lookbook-item:hover .lookbook-overlay {
+      opacity: 1;
+    }
+
+    .lookbook-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-accent);
+      color: var(--color-light-neutral);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      width: fit-content;
+      transform: translateY(20px);
+      transition: transform 0.4s ease;
+    }
+
+    .lookbook-item:hover .lookbook-tag {
+      transform: translateY(0);
+    }
+
+    .lookbook-caption {
+      color: var(--color-light-neutral);
+      font-size: 1.125rem;
+      font-weight: 600;
+      transform: translateY(20px);
+      transition: transform 0.4s ease 0.1s;
+    }
+
+    .lookbook-item:hover .lookbook-caption {
+      transform: translateY(0);
+    }
+
+    /* Floating CTA Button */
+    .floating-cta {
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      animation: float-in 0.6s ease-out;
+    }
+
+    @keyframes float-in {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    .explore-btn {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: var(--color-primary);
+      color: var(--color-light-neutral);
+      padding: 18px 40px;
+      border-radius: 50px;
+      font-size: 1.125rem;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .explore-btn:hover {
+      background: var(--color-accent);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(255, 105, 0, 0.4);
+    }
+
+    .explore-btn svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--color-light-neutral);
+      transition: transform 0.3s ease;
+    }
+
+    .explore-btn:hover svg {
+      transform: translateX(5px);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--color-primary);
+      color: var(--color-light-neutral);
+    }
+
+    .footercontainer {
+      background-color: var(--color-primary);
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      padding: 40px 20px;
+      flex-wrap: wrap;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footercol {
+      margin: 20px;
+      text-align: center;
+    }
+
+    .footercol h1 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: var(--color-light-neutral);
+      font-weight: 600;
+    }
+
+    .footercol ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footercol ul:not(#menu) {
+      margin-bottom: 10px;
+    }
+
+    .footercol a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .footercol a:hover {
+      color: var(--color-accent);
+    }
+
+    .footercol a:visited {
+      color: #e0e0e0;
+    }
+
+    ul#menu {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    ul#menu li {
+      display: inline-block;
+    }
+
+    .footer-img {
+      width: 35px;
+      height: 35px;
+      transition: transform 0.3s ease;
+      filter: brightness(0.9);
+    }
+
+    .footer-img:hover {
+      transform: scale(1.1);
+      filter: brightness(1) drop-shadow(0 0 8px var(--color-accent));
+    }
+
+    .footer-code {
+      width: 160px;
+      height: 160px;
+      border: 2px solid var(--color-accent);
+      padding: 5px;
+      border-radius: 8px;
+    }
+
+    .footer-text {
+      max-width: 300px;
+      font-style: italic;
+      font-size: 14px;
+      margin: 15px auto;
+      color: #e0e0e0;
+      line-height: 1.5;
+    }
+
+    .subscribe-form {
+      display: flex;
+      width: 100%;
+      max-width: 300px;
+      margin: 20px auto;
+      height: 45px;
+      border: 1px solid var(--color-accent);
+      overflow: hidden;
+      border-radius: 4px;
+    }
+
+    .email-input {
+      flex-grow: 1;
+      padding: 0 15px;
+      background: transparent;
+      border: none;
+      color: var(--color-light-neutral);
+      font-size: 14px;
+      outline: none;
+    }
+
+    .email-input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .submit-button {
+      background: var(--color-accent);
+      color: var(--color-light-neutral);
+      width: 45px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.2rem;
+      transition: background 0.3s ease;
+    }
+
+    .submit-button:hover {
+      background: var(--color-accent-light);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding: 20px;
+      color: #888888;
+      font-size: 14px;
+      background-color: var(--color-primary);
+      border-top: 1px solid var(--color-secondary);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .lookbook-header h1 {
+        font-size: 2rem;
+      }
+
+      .lookbook-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 300px;
+      }
+
+      .lookbook-item:nth-child(1),
+      .lookbook-item:nth-child(4),
+      .lookbook-item:nth-child(6),
+      .lookbook-item:nth-child(9),
+      .lookbook-item:nth-child(11) {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+
+      .floating-cta {
+        bottom: 20px;
+      }
+
+      .explore-btn {
+        padding: 14px 30px;
+        font-size: 1rem;
+      }
+
+      nav {
+        padding: 20px;
+      }
+
+      .lookbook-section {
+        padding: 0 20px;
+      }
+
+      .footercontainer {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footercol {
+        margin: 15px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement-bar">
+    Free strap of your choice when you buy now
+  </div>
+
+  <div class="nav-container">
+    <nav>
+      <div class="logo">XIAOMI</div>
+
+      <ul class="nav-links">
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            Shop
+            <span class="arrow">▼</span>
+          </a>
+          <div class="dropdown">
+            <a href="#" class="dropdown-link">All Watches</a>
+            <a href="#" class="dropdown-link">Smart Watch Pro</a>
+            <a href="#" class="dropdown-link">Smart Watch Lite</a>
+            <a href="#" class="dropdown-link">Accessories</a>
+            <a href="#" class="dropdown-link">Bands & Straps</a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            Health Features
+            <span class="arrow">▼</span>
+          </a>
+          <div class="dropdown">
+            <a href="#" class="dropdown-link">Heart Rate Monitor</a>
+            <a href="#" class="dropdown-link">Sleep Tracking</a>
+            <a href="#" class="dropdown-link">Fitness Tracking</a>
+            <a href="#" class="dropdown-link">Blood Oxygen</a>
+            <a href="#" class="dropdown-link">ECG</a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            Experience
+            <span class="arrow">▼</span>
+          </a>
+          <div class="dropdown">
+            <a href="#" class="dropdown-link">App Ecosystem</a>
+            <a href="#" class="dropdown-link">Watch Faces</a>
+            <a href="#" class="dropdown-link">Notifications</a>
+            <a href="#" class="dropdown-link">Voice Assistant</a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">For Organizations</a>
+        </li>
+
+        <li class="nav-item">
+          <svg
+            class="cart-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path
+              d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+            ></path>
+          </svg>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <section class="lookbook-section">
+    <div class="lookbook-header">
+      <span class="lookbook-badge">Lifestyle Collection</span>
+      <h1>Life in Motion</h1>
+      <p>
+        Discover how the Xiaomi Smart Band 10 seamlessly integrates into every moment of your day. 
+        From morning workouts to evening wind-downs, it's designed to move with you.
+      </p>
+    </div>
+
+    <div class="lookbook-grid">
+      <div class="lookbook-item">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80" alt="Morning workout" class="lookbook-image" />
+        <div class="lookbook-overlay">
+          <div class="lookbook-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <path d="M18 8a6 6 0 0 0-9 0v7H5l-2 3h18l-2-3h-7V8z"></path>
+            </svg>
+            Fitness
+          </div>
+          <div class="lookbook-caption">Morning Motivation</div>
+        </div>
+      </div>
+
+      <div class="lookbook-item">
+        <img src="https://images.unsplash.com/photo-1434682772747-f16d3ea162c3?w=800&q=80" alt="Running outdoors" class="lookbook-image" />
+        <div class="lookbook-overlay">
+          <div class="lookbook-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            Active
+          </div>
+          <div class="lookbook-caption">Outdoor Adventures</div>
+        </div>
+      </div>
+
+      <div class="lookbook-item">
+        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80" alt="Office work" class="lookbook-image" />
+        <div class="lookbook-overlay">
+          <div class="lookbook-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+            Work
+          </div>
+          <div class="lookbook-caption">Professional Style</div>
+        </div>
+      </div>
+
+      <div class="lookbook-item">
+        <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800&q=80" alt="Swimming" class="lookbook-image" />
+        <div class="lookbook-overlay">
+          <div class="lookbook-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <path d="M2 15c.6.5 1.2 1 2.5 1C7 16 7 14 9.5 14c2.5 0 2.5 2 5 2 2.5 0 2.5-2 5-2 2.5 0 2.5 2 2.5 2"></path>
+              <path d="M2 20c.6.5 1.2 1 2.5 1C7 21 7 19 9.5 19c2.5 0 2.5 2 5 2 2.5 0 2.5-2 5-2 2.5 0 2.5 2 2.5 2"></path>
+            </svg>
+            Water Sports
+          </div>
+          <div class="lookbook-caption">5ATM Water Resistant</div>
+        </div>
+      </div>
+
+      <div class="lookbook-item">
+        <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=800&q=80" alt="Casual lifestyle" class="lookbook-image" />
+        <div class="lookbook-overlay">
+          <div class="lookbook-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+            Lifestyle
+          </div>
+          <div class="lookbook-caption">Everyday Comfort</div>
+        </div>
+      </div>
+
+      <div class="lookbook-item">
+        <img src="https://images.unsplash.com/photo-1607962837359-5e7e89f86776?w=800&q=80" alt="Yoga and meditation" class="lookbook-image" />
+        <div class="lookbook-overlay">
+          <div class="lookbook-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            Wellness
+          </div>
+          <div class="lookbook-caption">Mindful Moments</div>
+        </div>
+      </div>
+
+      <div class="lookbook-item">
+        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80" alt="Gym workout" class="lookbook-image" />
+        <div class="lookbook-overlay">
+          <div class="lookbook-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <path d="M2 9h2v6H2zM22 9h-2v6h2zM18 9h-2.5L12 6 8.5 9H6v6h2.5l3.5 3 3.5-3H18z"></path>
+            </svg>
+            Training
+          </div>
+          <div class="lookbook-caption">Gym Performance</div>
+        </div>
+      </div>
+
+      <div class="lookbook-item">
+        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=800&q=80" alt="Evening style" class="lookbook-image" />
+        <div class="lookbook-overlay">
+          <div class="lookbook-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <path d="M12 17.5l-3.5-3.5L10 12l2-3 2 3 1.5 2-3.5 3.5z"></path>
+            </svg>
+            Cycling
+          </div>
+          <div class="lookbook-caption">On the Move</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lookbook-item">
+        <img src="https://images.unsplash.com/photo-1540206395-68808572332f?w=800&q=80" alt="Night tracking" class="lookbook-image" />
+        <div class="lookbook-overlay">
+          <div class="lookbook-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            Sleep
+          </div>
+          <div class="lookbook-caption">Sleep Insights</div>
+        </div>
+      </div>
+
+      <div class="lookbook-item">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="Business casual" class="lookbook-image" />
+        <div class="lookbook-overlay">
+          <div class="lookbook-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            </svg>
+            Professional
+          </div>
+          <div class="lookbook-caption">Business Ready</div>
+        </div>
+      </div>
+
+      <div class="lookbook-item">
+        <img src="https://images.unsplash.com/photo-1483721310020-03333e577078?w=800&q=80" alt="Weekend adventure" class="lookbook-image" />
+        <div class="lookbook-overlay">
+          <div class="lookbook-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            </svg>
+            Adventure
+          </div>
+          <div class="lookbook-caption">Weekend Explorer</div>
+        </div>
+      </div>
+  </section>
+
+  <!-- Floating CTA Button -->
+  <div class="floating-cta">
+    <a href="accessory.html" class="explore-btn">
+      Explore The Collection
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </a>
+  </div>
+
+  <footer>
+    <div class="footercontainer">
+      <div class="footercol">
+        <h1>SUPPORT</h1>
+        <ul>
+          <a href="#">User Guide</a>
+        </ul>
+        <ul>
+          <a href="#">Terms of Use</a>
+        </ul>
+        <ul>
+          <a href="#">Service</a>
+        </ul>
+        <ul>
+          <a href="warranty.html">Warranty</a>
+        </ul>
+        <ul>
+          <a href="#">Store Locator</a>
+        </ul>
+        <ul>
+          <a href="#">Service Center</a>
+        </ul>
+      </div>
+      <div class="footercol">
+        <h1>About Us</h1>
+        <ul>
+          <a href="#">Xiaomi</a>
+        </ul>
+        <ul>
+          <a href="#">Privacy Policy</a>
+        </ul>
+        <ul>
+          <a href="#">Leadership Team</a>
+        </ul>
+        <ul>
+          <a href="#">Trust Center</a>
+        </ul>
+      </div>
+      <div class="footercol">
+        <h1>Follow Us</h1>
+        <ul id="menu">
+          <li>
+            <a href="#">
+              <img class="footer-img" src="Images/instagram.png" alt="Instagram" />
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img class="footer-img" src="Images/linkedin.png" alt="LinkedIn" />
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img class="footer-img" src="Images/facebook.png" alt="Facebook" />
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img class="footer-img" src="Images/whatsapp.png" alt="WhatsApp" />
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="footercol">
+        <h1>Download Our App</h1>
+        <ul id="menu">
+          <li>
+            <a href="#">
+              <img class="footer-code" src="Images/QRcode.webp" alt="QR Code" />
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="footercol">
+        <h1>Stay Updated</h1>
+        <p class="footer-text">Subscribe to our newsletter</p>
+        <div class="subscribe-form">
+          <input
+            type="email"
+            placeholder="Your E-mail Address..."
+            class="email-input"
+          />
+          <button class="submit-button" aria-label="Subscribe to newsletter">
+            &gt;
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>Copyright &copy; 2010 - 2025 Xiaomi. All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script>
+    // Add smooth scroll reveal animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }, index * 50);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.lookbook-item').forEach((item) => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(30px)';
+      item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(item);
+    });
+
+    // Show/hide floating CTA based on scroll position
+    const floatingCta = document.querySelector('.floating-cta');
+    const lookbookGrid = document.querySelector('.lookbook-grid');
+    
+    window.addEventListener('scroll', () => {
+      const gridRect = lookbookGrid.getBoundingClientRect();
+      const isVisible = gridRect.top < window.innerHeight && gridRect.bottom > 0;
+      
+      if (isVisible) {
+        floatingCta.style.opacity = '1';
+        floatingCta.style.pointerEvents = 'auto';
+      } else {
+        floatingCta.style.opacity = '0';
+        floatingCta.style.pointerEvents = 'none';
+      }
+    });
+  </script>
+</body>
+</html>2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            Fashion
+          </div>
+          <div class="lookbook-caption">Evening Elegance</div>
+        </div>
+      </div>
+
+      <div class="lookbook-item">
+        <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=800&q=80" alt="Cycling" class="lookbook-image" />
+        <div class="lookbook-overlay">
+          <div class="lookbook-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <circle cx="18.5" cy="17.5" r="3.5"></circle>
+              <circle cx="5.5" cy="17.5" r="3.5"></circle>
+              <circle cx="15" cy="5" r="1"></circle>
+              <path d="M12 
