@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Xiaomi – Innovation for Everyone</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ----------  DESIGN TOKENS  ---------- */
+        :root{
+            --black: #000;
+            --white: #fff;
+            --grey-30: #53565a;
+            --grey-05: #f8f8f8;
+            --orange: #ff6900;
+            --orange-l: #ff8533;
+
+            --ff: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --fw-4: 400; --fw-5: 500; --fw-6: 600; --fw-7: 700;
+
+            --space-xs: .5rem; --space-sm: 1rem; --space-md: 1.5rem;
+            --space-lg: 2rem; --space-xl: 3rem; --space-2xl: 4rem;
+
+            --radius: 12px; --transition: .25s ease;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,.06);
+            --shadow-md: 0 4px 20px rgba(0,0,0,.08);
+            --max-w: 75rem; /* 1200px */
+        }
+
+        /* ----------  RESET  ---------- */
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+        body{line-height:1.6;-webkit-font-smoothing:antialiased;font-family:var(--ff);color:var(--black);background:var(--white);}
+        img,picture,svg{display:block;max-width:100%;}
+        a{color:inherit;text-decoration:none;}
+        ul{list-style:none;}
+
+        /* ----------  GLOBAL  ---------- */
+        .container{width:min(100% - 2rem, var(--max-w));margin-inline:auto;}
+        h1,h2,h3{line-height:1.2;font-weight:var(--fw-7);}
+        h1{font-size:clamp(2rem, 5vw, 3rem);}
+        h2{font-size:clamp(1.5rem, 4vw, 2.25rem);}
+        h3{font-size:clamp(1.125rem, 3vw, 1.5rem);}
+        p{max-width:65ch;}
+
+        /* ----------  HEADER  ---------- */
+        .announcement-bar{background:var(--grey-30);color:var(--white);text-align:center;padding:var(--space-xs);font-size:.875rem;font-weight:var(--fw-5);}
+        .nav-container{background:var(--white);box-shadow:var(--shadow-sm);position:sticky;top:0;z-index:100;}
+        nav{display:flex;align-items:center;justify-content:space-between;padding:var(--space-md);}
+        .logo{font-size:1.5rem;font-weight:var(--fw-7);letter-spacing:.1em;}
+        .nav-links{display:flex;align-items:center;gap:var(--space-lg);}
+        .nav-item{position:relative;}
+        .nav-link{display:flex;align-items:center;gap:.25rem;font-weight:var(--fw-5);font-size:.9375rem;transition:color var(--transition);}
+        .nav-link:hover{color:var(--orange);}
+        .arrow{font-size:.6rem;transition:transform var(--transition);}
+        .nav-item:hover .arrow{transform:rotate(180deg);}
+        .dropdown{position:absolute;top:calc(100% + .5rem);left:50%;transform:translateX(-50%) scale(.95);background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:var(--space-sm);min-width:12rem;opacity:0;visibility:hidden;transition:all var(--transition);}
+        .nav-item:hover .dropdown{opacity:1;visibility:visible;transform:translateX(-50%) scale(1);}
+        .dropdown-link{display:block;padding:.5rem .75rem;font-size:.875rem;border-radius:6px;transition:background var(--transition);}
+        .dropdown-link:hover{background:var(--grey-05);}
+        .cart-icon{width:1.5rem;height:1.5rem;stroke:var(--black);cursor:pointer;transition:stroke var(--transition);}
+        .cart-icon:hover{stroke:var(--orange);}
+
+        /* ----------  RESPONSIVE VIDEO HERO  ---------- */
+        .hero-video-section{position:relative;height:90vh;min-height:600px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+        .hero-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1;}
+        .hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,.55);z-index:2;}
+        .hero-content{position:relative;z-index:3;text-align:center;color:#fff;max-width:800px;padding:0 var(--space-md);display:flex;flex-direction:column;align-items:center;gap:var(--space-lg);}
+        .hero-badge{display:inline-block;background:var(--orange);color:#fff;padding:.5rem 1.25rem;border-radius:2rem;font-size:.75rem;font-weight:var(--fw-6);letter-spacing:.05em;text-transform:uppercase;margin-block-end:var(--space-sm);}
+        .hero-content h1{font-size:clamp(2.5rem, 5vw, 4rem);font-weight:var(--fw-7);line-height:1.1;letter-spacing:-1px;}
+        .hero-content p{font-size:clamp(1.05rem, 2vw, 1.25rem);max-width:55ch;opacity:.95;}
+        .hero-cta{display:flex;gap:var(--space-md);flex-wrap:wrap;justify-content:center;}
+        .btn{padding:.9rem 2.25rem;border-radius:50px;font-weight:var(--fw-6);font-size:1rem;transition:all var(--transition);box-shadow:0 4px 14px rgba(0,0,0,.18);}
+        .btn-primary{background:var(--orange);color:#fff;border:2px solid var(--orange);}
+        .btn-primary:hover{background:var(--orange-l);transform:translateY(-2px);box-shadow:0 8px 22px rgba(255,105,0,.35);}
+        .btn-secondary{background:transparent;color:#fff;border:2px solid #fff;}
+        .btn-secondary:hover{background:#fff;color:#000;transform:translateY(-2px);}
+
+        /* ----------  SECTIONS  ---------- */
+        .section{padding-block:var(--space-2xl) var(--space-xl);}
+        .section-title{position:relative;margin-block-end:var(--space-lg);padding-block-end:var(--space-sm);}
+        .section-title::after{content:'';position:absolute;bottom:0;left:0;width:3.5rem;height:.25rem;background:var(--orange);border-radius:2px;}
+        .story-content{font-size:1.0625rem;color:var(--grey-30);}
+        .story-content p + p{margin-block-start:var(--space-sm);}
+        .mission-box{background:var(--grey-05);padding:var(--space-xl);border-radius:var(--radius);border-left:4px solid var(--orange);box-shadow:var(--shadow-sm);margin-block-start:var(--space-lg);display:grid;place-content:center;text-align:center;min-height:240px;}
+        .mission-box h3{font-weight:var(--fw-7);font-size:1.5rem;margin-block-end:var(--space-sm);}
+        .mission-box p{font-weight:var(--fw-6);font-size:1.125rem;line-height:1.5;}
+
+        /* ----------  FOUNDER  ---------- */
+        .founder-section{margin-block-start:var(--space-2xl);}
+        .founder-hero{display:flex;align-items:center;min-height:clamp(25rem, 60vh, 30rem);background:linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.55)), url('Images/lei-juns-education.jpg') center 42% / cover no-repeat;border-radius:0;color:#fff;}
+        .founder-hero-content{padding:var(--space-xl);}
+        .founder-cta-btn{display:inline-block;background:#fff;color:#000;padding:.9rem 2rem;border-radius:8px;font-weight:var(--fw-6);margin-block-start:var(--space-sm);transition:all var(--transition);}
+        .founder-cta-btn:hover{background:var(--orange);color:#fff;box-shadow:0 8px 24px rgba(255,105,0,.35);}
+
+        /* ----------  VALUES  ---------- */
+        .values-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(17rem, 1fr));gap:var(--space-lg);margin-block-start:var(--space-lg);}
+        .value-card{background:#fff;padding:var(--space-xl);border-radius:var(--radius);box-shadow:var(--shadow-sm);border-left:4px solid var(--orange);transition:all var(--transition);cursor:pointer;}
+        .value-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);}
+        .value-icon{width:4rem;height:4rem;background:linear-gradient(135deg, var(--black) 0%, var(--grey-30) 100%);border-radius:50%;display:grid;place-content:center;font-size:2rem;color:#fff;margin-block-end:var(--space-md);transition:all var(--transition);}
+        .value-card:hover .value-icon{background:linear-gradient(135deg, var(--orange) 0%, var(--orange-l) 100%);transform:scale(1.1) rotate(5deg);}
+
+        /* ----------  TIMELINE  ---------- */
+        .timeline{position:relative;padding-inline-start:var(--space-lg);margin-block-start:var(--space-lg);}
+        .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--orange);}
+        .timeline-item{position:relative;padding-inline-start:var(--space-lg);margin-block-end:var(--space-xl);}
+        .timeline-item::before{content:'';position:absolute;left:-6px;top:.4rem;width:12px;height:12px;background:var(--orange);border:3px solid #fff;border-radius:50%;box-shadow:0 0 0 3px var(--orange);}
+        .timeline-year{font-size:1.5rem;font-weight:var(--fw-7);color:var(--orange);margin-block-end:var(--space-xs);}
+
+        /* ----------  AWARDS  ---------- */
+        .awards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-lg);margin-block-start:var(--space-lg);}
+        .award-card{background:#fff;padding:var(--space-lg);border-radius:var(--radius);box-shadow:var(--shadow-sm);border-top:4px solid var(--orange);text-align:center;cursor:pointer;transition:all var(--transition);}
+        .award-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
+        .award-card h4{font-size:1.125rem;margin-block-end:var(--space-xs);}
+        .award-card p{font-size:.9375rem;color:var(--grey-30);}
+
+        /* ----------  FOOTER  (standardised)  ---------- */
+        footer{background:var(--black);color:#fff;}
+        .footercontainer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-xl);padding:var(--space-2xl) var(--space-sm);}
+        .footercol{flex:1 1 12rem;}
+        .footercol h4{font-size:1.0625rem;font-weight:var(--fw-6);margin-block-end:var(--space-sm);letter-spacing:.03em;}
+        .footercol a{display:inline-block;padding-block:.25rem;font-size:.9375rem;opacity:.85;transition:opacity var(--transition), color var(--transition);}
+        .footercol a:hover{opacity:1;color:var(--orange);}
+        .socials, .qr{display:flex;gap:var(--space-sm);margin-block-start:var(--space-xs);}
+        .footer-img, .footer-code{width:2.25rem;height:2.25rem;border-radius:6px;transition:transform var(--transition);}
+        .footer-code{width:9rem;height:9rem;border:2px solid var(--orange);}
+        .footer-img:hover, .footer-code:hover{transform:scale(1.08);}
+        .subscribe-form{display:flex;height:2.75rem;border:1px solid var(--orange);border-radius:6px;overflow:hidden;margin-block-start:var(--space-sm);max-width:18rem;}
+        .email-input{flex:1;border:none;background:transparent;padding-inline:var(--space-sm);color:#fff;}
+        .email-input::placeholder{color:rgba(255,255,255,.55);}
+        .submit-button{width:3rem;border:none;background:var(--orange);color:#fff;font-size:1.25rem;cursor:pointer;transition:background var(--transition);}
+        .submit-button:hover{background:var(--orange-l);}
+        .footer-bottom{text-align:center;padding:var(--space-lg) var(--space-sm);font-size:.8125rem;color:rgba(255,255,255,.55);border-top:1px solid rgba(255,255,255,.12);}
+
+        /* ----------  RESPONSIVE  ---------- */
+        @media (max-width: 768px){
+            .nav-links{gap:var(--space-md);}
+            .hero-video-section{min-height:70vh;}
+            .founder-hero{flex-direction:column;text-align:center;}
+            .values-grid, .awards-grid{grid-template-columns:1fr;}
+            .footercontainer{flex-direction:column;text-align:center;}
+        }
+        @media (max-width: 480px){
+            .hero-content h1{font-size:2rem;}
+            .btn{padding:.75rem 1.5rem;font-size:.9375rem;}
+        }
+    </style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT -->
+<div class="announcement-bar">Free global shipping on orders over $99</div>
+
+<!-- NAVIGATION -->
+<header class="nav-container">
+    <nav class="container">
+        <a href="index.html" class="logo" aria-label="Xiaomi home">XIAOMI</a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">About Us</a></li>
+            <li><a href="#" class="nav-link">Shop</a></li>
+            <li><a href="#" class="nav-link">Support</a></li>
+            <li>
+                <svg class="cart-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<!-- RESPONSIVE VIDEO HERO -->
+<section class="hero-video-section">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto">
+        <source src="Images/smart-band.mp4" type="video/mp4">
+        <p>Your browser does not support HTML5 video.</p>
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content container">
+        <span class="hero-badge">About Xiaomi</span>
+        <h1>Innovation for Everyone</h1>
+        <p>Building exceptional products that improve lives through technology, making innovation accessible to all.</p>
+        <div class="hero-cta">
+            <a href="https://shopee.sg/Xiaomi-Smart-Band-10-Fitness-Tracker-i.237295326.40006017343" class="btn btn-primary" target="_blank" rel="noopener">Shop Now</a>
+            <a href="accessory.html" class="btn btn-secondary">Explore Features</a>
+        </div>
+    </div>
+</section>
+
+<!-- STORY -->
+<section class="section container">
+    <h2 class="section-title">Our Story</h2>
+    <div class="story-content">
+        <p>Founded in 2010, Xiaomi began with a simple belief: innovation doesn't have to carry a premium price. From a small Beijing office we have grown into a global technology leader serving more than 100 markets.</p>
+        <p>Our journey started with Mi&nbsp;1, a smartphone that offered flagship specs at half the price of competitors. This “honest-pricing” philosophy still drives every product we create.</p>
+        <p>Today Xiaomi ranks among the world's top smartphone makers, while our AIoT platform connects over 600&nbsp;million smart devices that work seamlessly together.</p>
+    </div>
+    <div class="mission-box">
+        <h3>Our Mission</h3>
+        <p>To persistently build amazing products with honest prices so everyone can enjoy a better life through innovative technology.</p>
+    </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="founder-section">
+    <div class="founder-hero">
+        <div class="founder-hero-content container">
+            <h2>A letter from our CEO</h2>
+            <p>Read about our team's commitment to provide everyone with technology that helps them move forward and achieve more.</p>
+            <a href="https://kr-asia.com/a-letter-from-lei-jun-starting-over-one-last-time" class="founder-cta-btn" target="_blank" rel="noopener">Read Lei Jun's letter</a>
+        </div>
+    </div>
+</section>
+
+<!-- VALUES -->
+<section class="section container">
+    <h2 class="section-title">Innovation & Sustainability</h2>
+    <div class="values-grid">
+        <article class="value-card">
+            <div class="value-icon">🚀</div>
+            <h3>Relentless Innovation</h3>
+            <p>We invest heavily in R&D, pioneering ultra-fast charging, advanced cameras and AI experiences. Our labs work on next-gen flexible displays and autonomous systems.</p>
+        </article>
+        <article class="value-card">
+            <div class="value-icon">🌱</div>
+            <h3>Environmental Commitment</h3>
+            <p>Carbon-neutral operations by 2040. We use sustainable materials, energy-efficient designs and plastic-free packaging across many product lines.</p>
+        </article>
+        <article class="value-card">
+            <div class="value-icon">💡</div>
+            <h3>Smart Living Ecosystem</h3>
+            <p>Our AIoT platform links 600&nbsp;million devices, creating intelligent homes that adapt to you—from lighting to security to health.</p>
+        </article>
+        <article class="value-card">
+            <div class="value-icon">❤️</div>
+            <h3>User-Centric Design</h3>
+            <p>Mi Fans help shape every iteration. Your feedback drives products people truly want, building relationships that last.</p>
+        </article>
+    </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="section container">
+    <h2 class="section-title">Our Journey</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-year">2010</div>
+            <p class="timeline-content">Xiaomi founded by Lei Jun and seven co-founders with the vision of honest pricing.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-year">2011</div>
+            <p class="timeline-content">Mi&nbsp;1 launched—300&nbsp;000 units sold in minutes, disrupting the Chinese market.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-year">2014</div>
+            <p class="timeline-content">Became world’s third-largest smartphone maker; introduced Mi&nbsp;Band.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-year">2018</div>
+            <p class="timeline-content">Listed on Hong Kong Stock Exchange, raising $4.7&nbsp;billion.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-year">2021</div>
+            <p class="timeline-content">Ranked second in global smartphone shipments; EV initiative announced.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-year">2024</div>
+            <p class="timeline-content">600&nbsp;million AIoT devices connected; major sustainability commitments set.</p>
+        </div>
+    </div>
+</section>
+
+<!-- AWARDS -->
+<section class="section container">
+    <h2 class="section-title">Recognition & Awards</h2>
+    <div class="awards-grid">
+        <article class="award-card"><h4>Fortune Global 500</h4><p>Ranked among the world’s largest companies for consecutive years.</p></article>
+        <article class="award-card"><h4>Red Dot Design Award</h4><p>Multiple wins for outstanding product-design excellence.</p></article>
+        <article class="award-card"><h4>Fast Company Innovation</h4><p>Listed among the world’s most innovative companies.</p></article>
+        <article class="award-card"><h4>iF Design Award</h4><p>International recognition for superior design quality.</p></article>
+        <article class="award-card"><h4>Forbes Global 2000</h4><p>Among the world’s largest public companies.</p></article>
+        <article class="award-card"><h4>GSMA Mobile Awards</h4><p>Honoured for breakthrough mobile-technology innovations.</p></article>
+    </div>
+</section>
+
+<!-- FOOTER  (standardised) -->
+<footer>
+    <div class="footercontainer container">
+        <div class="footercol">
+            <h4>Support</h4>
+            <ul>
+                <li><a href="#">User Guide</a></li>
+                <li><a href="#">Terms of Use</a></li>
+                <li><a href="#">Service</a></li>
+                <li><a href="warranty.html">Warranty</a></li>
+                <li><a href="#">Store Locator</a></li>
+                <li><a href="#">Service Center</a></li>
+            </ul>
+        </div>
+        <div class="footercol">
+            <h4>About Us</h4>
+            <ul>
+                <li><a href="#">Xiaomi</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Leadership Team</a></li>
+                <li><a href="#">Trust Center</a></li>
+            </ul>
+        </div>
+        <div class="footercol">
+            <h4>Follow Us</h4>
+            <ul class="socials">
+                <li><a href="#" aria-label="Instagram"><img class="footer-img" src="Images/instagram.png" alt=""></a></li>
+                <li><a href="#" aria-label="LinkedIn"><img class="footer-img" src="Images/linkedin.png" alt=""></a></li>
+                <li><a href="#" aria-label="Facebook"><img class="footer-img" src="Images/facebook.png" alt=""></a></li>
+                <li><a href="#" aria-label="WhatsApp"><img class="footer-img" src="Images/whatsapp.png" alt=""></a></li>
+            </ul>
+        </div>
+        <div class="footercol">
+            <h4>Download Our App</h4>
+            <a href="#" class="qr"><img class="footer-code" src="Images/QRcode.webp" alt="QR code"></a>
+        </div>
+        <div class="footercol">
+            <h4>Stay Updated</h4>
+            <p class="footer-text">Subscribe to our newsletter</p>
+            <form class="subscribe-form" onsubmit="return false;">
+                <label class="visually-hidden" for="email">Email address</label>
+                <input type="email" id="email" class="email-input" placeholder="Your email address" required>
+                <button class="submit-button" aria-label="Subscribe">&gt;</button>
+            </form>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2010 – 2025 Xiaomi. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- tiny live-search helper -->
+<script>
+    const searchInput = document.querySelector('.search-input');
+    const cards = [...document.querySelectorAll('.post-card')];
+    searchInput.addEventListener('input', e => {
+        const term = e.target.value.toLowerCase();
+        cards.forEach(card => {
+            const text = card.textContent.toLowerCase();
+            card.style.display = text.includes(term) ? '' : 'none';
+        });
+    });
+</script>
+</body>
+</html>
