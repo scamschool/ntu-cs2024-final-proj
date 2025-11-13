@@ -135,16 +135,75 @@
         align-items: center;
       }
 
+      .nav-item {
+        position: relative;
+      }
+
       .nav-link {
         text-decoration: none;
-        color: var(--color-dark-text);
+        color: var(--color-dark-text); /* Black Text */
         font-size: 15px;
-        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 8px 0;
         transition: color 0.3s;
+        font-weight: 500;
       }
 
       .nav-link:hover {
-        color: var(--color-accent);
+        color: var(--color-accent); /* Orange Hover (Small accent) */
+      }
+
+      .arrow {
+        font-size: 12px;
+        transition: transform 0.3s;
+        color: var(--color-secondary); /* Deep Grey Arrow */
+      }
+
+      .nav-item:hover .arrow {
+        transform: rotate(180deg);
+        color: var(--color-accent); /* Orange Hover */
+      }
+
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--color-light-neutral);
+        min-width: 200px;
+        padding: 20px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s;
+        margin-top: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+        z-index: 101;
+        border-top: 2px solid var(--color-accent); /* Orange Accent Border (Small item) */
+      }
+
+      .nav-item:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .dropdown-link {
+        display: block;
+        padding: 10px 15px;
+        color: var(--color-dark-text);
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.2s;
+        border-radius: 4px;
+      }
+
+      .dropdown-link:hover {
+        background-color: var(
+          --color-light-bg-tint
+        ); /* Subtle Grey Hover Background */
+        color: var(--color-dark-text);
       }
 
       .cart-icon {
@@ -156,7 +215,7 @@
       }
 
       .cart-icon:hover {
-        stroke: var(--color-accent);
+        stroke: var(--color-accent); /* Orange Hover (Small accent) */
       }
 
       /* Page Hero */
@@ -558,50 +617,170 @@
         transform: translateX(5px);
       }
 
-      /* Footer */
+      /* ------------------------------------------- */
+      /* --- FOOTER --- */
+      /* ------------------------------------------- */
       footer {
-        background-color: var(--color-primary);
+        background-color: var(--color-primary); /* Black Footer */
         color: var(--color-light-neutral);
-        padding: 60px 40px 20px;
       }
 
       .footercontainer {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 40px;
+        background-color: var(--color-primary); /* Black Footer */
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 40px 20px;
+        flex-wrap: wrap;
         max-width: 1400px;
-        margin: 0 auto 40px;
+      }
+
+      .footercol {
+        margin: 20px;
+        text-align: center;
       }
 
       .footercol h1 {
-        font-size: 18px;
-        margin-bottom: 24px;
+        font-size: 20px;
+        margin-bottom: 20px;
+        color: var(--color-light-neutral); /* White Heading on Black */
         font-weight: 600;
-        letter-spacing: 0.5px;
+      }
+
+      .footercol ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footercol ul:not(#menu) {
+        margin-bottom: 10px;
       }
 
       .footercol a {
-        color: rgba(255, 255, 255, 0.8);
+        color: #ffffff;
         text-decoration: none;
-        font-size: 15px;
+        font-size: 16px;
         transition: color 0.3s ease;
-        display: block;
-        margin-bottom: 12px;
       }
 
       .footercol a:hover {
-        color: var(--color-accent);
+        color: var(--color-accent); /* Orange Hover (Small accent) */
+      }
+
+      .footercol a:visited {
+        color: #e0e0e0;
+      }
+
+      ul#menu {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+      }
+
+      ul#menu li {
+        display: inline-block;
+      }
+
+      .footer-img {
+        width: 35px;
+        height: 35px;
+        transition: transform 0.3s ease;
+        filter: brightness(0.9);
+      }
+
+      .footer-img:hover {
+        transform: scale(1.1);
+        filter: brightness(1) drop-shadow(0 0 8px var(--color-accent)); /* Orange Shadow (Small accent) */
+      }
+
+      .footer-code {
+        width: 160px;
+        height: 160px;
+        border: 2px solid var(--color-accent); /* Orange Border (Small accent) */
+        padding: 5px;
+        border-radius: 8px;
+      }
+
+      .footer-text {
+        max-width: 300px;
+        font-style: italic;
+        font-size: 14px;
+        margin: 15px auto;
+        color: #e0e0e0;
+        line-height: 1.5;
+      }
+
+      .subscribe-form {
+        display: flex;
+        width: 100%;
+        max-width: 300px;
+        margin: 20px auto;
+        height: 45px;
+        border: 1px solid var(--color-accent); /* Orange Border (Small accent) */
+        overflow: hidden;
+        border-radius: 4px;
+      }
+
+      .email-input {
+        flex-grow: 1;
+        padding: 0 15px;
+        background: transparent;
+        border: none;
+        color: var(--color-light-neutral);
+        font-size: 14px;
+        outline: none;
+      }
+
+      .email-input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .submit-button {
+        background: var(--color-accent); /* Orange Button (Small accent) */
+        color: var(--color-light-neutral);
+        width: 45px;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1.2rem;
+        transition: background 0.3s ease;
+      }
+
+      .submit-button:hover {
+        background: var(--color-accent-light);
+      }
+
+      @media (max-width: 768px) {
+        .footercontainer {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .footercol {
+          margin: 15px 0;
+        }
       }
 
       .footer-bottom {
         text-align: center;
-        padding: 24px 0;
-        color: rgba(255, 255, 255, 0.5);
+        padding: 20px;
+        color: #888888;
         font-size: 14px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        margin-top: 40px;
+        background-color: var(--color-primary);
+        border-top: 1px solid var(--color-secondary); /* Deep Grey border */
       }
 
+      .character-accent {
+        position: absolute;
+        top: 1700px;
+        right: 950px;
+        width: 550px;
+        height: auto;
+        z-index: 10;
+        opacity: 0.9;
+        object-fit: contain;
+      }
       /* Responsive Design */
       @media (max-width: 1024px) {
         .product-content {
@@ -704,24 +883,58 @@
           </svg>
         </a>
         <ul class="nav-links">
-          <li><a href="#" class="nav-link">Shop</a></li>
-          <li><a href="#" class="nav-link">Health Features</a></li>
-          <li><a href="#" class="nav-link">Experience</a></li>
-          <li><a href="#" class="nav-link">For Organizations</a></li>
-          <li>
-            <svg
-              class="cart-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              Xiaomi Smart Band 10
+              <span class="arrow">▼</span>
+            </a>
+            <div class="dropdown">
+              <a href="product.html" class="dropdown-link">Watches</a>
+              <a href="accessory.html" class="dropdown-link">Accessories</a>
+              <a href="specs.html" class="dropdown-link">Specifications</a>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="lookbook.html" class="nav-link">Lookbook</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="blog.html" class="nav-link">Blog</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="faq.html" class="nav-link">FAQ</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="warranty.html" class="nav-link">Warranty</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="aboutus1.html" class="nav-link">About Us</a>
+          </li>
+
+          <li class="nav-item">
+            <a
+              href="https://shopee.sg/Xiaomi-Smart-Band-10-Fitness-Tracker-i.237295326.40006017343"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <circle cx="9" cy="21" r="1"></circle>
-              <circle cx="20" cy="21" r="1"></circle>
-              <path
-                d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
-              ></path>
-            </svg>
+              <svg
+                class="cart-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path
+                  d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                ></path>
+              </svg>
+            </a>
           </li>
         </ul>
       </nav>
@@ -914,44 +1127,93 @@
       <div class="footercontainer">
         <div class="footercol">
           <h1>SUPPORT</h1>
-          <a href="#">User Guide</a>
-          <a href="#">Terms of Use</a>
-          <a href="#">Service</a>
-          <a href="#">Warranty</a>
-          <a href="#">Store Locator</a>
-          <a href="#">Service Center</a>
+          <ul>
+            <a href="https://www.mi.com/sg/support/user-guide/" target="_blank" rel="noopener noreferrer">User Guide</a>
+          </ul>
+          <ul>
+            <a href="https://www.mi.com/sg/support/terms/terms-of-use/" target="_blank" rel="noopener noreferrer">Terms of Use</a>
+          </ul>
+          <ul>
+            <a href="https://www.mi.com/sg/support/" target="_blank" rel="noopener noreferrer">Service</a>
+          </ul>
+          <ul>
+            <a href="warranty.html">Warranty</a>
+          </ul>
+          <ul>
+            <a href="https://www.mi.com/sg/store/xiaomi-store/" target="_blank" rel="noopener noreferrer">Store Locator</a>
+          </ul>
+          <ul>
+            <a href="https://www.mi.com/sg/support/service-centre/" target="_blank" rel="noopener noreferrer">Service Center</a>
+          </ul>
         </div>
         <div class="footercol">
           <h1>About Us</h1>
-          <a href="#">Xiaomi</a>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Leadership Team</a>
-          <a href="#">Trust Center</a>
+          <ul>
+            <a href="aboutus1.html">Xiaomi</a>
+          </ul>
+          <ul>
+            <a href="https://www.mi.com/sg/about/privacy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+          </ul>
+          <ul>
+            <a href="https://www.mi.com/sg/about/founder/" target="_blank" rel="noopener noreferrer">Leadership Team</a>
+          </ul>
+          <ul>
+            <a href="https://trust.mi.com/" target="_blank" rel="noopener noreferrer">Trust Center</a>
+          </ul>
         </div>
         <div class="footercol">
           <h1>Follow Us</h1>
-          <a href="#">Instagram</a>
-          <a href="#">LinkedIn</a>
-          <a href="#">Facebook</a>
-          <a href="#">WhatsApp</a>
+          <ul id="menu">
+            <li>
+              <a href="https://www.instagram.com/xiaomi.singapore/" target="_blank" rel="noopener noreferrer">
+                <img class="footer-img" src="Images/instagram.png"
+              /></a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/company/mi-tech-sgp/" target="_blank" rel="noopener noreferrer">
+                <img class="footer-img" src="Images/linkedin.png"
+              /></a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/XiaomiSingapore/" target="_blank" rel="noopener noreferrer">
+                <img class="footer-img" src="Images/facebook.png"
+              /></a>
+            </li>
+            <li>
+              <a href="https://api.whatsapp.com/send/?phone=%2B60178280579" target="_blank" rel="noopener noreferrer">
+                <img class="footer-img" src="Images/whatsapp.png"
+              /></a>
+            </li>
+          </ul>
+        </div>
+        <div class="footercol">
+          <h1>Download Our App</h1>
+          <ul id="menu">
+            <li>
+              <a href="https://www.mi.com/sg/appdownload/" target="_blank" rel="noopener noreferrer">
+                <img class="footer-code" src="Images/QRcode.webp"
+              /></a>
+            </li>
+          </ul>
         </div>
         <div class="footercol">
           <h1>Stay Updated</h1>
-          <p
-            style="
-              color: rgba(255, 255, 255, 0.7);
-              font-size: 14px;
-              line-height: 1.6;
-              margin-top: 8px;
-            "
-          >
-            Subscribe to our newsletter for the latest updates and exclusive
-            offers.
-          </p>
+          <p class="footer-text">Subscribe to our newsletter</p>
+          <div class="subscribe-form">
+            <input
+              type="email"
+              placeholder="Your E-mail Address..."
+              class="email-input"
+            />
+            <button class="submit-button" aria-label="Subscribe to newsletter">
+              &gt;
+            </button>
+          </div>
         </div>
       </div>
+
       <div class="footer-bottom">
-        <p>Copyright © 2010 - 2025 Xiaomi. All Rights Reserved</p>
+        <p>Copyright &copy; 2010 - 2025 Xiaomi. All Rights Reserved</p>
       </div>
     </footer>
   </body>

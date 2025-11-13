@@ -52,15 +52,26 @@ button,
 }
 
 /* ------------------------------------------- */
-/* --- NAVIGATION --- */
+/* --- NAVIGATION & HEADER --- */
 /* ------------------------------------------- */
+
+.announcement-bar {
+  background-color: var(
+    --color-secondary
+  ); /* Deep Grey - Darker, less harsh than black */
+  text-align: center;
+  padding: 12px 20px;
+  font-size: 14px;
+  color: var(--color-light-neutral);
+  border-bottom: 1px solid #4a4d51;
+  font-weight: 500;
+}
 
 .nav-container {
   background-color: var(--color-light-neutral);
-  position: sticky; /* Make navigation sticky */
-  top: 0;
+  position: relative;
   z-index: 100;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 nav {
