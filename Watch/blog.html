@@ -1,874 +1,1156 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog - Xiaomi Smart Band 10</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="https://i02.appmifile.com/i18n/scm/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="https://i02.appmifile.com/i18n/scm/favicon.png" />
     <style>
-        /* ----------  DESIGN TOKENS  ---------- */
-        :root{
-            --clr-black: #000;
-            --clr-white: #fff;
-            --clr-grey-30: #53565a;
-            --clr-grey-05: #f8f8f8;
-            --clr-orange: #ff6900;
-            --clr-orange-l: #ff8533;
+      /* ----------  DESIGN TOKENS  ---------- */
+      :root {
+        --clr-black: #000;
+        --clr-white: #fff;
+        --clr-grey-30: #53565a;
+        --clr-grey-05: #f8f8f8;
+        --clr-orange: #ff6900;
+        --clr-orange-l: #ff8533;
 
-            --ff-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        --ff-base: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
 
-            --fw-400: 400;
-            --fw-500: 500;
-            --fw-600: 600;
-            --fw-700: 700;
+        --fw-400: 400;
+        --fw-500: 500;
+        --fw-600: 600;
+        --fw-700: 700;
 
-            --space-xs: .5rem;
-            --space-sm: 1rem;
-            --space-md: 1.5rem;
-            --space-lg: 2rem;
-            --space-xl: 3rem;
-            --space-2xl: 4rem;
-            --space-3xl: 5rem;
+        --space-xs: 0.5rem;
+        --space-sm: 1rem;
+        --space-md: 1.5rem;
+        --space-lg: 2rem;
+        --space-xl: 3rem;
+        --space-2xl: 4rem;
+        --space-3xl: 5rem;
 
-            --radius: 12px;
-            --transition: .25s ease;
-            --shadow-sm: 0 2px 8px rgba(0,0,0,.06);
-            --shadow-md: 0 4px 20px rgba(0,0,0,.08);
-            --max-width: 75rem;
+        --radius: 12px;
+        --transition: 0.25s ease;
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+        --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+        --max-width: 75rem;
+      }
+
+      /* ----------  RESET  ---------- */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      img,
+      picture,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+      input,
+      button,
+      textarea,
+      select {
+        font: inherit;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      ul {
+        list-style: none;
+      }
+
+      /* ----------  GLOBAL  ---------- */
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--ff-base);
+        font-weight: var(--fw-400);
+        color: var(--clr-black);
+        background: var(--clr-white);
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        line-height: 1.2;
+        font-weight: var(--fw-700);
+      }
+      h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
+      }
+      h2 {
+        font-size: clamp(1.5rem, 4vw, 2.25rem);
+      }
+      h3 {
+        font-size: clamp(1.125rem, 3vw, 1.5rem);
+      }
+      p {
+        max-width: 65ch;
+      }
+
+      .container {
+        width: min(100% - 2rem, var(--max-width));
+        margin-inline: auto;
+      }
+      .section {
+        padding-block: var(--space-2xl) var(--space-xl);
+      }
+
+      /* ----------  HEADER  ---------- */
+      .announcement-bar {
+        background: var(--clr-grey-30);
+        color: var(--clr-white);
+        text-align: center;
+        padding: var(--space-xs) var(--space-sm);
+        font-size: 0.875rem;
+        font-weight: var(--fw-500);
+      }
+      .nav-container {
+        background: var(--clr-white);
+        box-shadow: var(--shadow-sm);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-md) var(--space-sm);
+      }
+      .logo-container {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
+
+      .logo-container:hover {
+        transform: scale(1.05);
+      }
+
+      .logo-bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #ff6700;
+        border-radius: 12px;
+        transition: background 0.3s ease;
+      }
+
+      .logo-container:hover .logo-bg {
+        background: #ff7700;
+      }
+
+      .logo-icon,
+      .home-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      .logo-icon {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      .home-icon {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+      }
+
+      .logo-container:hover .logo-icon {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+      }
+
+      .logo-container:hover .home-icon {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      /* MI Logo SVG */
+      .mi-text {
+        fill: white;
+        font-size: 32px;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Home Icon SVG */
+      .home-path {
+        fill: white;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: var(--space-lg);
+      }
+      .nav-item {
+        position: relative;
+      }
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-weight: var(--fw-500);
+        font-size: 0.9375rem;
+        transition: color var(--transition);
+      }
+      .nav-link:hover {
+        color: var(--clr-orange);
+      }
+      .arrow {
+        font-size: 0.6rem;
+        transition: transform var(--transition);
+      }
+      .nav-item:hover .arrow {
+        transform: rotate(180deg);
+      }
+      .dropdown {
+        position: absolute;
+        top: calc(100% + 0.5rem);
+        left: 50%;
+        transform: translateX(-50%) scale(0.95);
+        background: var(--clr-white);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-md);
+        padding: var(--space-sm);
+        min-width: 12rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: all var(--transition);
+      }
+      .nav-item:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) scale(1);
+      }
+      .dropdown-link {
+        display: block;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+        border-radius: 6px;
+        transition: background var(--transition);
+      }
+      .dropdown-link:hover {
+        background: var(--clr-grey-05);
+      }
+      .cart-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        stroke: var(--clr-black);
+        cursor: pointer;
+        transition: stroke var(--transition);
+      }
+      .cart-icon:hover {
+        stroke: var(--clr-orange);
+      }
+
+      /* ----------  HERO  ---------- */
+      .hero {
+        background: linear-gradient(135deg, var(--clr-black) 0%, #1a1a1a 100%);
+        color: var(--clr-white);
+        text-align: center;
+        padding-block: clamp(4rem, 12vh, 7rem) clamp(2.5rem, 8vh, 4rem);
+      }
+      .hero h1 {
+        margin-block-end: var(--space-sm);
+      }
+      .hero p {
+        margin-inline: auto;
+        opacity: 0.95;
+        font-size: 1.0625rem;
+      }
+
+      /* ----------  SEARCH / FILTER  ---------- */
+      .search-bar {
+        background: var(--clr-grey-05);
+        padding: var(--space-md);
+        border-radius: var(--radius);
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        margin-block-end: var(--space-lg);
+      }
+      .search-input {
+        flex: 1 1 16rem;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 6px;
+        font-size: 0.9375rem;
+      }
+      .search-input:focus {
+        outline: none;
+        border-color: var(--clr-orange);
+        box-shadow: 0 0 0 3px rgba(255, 105, 0, 0.2);
+      }
+      .filter-select {
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 6px;
+        background: var(--clr-white);
+        font-size: 0.9375rem;
+        cursor: pointer;
+      }
+      .search-btn {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        background: var(--clr-orange);
+        color: var(--clr-white);
+        border-radius: 6px;
+        font-weight: var(--fw-600);
+        cursor: pointer;
+        transition: background var(--transition);
+      }
+      .search-btn:hover {
+        background: var(--clr-orange-l);
+      }
+
+      /* ----------  BLOG POSTS  ---------- */
+      .posts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+        gap: var(--space-lg);
+      }
+      .post-card {
+        background: var(--clr-white);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-sm);
+        overflow: hidden;
+        transition: all var(--transition);
+        display: flex;
+        flex-direction: column;
+      }
+      .post-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+      }
+      .post-img {
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        background: var(--clr-grey-05);
+      }
+      .post-body {
+        padding: var(--space-md);
+      }
+      .post-tag {
+        display: inline-block;
+        background: var(--clr-orange);
+        color: var(--clr-white);
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: var(--fw-600);
+        margin-block-end: var(--space-xs);
+      }
+      .post-title {
+        font-size: 1.125rem;
+        margin-block-end: var(--space-xs);
+      }
+      .post-excerpt {
+        font-size: 0.9375rem;
+        color: var(--clr-grey-30);
+      }
+      .post-meta {
+        margin-block-start: auto;
+        padding-block-start: var(--space-sm);
+        font-size: 0.8125rem;
+        color: var(--clr-grey-30);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .read-more {
+        font-weight: var(--fw-600);
+        color: var(--clr-orange);
+        transition: color var(--transition);
+      }
+      .read-more:hover {
+        color: var(--clr-black);
+      }
+
+      /* ----------  USER STORIES  ---------- */
+      .stories {
+        background: var(--clr-grey-05);
+        border-radius: var(--radius);
+        padding: var(--space-xl);
+        margin-block: var(--space-xl);
+      }
+      .stories h2 {
+        margin-block-end: var(--space-md);
+      }
+      .story-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+        gap: var(--space-lg);
+      }
+      .story-card {
+        background: var(--clr-white);
+        padding: var(--space-lg);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-sm);
+      }
+      .story-header {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        margin-block-end: var(--space-sm);
+      }
+      .avatar {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background: linear-gradient(
+          135deg,
+          var(--clr-black) 0%,
+          var(--clr-grey-30) 100%
+        );
+        display: grid;
+        place-content: center;
+        color: var(--clr-white);
+        font-weight: var(--fw-700);
+      }
+      .story-name {
+        font-weight: var(--fw-600);
+      }
+      .story-role {
+        font-size: 0.8125rem;
+        color: var(--clr-grey-30);
+      }
+      .story-quote {
+        font-size: 0.9375rem;
+        font-style: italic;
+      }
+
+      /* ----------  TECH PANEL  ---------- */
+      .tech-panel {
+        background: linear-gradient(135deg, #111 0%, #000 100%);
+        color: #fff;
+        padding: clamp(4rem, 10vh, 8rem) 0;
+        overflow: hidden;
+      }
+
+      .tech-inner {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: clamp(2rem, 5vw, 4rem);
+        align-items: center;
+      }
+
+      .tech-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        transition: transform 0.4s ease;
+      }
+      .tech-media:hover img {
+        transform: scale(1.03);
+      }
+
+      .tech-label {
+        display: inline-block;
+        background: var(--clr-orange);
+        color: #fff;
+        padding: 0.4rem 1rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        margin-block-end: 1rem;
+      }
+
+      .tech-headline {
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        font-weight: 700;
+        line-height: 1.2;
+        margin-block-end: 1rem;
+      }
+
+      .tech-copy p {
+        font-size: clamp(1rem, 2vw, 1.125rem);
+        line-height: 1.7;
+        opacity: 0.9;
+        margin-block-end: 1.25rem;
+      }
+
+      .btn-orange {
+        display: inline-block;
+        background: #ff6900;
+        color: #fff;
+        padding: 0.9rem 2.25rem;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.25s ease;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      }
+      .btn-orange:hover {
+        background: #ff8533;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 22px rgba(255, 105, 0, 0.35);
+      }
+
+      /* ----------  CTA BANNER  ---------- */
+      .cta-banner {
+        background: linear-gradient(135deg, var(--clr-black) 0%, #1a1a1a 100%);
+        color: var(--clr-white);
+        text-align: center;
+        padding: var(--space-xl) var(--space-md);
+        border-radius: var(--radius);
+        margin-block: var(--space-2xl);
+        display: grid;
+        place-content: center;
+        min-height: 240px;
+      }
+      .cta-banner h3 {
+        font-size: 2rem;
+        margin-block-end: var(--space-sm);
+      }
+      .cta-banner p {
+        font-size: 1.25rem;
+        margin-block-end: var(--space-md);
+      }
+      .cta-btn {
+        display: inline-block;
+        background: var(--clr-orange);
+        color: var(--clr-white);
+        padding: 0.9rem 2rem;
+        border-radius: 8px;
+        font-weight: var(--fw-600);
+        margin-block-start: var(--space-sm);
+        transition: all var(--transition);
+      }
+      .cta-btn:hover {
+        background: var(--clr-orange-l);
+        box-shadow: 0 8px 24px rgba(255, 105, 0, 0.35);
+      }
+      /* ----------  NEW FOOTER (lookbook-style)  ---------- */
+      footer {
+        background-color: #000;
+        color: #fff;
+      }
+      .footercontainer {
+        background-color: #000;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 60px 40px;
+        flex-wrap: wrap;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .footercol {
+        margin: 24px;
+        text-align: center;
+      }
+      .footercol h1 {
+        font-size: 1.5rem;
+        margin-bottom: 24px;
+        color: #fff;
+        font-weight: 600;
+      }
+      .footercol ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .footercol li {
+        margin-bottom: 12px;
+      }
+      .footercol a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: color 0.3s ease;
+      }
+      .footercol a:hover {
+        color: #ff6900;
+      }
+      .footercol a:visited {
+        color: #e0e0e0;
+      }
+      #menu {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        padding: 0;
+      }
+      #menu li {
+        display: inline-block;
+        margin-bottom: 0;
+      }
+      .footer-img {
+        width: 35px;
+        height: 35px;
+        transition: transform 0.3s ease;
+        filter: brightness(0.9);
+      }
+      .footer-img:hover {
+        transform: scale(1.1);
+        filter: brightness(1) drop-shadow(0 0 8px #ff6900);
+      }
+      .footer-code {
+        width: 160px;
+        height: 160px;
+        border: 2px solid #ff6900;
+        padding: 5px;
+        border-radius: 12px;
+      }
+      .footer-text {
+        max-width: 300px;
+        font-style: italic;
+        font-size: 0.875rem;
+        margin: 15px auto;
+        color: #e0e0e0;
+        line-height: 1.6;
+      }
+      .subscribe-form {
+        display: flex;
+        width: 100%;
+        max-width: 300px;
+        margin: 24px auto 0;
+        height: 48px;
+        border: 2px solid #ff6900;
+        overflow: hidden;
+        border-radius: 24px;
+        transition: box-shadow 0.3s ease;
+      }
+      .subscribe-form:focus-within {
+        box-shadow: 0 0 0 3px rgba(255, 105, 0, 0.3);
+      }
+      .email-input {
+        flex-grow: 1;
+        padding: 0 24px;
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-size: 0.875rem;
+        outline: none;
+      }
+      .email-input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .submit-button {
+        background: #ff6900;
+        color: #fff;
+        width: 48px;
+        border: none;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 1.25rem;
+        transition: background 0.3s ease;
+      }
+      .submit-button:hover {
+        background: #ff8533;
+      }
+      .footer-bottom {
+        text-align: center;
+        padding: 24px;
+        color: #888;
+        font-size: 0.875rem;
+        background-color: #0a0a0a;
+        border-top: 1px solid #53565a;
+      }
+
+      /* ----------  RESPONSIVE TWEAKS (same breakpoints as aboutus1)  ---------- */
+      @media (max-width: 768px) {
+        .footercontainer {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        .footercol {
+          margin: 24px 0;
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .logo {
+          font-size: 1.125rem;
         }
 
-        /* ----------  RESET  ---------- */
-        *,*::before,*::after{box-sizing:border-box;}
-        *{margin:0;padding:0;}
-        body{line-height:1.6;-webkit-font-smoothing:antialiased;}
-        img,picture,svg{display:block;max-width:100%;}
-        input,button,textarea,select{font:inherit;}
-        a{color:inherit;text-decoration:none;}
-        ul{list-style:none;}
-
-        /* ----------  GLOBAL  ---------- */
-        html{scroll-behavior:smooth;}
-        body{
-            font-family: var(--ff-base);
-            font-weight: var(--fw-400);
-            color: var(--clr-black);
-            background: var(--clr-white);
-        }
-        h1,h2,h3,h4{line-height:1.2;font-weight: var(--fw-700);}
-        h1{font-size: clamp(2rem, 5vw, 3rem);}
-        h2{font-size: clamp(1.5rem, 4vw, 2.25rem);}
-        h3{font-size: clamp(1.125rem, 3vw, 1.5rem);}
-        p{max-width: 65ch;}
-
-        .container{
-            width: min(100% - 2rem, var(--max-width));
-            margin-inline:auto;
-        }
-        .section{padding-block:var(--space-2xl) var(--space-xl);}
-
-        /* ----------  HEADER  ---------- */
-        .announcement-bar{
-            background:var(--clr-grey-30);
-            color:var(--clr-white);
-            text-align:center;
-            padding:var(--space-xs) var(--space-sm);
-            font-size:.875rem;
-            font-weight:var(--fw-500);
-        }
-        .nav-container{
-            background:var(--clr-white);
-            box-shadow:var(--shadow-sm);
-            position:sticky;
-            top:0;
-            z-index:100;
-        }
-        nav{
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            padding:var(--space-md) var(--space-sm);
-        }
-        .logo{
-            font-size:1.5rem;
-            font-weight:var(--fw-700);
-            letter-spacing:.1em;
-        }
-        .nav-links{
-            display:flex;
-            align-items:center;
-            gap:var(--space-lg);
-        }
-        .nav-item{position:relative;}
-        .nav-link{
-            display:flex;
-            align-items:center;
-            gap:.25rem;
-            font-weight:var(--fw-500);
-            font-size:.9375rem;
-            transition:color var(--transition);
-        }
-        .nav-link:hover{color:var(--clr-orange);}
-        .arrow{font-size:.6rem;transition:transform var(--transition);}
-        .nav-item:hover .arrow{transform:rotate(180deg);}
-        .dropdown{
-            position:absolute;
-            top:calc(100% + .5rem);
-            left:50%;
-            transform:translateX(-50%) scale(.95);
-            background:var(--clr-white);
-            border-radius:var(--radius);
-            box-shadow:var(--shadow-md);
-            padding:var(--space-sm);
-            min-width:12rem;
-            opacity:0;
-            visibility:hidden;
-            transition:all var(--transition);
-        }
-        .nav-item:hover .dropdown{
-            opacity:1;
-            visibility:visible;
-            transform:translateX(-50%) scale(1);
-        }
-        .dropdown-link{
-            display:block;
-            padding:.5rem .75rem;
-            font-size:.875rem;
-            border-radius:6px;
-            transition:background var(--transition);
-        }
-        .dropdown-link:hover{background:var(--clr-grey-05);}
-        .cart-icon{
-            width:1.5rem;height:1.5rem;
-            stroke:var(--clr-black);
-            cursor:pointer;
-            transition:stroke var(--transition);
-        }
-        .cart-icon:hover{stroke:var(--clr-orange);}
-
-        /* ----------  HERO  ---------- */
-        .hero{
-            background:linear-gradient(135deg, var(--clr-black) 0%, #1a1a1a 100%);
-            color:var(--clr-white);
-            text-align:center;
-            padding-block:clamp(4rem, 12vh, 7rem) clamp(2.5rem, 8vh, 4rem);
-        }
-        .hero h1{margin-block-end:var(--space-sm);}
-        .hero p{
-            margin-inline:auto;
-            opacity:.95;
-            font-size:1.0625rem;
+        .nav-links {
+          width: 100%;
+          justify-content: space-around;
         }
 
-        /* ----------  SEARCH / FILTER  ---------- */
-        .search-bar{
-            background:var(--clr-grey-05);
-            padding:var(--space-md);
-            border-radius:var(--radius);
-            display:flex;
-            flex-wrap:wrap;
-            gap:var(--space-sm);
-            margin-block-end:var(--space-lg);
-        }
-        .search-input{
-            flex:1 1 16rem;
-            padding:.75rem 1rem;
-            border:1px solid rgba(0,0,0,.12);
-            border-radius:6px;
-            font-size:.9375rem;
-        }
-        .search-input:focus{
-            outline:none;
-            border-color:var(--clr-orange);
-            box-shadow:0 0 0 3px rgba(255,105,0,.2);
-        }
-        .filter-select{
-            padding:.75rem 1rem;
-            border:1px solid rgba(0,0,0,.12);
-            border-radius:6px;
-            background:var(--clr-white);
-            font-size:.9375rem;
-            cursor:pointer;
-        }
-        .search-btn{
-            padding:.75rem 1.5rem;
-            border:none;
-            background:var(--clr-orange);
-            color:var(--clr-white);
-            border-radius:6px;
-            font-weight:var(--fw-600);
-            cursor:pointer;
-            transition:background var(--transition);
-        }
-        .search-btn:hover{background:var(--clr-orange-l);}
-
-        /* ----------  BLOG POSTS  ---------- */
-        .posts-grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fit, minmax(18rem, 1fr));
-            gap:var(--space-lg);
-        }
-        .post-card{
-            background:var(--clr-white);
-            border-radius:var(--radius);
-            box-shadow:var(--shadow-sm);
-            overflow:hidden;
-            transition:all var(--transition);
-            display:flex;
-            flex-direction:column;
-        }
-        .post-card:hover{
-            transform:translateY(-4px);
-            box-shadow:var(--shadow-md);
-        }
-        .post-img{
-            aspect-ratio:16/9;
-            object-fit:cover;
-            background:var(--clr-grey-05);
-        }
-        .post-body{padding:var(--space-md);}
-        .post-tag{
-            display:inline-block;
-            background:var(--clr-orange);
-            color:var(--clr-white);
-            padding:.25rem .5rem;
-            border-radius:4px;
-            font-size:.75rem;
-            font-weight:var(--fw-600);
-            margin-block-end:var(--space-xs);
-        }
-        .post-title{font-size:1.125rem;margin-block-end:var(--space-xs);}
-        .post-excerpt{font-size:.9375rem;color:var(--clr-grey-30);}
-        .post-meta{
-            margin-block-start:auto;
-            padding-block-start:var(--space-sm);
-            font-size:.8125rem;
-            color:var(--clr-grey-30);
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-        }
-        .read-more{
-            font-weight:var(--fw-600);
-            color:var(--clr-orange);
-            transition:color var(--transition);
-        }
-        .read-more:hover{color:var(--clr-black);}
-
-        /* ----------  USER STORIES  ---------- */
-        .stories{
-            background:var(--clr-grey-05);
-            border-radius:var(--radius);
-            padding:var(--space-xl);
-            margin-block:var(--space-xl);
-        }
-        .stories h2{margin-block-end:var(--space-md);}
-        .story-grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fit, minmax(16rem, 1fr));
-            gap:var(--space-lg);
-        }
-        .story-card{
-            background:var(--clr-white);
-            padding:var(--space-lg);
-            border-radius:var(--radius);
-            box-shadow:var(--shadow-sm);
-        }
-        .story-header{display:flex;align-items:center;gap:var(--space-sm);margin-block-end:var(--space-sm);}
-        .avatar{
-            width:3rem;height:3rem;
-            border-radius:50%;
-            background:linear-gradient(135deg, var(--clr-black) 0%, var(--clr-grey-30) 100%);
-            display:grid;place-content:center;
-            color:var(--clr-white);font-weight:var(--fw-700);
-        }
-        .story-name{font-weight:var(--fw-600);}
-        .story-role{font-size:.8125rem;color:var(--clr-grey-30);}
-        .story-quote{font-size:.9375rem;font-style:italic;}
-
-        /* ----------  TECH PANEL  ---------- */
-        .tech-panel{
-            background: linear-gradient(135deg, #111 0%, #000 100%);
-            color: #fff;
-            padding: clamp(4rem, 10vh, 8rem) 0;
-            overflow: hidden;
+        .cart-icon {
+          width: 1.25rem;
+          height: 1.25rem;
         }
 
-        .tech-inner{
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: clamp(2rem, 5vw, 4rem);
-            align-items: center;
+        .hero h1 {
+          font-size: 1.5rem;
         }
 
-        .tech-media img{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 16px;
-            box-shadow: 0 20px 40px rgba(0,0,0,.35);
-            transition: transform .4s ease;
-        }
-        .tech-media:hover img{
-            transform: scale(1.03);
+        .hero p {
+          font-size: 0.875rem;
         }
 
-        .tech-label{
-            display: inline-block;
-            background: var(--clr-orange);
-            color: #fff;
-            padding: .4rem 1rem;
-            border-radius: 20px;
-            font-size: .75rem;
-            font-weight: 600;
-            letter-spacing: .5px;
-            margin-block-end: 1rem;
+        .search-bar {
+          flex-direction: column;
         }
 
-        .tech-headline{
-            font-size: clamp(1.75rem, 4vw, 2.5rem);
-            font-weight: 700;
-            line-height: 1.2;
-            margin-block-end: 1rem;
+        .search-input,
+        .filter-select,
+        .search-btn {
+          width: 100%;
         }
 
-        .tech-copy p{
-            font-size: clamp(1rem, 2vw, 1.125rem);
-            line-height: 1.7;
-            opacity: .9;
-            margin-block-end: 1.25rem;
+        .post-card {
+          max-width: 100%;
         }
 
-        .btn-orange{
-            display: inline-block;
-            background: #ff6900;
-            color: #fff;
-            padding: .9rem 2.25rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all .25s ease;
-            box-shadow: 0 4px 14px rgba(0,0,0,.25);
-        }
-        .btn-orange:hover{
-            background: #ff8533;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 22px rgba(255,105,0,.35);
+        .stories {
+          padding: var(--space-md);
         }
 
-        /* ----------  CTA BANNER  ---------- */
-        .cta-banner{
-            background:linear-gradient(135deg, var(--clr-black) 0%, #1a1a1a 100%);
-            color:var(--clr-white);
-            text-align:center;
-            padding:var(--space-xl) var(--space-md);
-            border-radius:var(--radius);
-            margin-block:var(--space-2xl);
-            display: grid;
-            place-content: center;
-            min-height: 240px;
+        .stories h2 {
+          font-size: 1.25rem;
         }
-        .cta-banner h3{
-            font-size: 2rem;
-            margin-block-end:var(--space-sm);
+
+        .story-card {
+          padding: var(--space-sm);
         }
+
+        .avatar {
+          width: 2.5rem;
+          height: 2.5rem;
+          font-size: 0.875rem;
+        }
+
+        .tech-panel {
+          padding: clamp(3rem, 8vh, 5rem) 0;
+        }
+
+        .btn-orange {
+          width: 100%;
+          max-width: 280px;
+        }
+
+        .cta-banner {
+          padding: var(--space-md);
+          min-height: 180px;
+        }
+
+        .cta-banner h3 {
+          font-size: 1.25rem;
+        }
+
         .cta-banner p {
-            font-size: 1.25rem;
-            margin-block-end: var(--space-md);
-        }
-        .cta-btn{
-            display:inline-block;
-            background:var(--clr-orange);
-            color:var(--clr-white);
-            padding:.9rem 2rem;
-            border-radius:8px;
-            font-weight:var(--fw-600);
-            margin-block-start:var(--space-sm);
-            transition:all var(--transition);
-        }
-        .cta-btn:hover{background:var(--clr-orange-l);box-shadow:0 8px 24px rgba(255,105,0,.35);}
-        /* ----------  NEW FOOTER (lookbook-style)  ---------- */
-        footer{background-color:#000;color:#fff}
-        .footercontainer{
-            background-color:#000;
-            display:flex;
-            flex-direction:row;
-            justify-content:space-around;
-            padding:60px 40px;
-            flex-wrap:wrap;
-            max-width:1400px;
-            margin:0 auto;
-        }
-        .footercol{margin:24px;text-align:center}
-        .footercol h1{
-            font-size:1.5rem;
-            margin-bottom:24px;
-            color:#fff;
-            font-weight:600
-        }
-        .footercol ul{list-style:none;padding:0;margin:0}
-        .footercol li{margin-bottom:12px}
-        .footercol a{
-            color:#fff;
-            text-decoration:none;
-            font-size:1rem;
-            transition:color .3s ease
-        }
-        .footercol a:hover{color:#ff6900}
-        .footercol a:visited{color:#e0e0e0}
-        #menu{
-            display:flex;
-            gap:15px;
-            justify-content:center;
-            padding:0
-        }
-        #menu li{display:inline-block;margin-bottom:0}
-        .footer-img{
-            width:35px;
-            height:35px;
-            transition:transform .3s ease;
-            filter:brightness(.9)
-        }
-        .footer-img:hover{
-            transform:scale(1.1);
-            filter:brightness(1) drop-shadow(0 0 8px #ff6900)
-        }
-        .footer-code{
-            width:160px;
-            height:160px;
-            border:2px solid #ff6900;
-            padding:5px;
-            border-radius:12px
-        }
-        .footer-text{
-            max-width:300px;
-            font-style:italic;
-            font-size:.875rem;
-            margin:15px auto;
-            color:#e0e0e0;
-            line-height:1.6
-        }
-        .subscribe-form{
-            display:flex;
-            width:100%;
-            max-width:300px;
-            margin:24px auto 0;
-            height:48px;
-            border:2px solid #ff6900;
-            overflow:hidden;
-            border-radius:24px;
-            transition:box-shadow .3s ease
-        }
-        .subscribe-form:focus-within{box-shadow:0 0 0 3px rgba(255,105,0,.3)}
-        .email-input{
-            flex-grow:1;
-            padding:0 24px;
-            background:transparent;
-            border:none;
-            color:#fff;
-            font-size:.875rem;
-            outline:none
-        }
-        .email-input::placeholder{color:rgba(255,255,255,.5)}
-        .submit-button{
-            background:#ff6900;
-            color:#fff;
-            width:48px;
-            border:none;
-            cursor:pointer;
-            font-weight:700;
-            font-size:1.25rem;
-            transition:background .3s ease
-        }
-        .submit-button:hover{background:#ff8533}
-        .footer-bottom{
-            text-align:center;
-            padding:24px;
-            color:#888;
-            font-size:.875rem;
-            background-color:#0a0a0a;
-            border-top:1px solid #53565a
+          font-size: 0.9375rem;
         }
 
-        /* ----------  RESPONSIVE TWEAKS (same breakpoints as aboutus1)  ---------- */
-        @media (max-width:768px){
-            .footercontainer{flex-direction:column;align-items:center;text-align:center}
-            .footercol{margin:24px 0;width:100%}
+        .cta-btn {
+          width: 100%;
+          max-width: 280px;
         }
 
-        @media (max-width: 480px) {
-            .logo {
-                font-size: 1.125rem;
-            }
-
-            .nav-links {
-                width: 100%;
-                justify-content: space-around;
-            }
-
-            .cart-icon {
-                width: 1.25rem;
-                height: 1.25rem;
-            }
-
-            .hero h1 {
-                font-size: 1.5rem;
-            }
-
-            .hero p {
-                font-size: .875rem;
-            }
-
-            .search-bar {
-                flex-direction: column;
-            }
-
-            .search-input,
-            .filter-select,
-            .search-btn {
-                width: 100%;
-            }
-
-            .post-card {
-                max-width: 100%;
-            }
-
-            .stories {
-                padding: var(--space-md);
-            }
-
-            .stories h2 {
-                font-size: 1.25rem;
-            }
-
-            .story-card {
-                padding: var(--space-sm);
-            }
-
-            .avatar {
-                width: 2.5rem;
-                height: 2.5rem;
-                font-size: .875rem;
-            }
-
-            .tech-panel {
-                padding: clamp(3rem, 8vh, 5rem) 0;
-            }
-
-            .btn-orange {
-                width: 100%;
-                max-width: 280px;
-            }
-
-            .cta-banner {
-                padding: var(--space-md);
-                min-height: 180px;
-            }
-
-            .cta-banner h3 {
-                font-size: 1.25rem;
-            }
-
-            .cta-banner p {
-                font-size: .9375rem;
-            }
-
-            .cta-btn {
-                width: 100%;
-                max-width: 280px;
-            }
-
-            .footer-col h4 {
-                font-size: .9375rem;
-            }
-
-            .footer-col a {
-                font-size: .875rem;
-            }
+        .footer-col h4 {
+          font-size: 0.9375rem;
         }
+
+        .footer-col a {
+          font-size: 0.875rem;
+        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <!-- ANNOUNCEMENT -->
+    <div class="announcement-bar">Free global shipping on orders over $99</div>
 
-<!-- ANNOUNCEMENT -->
-<div class="announcement-bar">Free global shipping on orders over $99</div>
+    <!-- NAVIGATION -->
+    <header class="nav-container">
+      <nav class="container">
+        <a href="index.html" class="logo-container">
+          <div class="logo-bg"></div>
 
-<!-- NAVIGATION -->
-<header class="nav-container">
-    <nav class="container">
-        <a href="#" class="logo" aria-label="Xiaomi home">XIAOMI</a>
+          <!-- MI Logo -->
+          <svg class="logo-icon" width="36" height="36" viewBox="0 0 36 36">
+            <text x="18" y="26" text-anchor="middle" class="mi-text">MI</text>
+          </svg>
+
+          <!-- Home Icon -->
+          <svg class="home-icon" width="28" height="28" viewBox="0 0 24 24">
+            <path
+              class="home-path"
+              d="M12 3L4 9v12h16V9l-8-6zm6 16h-3v-6H9v6H6v-9l6-4.5L18 10v9z"
+            />
+          </svg>
+        </a>
 
         <ul class="nav-links">
-            <li class="nav-item">
-                <a href="#" class="nav-link">Shop <span class="arrow">▼</span></a>
-                <div class="dropdown">
-                    <a href="#" class="dropdown-link">All Watches</a>
-                    <a href="#" class="dropdown-link">Smart Watch Pro</a>
-                    <a href="#" class="dropdown-link">Smart Watch Lite</a>
-                    <a href="#" class="dropdown-link">Accessories</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Health <span class="arrow">▼</span></a>
-                <div class="dropdown">
-                    <a href="#" class="dropdown-link">Heart-Rate Monitor</a>
-                    <a href="#" class="dropdown-link">Sleep Tracking</a>
-                    <a href="#" class="dropdown-link">Fitness Tracking</a>
-                    <a href="#" class="dropdown-link">Blood Oxygen</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Experience <span class="arrow">▼</span></a>
-                <div class="dropdown">
-                    <a href="#" class="dropdown-link">App Ecosystem</a>
-                    <a href="#" class="dropdown-link">Watch Faces</a>
-                    <a href="#" class="dropdown-link">Notifications</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <svg class="cart-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-            </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Shop <span class="arrow">▼</span></a>
+            <div class="dropdown">
+              <a href="#" class="dropdown-link">All Watches</a>
+              <a href="#" class="dropdown-link">Smart Watch Pro</a>
+              <a href="#" class="dropdown-link">Smart Watch Lite</a>
+              <a href="#" class="dropdown-link">Accessories</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Health <span class="arrow">▼</span></a>
+            <div class="dropdown">
+              <a href="#" class="dropdown-link">Heart-Rate Monitor</a>
+              <a href="#" class="dropdown-link">Sleep Tracking</a>
+              <a href="#" class="dropdown-link">Fitness Tracking</a>
+              <a href="#" class="dropdown-link">Blood Oxygen</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link"
+              >Experience <span class="arrow">▼</span></a
+            >
+            <div class="dropdown">
+              <a href="#" class="dropdown-link">App Ecosystem</a>
+              <a href="#" class="dropdown-link">Watch Faces</a>
+              <a href="#" class="dropdown-link">Notifications</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <svg class="cart-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path
+                d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+              ></path>
+            </svg>
+          </li>
         </ul>
-    </nav>
-</header>
+      </nav>
+    </header>
 
-<!-- HERO -->
-<section class="hero">
-    <div class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
         <h1>Xiaomi Smart Band 10 - Blogs and Articles</h1>
-        <p>Deep-dive review, real-life stories and the tech that powers the band everyone is talking about.</p>
-    </div>
-</section>
+        <p>
+          Deep-dive review, real-life stories and the tech that powers the band
+          everyone is talking about.
+        </p>
+      </div>
+    </section>
 
-<!-- SEARCH / FILTER -->
-<section class="container section">
-    <form class="search-bar" onsubmit="return false;">
-        <input type="search" class="search-input" placeholder="Search blogs by keyword, author or tag…" aria-label="Search">
+    <!-- SEARCH / FILTER -->
+    <section class="container section">
+      <form class="search-bar" onsubmit="return false;">
+        <input
+          type="search"
+          class="search-input"
+          placeholder="Search blogs by keyword, author or tag…"
+          aria-label="Search"
+        />
         <select class="filter-select" aria-label="Filter by category">
-            <option>All categories</option>
-            <option>Reviews</option>
-            <option>User stories</option>
-            <option>Tech inside</option>
+          <option>All categories</option>
+          <option>Reviews</option>
+          <option>User stories</option>
+          <option>Tech inside</option>
         </select>
         <button class="search-btn">Search</button>
-    </form>
+      </form>
 
-    <!-- BLOG POSTS -->
-    <div class="posts-grid">
+      <!-- BLOG POSTS -->
+      <div class="posts-grid">
         <!-- POST 1 -->
         <article class="post-card">
-            <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&h=400&fit=crop" alt="Smart Band 10 on wrist during marathon" class="post-img">
-            <div class="post-body">
-                <span class="post-tag">Review</span>
-                <h3 class="post-title">10-Day Battery, 1% Left – Real-World Test</h3>
-                <p class="post-excerpt">We put the Smart Band 10 through a marathon of workouts, sleep and notifications. Here's what happened…</p>
-                <div class="post-meta">
-                    <span>Mark Reyes • 8 min read</span>
-                    <a href="#" class="read-more">Read more →</a>
-                </div>
+          <img
+            src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&h=400&fit=crop"
+            alt="Smart Band 10 on wrist during marathon"
+            class="post-img"
+          />
+          <div class="post-body">
+            <span class="post-tag">Review</span>
+            <h3 class="post-title">
+              10-Day Battery, 1% Left – Real-World Test
+            </h3>
+            <p class="post-excerpt">
+              We put the Smart Band 10 through a marathon of workouts, sleep and
+              notifications. Here's what happened…
+            </p>
+            <div class="post-meta">
+              <span>Mark Reyes • 8 min read</span>
+              <a href="#" class="read-more">Read more →</a>
             </div>
+          </div>
         </article>
 
         <!-- POST 2 -->
         <article class="post-card">
-            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop" alt="Smart Band 10 for weight loss" class="post-img">
-            <div class="post-body">
-                <span class="post-tag">User story</span>
-                <h3 class="post-title">How I Lost 12 kg Without a Gym Membership</h3>
-                <p class="post-excerpt">Sarah, 29, shares how the band's accurate calorie burn and gentle reminders kept her going…</p>
-                <div class="post-meta">
-                    <span>Sarah Lim • 5 min read</span>
-                    <a href="#" class="read-more">Read more →</a>
-                </div>
+          <img
+            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop"
+            alt="Smart Band 10 for weight loss"
+            class="post-img"
+          />
+          <div class="post-body">
+            <span class="post-tag">User story</span>
+            <h3 class="post-title">
+              How I Lost 12 kg Without a Gym Membership
+            </h3>
+            <p class="post-excerpt">
+              Sarah, 29, shares how the band's accurate calorie burn and gentle
+              reminders kept her going…
+            </p>
+            <div class="post-meta">
+              <span>Sarah Lim • 5 min read</span>
+              <a href="#" class="read-more">Read more →</a>
             </div>
+          </div>
         </article>
 
         <!-- POST 3 -->
         <article class="post-card">
-            <img src="https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?w=600&h=400&fit=crop" alt="Smart Band 10 sensor technology" class="post-img">
-            <div class="post-body">
-                <span class="post-tag">Tech inside</span>
-                <h3 class="post-title">The Sensor That Never Sleeps</h3>
-                <p class="post-excerpt">We dive into the new PPG sensor and why SpO2 accuracy jumped 18% compared to Band 9…</p>
-                <div class="post-meta">
-                    <span>Dr. Alex Woo • 7 min read</span>
-                    <a href="#" class="read-more">Read more →</a>
-                </div>
+          <img
+            src="https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?w=600&h=400&fit=crop"
+            alt="Smart Band 10 sensor technology"
+            class="post-img"
+          />
+          <div class="post-body">
+            <span class="post-tag">Tech inside</span>
+            <h3 class="post-title">The Sensor That Never Sleeps</h3>
+            <p class="post-excerpt">
+              We dive into the new PPG sensor and why SpO2 accuracy jumped 18%
+              compared to Band 9…
+            </p>
+            <div class="post-meta">
+              <span>Dr. Alex Woo • 7 min read</span>
+              <a href="#" class="read-more">Read more →</a>
             </div>
+          </div>
         </article>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- USER STORIES -->
-<section class="container section">
-    <div class="stories">
+    <!-- USER STORIES -->
+    <section class="container section">
+      <div class="stories">
         <h2>Real Stories from Real Wrists</h2>
         <div class="story-grid">
-            <article class="story-card">
-                <div class="story-header">
-                    <div class="avatar">SL</div>
-                    <div>
-                        <div class="story-name">Sarah Lim</div>
-                        <div class="story-role">Marketing Manager</div>
-                    </div>
-                </div>
-                <p class="story-quote">"The Band 10's gentle nudge every hour keeps me moving. I hit 10k steps without even noticing."</p>
-            </article>
+          <article class="story-card">
+            <div class="story-header">
+              <div class="avatar">SL</div>
+              <div>
+                <div class="story-name">Sarah Lim</div>
+                <div class="story-role">Marketing Manager</div>
+              </div>
+            </div>
+            <p class="story-quote">
+              "The Band 10's gentle nudge every hour keeps me moving. I hit 10k
+              steps without even noticing."
+            </p>
+          </article>
 
-            <article class="story-card">
-                <div class="story-header">
-                    <div class="avatar">MR</div>
-                    <div>
-                        <div class="story-name">Mark Reyes</div>
-                        <div class="story-role">Marathoner</div>
-                    </div>
-                </div>
-                <p class="story-quote">"GPS lock is instant and heart-rate lock stays steady even at 180 bpm. Best band I've used for tempo runs."</p>
-            </article>
+          <article class="story-card">
+            <div class="story-header">
+              <div class="avatar">MR</div>
+              <div>
+                <div class="story-name">Mark Reyes</div>
+                <div class="story-role">Marathoner</div>
+              </div>
+            </div>
+            <p class="story-quote">
+              "GPS lock is instant and heart-rate lock stays steady even at 180
+              bpm. Best band I've used for tempo runs."
+            </p>
+          </article>
 
-            <article class="story-card">
-                <div class="story-header">
-                    <div class="avatar">DW</div>
-                    <div>
-                        <div class="story-name">Dr. Woo</div>
-                        <div class="story-role">Sleep Researcher</div>
-                    </div>
-                </div>
-                <p class="story-quote">"The new SpO2 sensor is clinic-grade. My patients' overnight traces are now reliable enough for screening."</p>
-            </article>
+          <article class="story-card">
+            <div class="story-header">
+              <div class="avatar">DW</div>
+              <div>
+                <div class="story-name">Dr. Woo</div>
+                <div class="story-role">Sleep Researcher</div>
+              </div>
+            </div>
+            <p class="story-quote">
+              "The new SpO2 sensor is clinic-grade. My patients' overnight
+              traces are now reliable enough for screening."
+            </p>
+          </article>
         </div>
-    </div>
-</section>
-
-<!-- TECH ORIGIN – full-bleed panel -->
-<section class="tech-panel">
-    <div class="tech-inner container">
-      <div class="tech-media">
-        <img src="Images/techwatch.jpg" alt="Multi-channel PPG sensor">
       </div>
-  
-      <div class="tech-copy">
-        <h2 class="tech-headline">Where the Tech Comes From</h2>
-        <p>
-          Xiaomi's multi-channel PPG module was co-developed with Huami Health.
-          By splitting the light spectrum into four discrete wave-lengths, the
-          sensor cancels motion artefacts 3× better than the previous generation.
-        </p>
-        <p>
-          The result? Medical-grade SpO₂ deviation of ±1.2% and heart-rate
-          accuracy within 2 bpm—validated against Polar H10 chest straps.
-        </p>
-        <a href="https://shopee.sg/Xiaomi-Smart-Band-10-Fitness-Tracker-i.237295326.40006017343"
-           class="btn-orange"
-           target="_blank"
-           rel="noopener">
-          Shop Band 10
-        </a>
-      </div>
-    </div>
-</section>
+    </section>
 
-<!-- CTA BANNER -->
-<section class="container">
-    <div class="cta-banner">
+    <!-- TECH ORIGIN – full-bleed panel -->
+    <section class="tech-panel">
+      <div class="tech-inner container">
+        <div class="tech-media">
+          <img src="Images/techwatch.jpg" alt="Multi-channel PPG sensor" />
+        </div>
+
+        <div class="tech-copy">
+          <h2 class="tech-headline">Where the Tech Comes From</h2>
+          <p>
+            Xiaomi's multi-channel PPG module was co-developed with Huami
+            Health. By splitting the light spectrum into four discrete
+            wave-lengths, the sensor cancels motion artefacts 3× better than the
+            previous generation.
+          </p>
+          <p>
+            The result? Medical-grade SpO₂ deviation of ±1.2% and heart-rate
+            accuracy within 2 bpm—validated against Polar H10 chest straps.
+          </p>
+          <a
+            href="https://shopee.sg/Xiaomi-Smart-Band-10-Fitness-Tracker-i.237295326.40006017343"
+            class="btn-orange"
+            target="_blank"
+            rel="noopener"
+          >
+            Shop Band 10
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="container">
+      <div class="cta-banner">
         <h3>Ready to Move?</h3>
         <p>Order the Smart Band 10 today and get a free extra strap.</p>
-        <a href="https://shopee.sg/Xiaomi-Smart-Band-10-Fitness-Tracker-i.237295326.40006017343" class="cta-btn" target="_blank" rel="noopener">Buy now</a>
-    </div>
-</section>
+        <a
+          href="https://shopee.sg/Xiaomi-Smart-Band-10-Fitness-Tracker-i.237295326.40006017343"
+          class="cta-btn"
+          target="_blank"
+          rel="noopener"
+          >Buy now</a
+        >
+      </div>
+    </section>
 
-<!-- FOOTER -->
-<footer>
-    <div class="footercontainer">
-      <div class="footercol">
-        <h1>SUPPORT</h1>
-        <ul>
-          <li><a href="#">User Guide</a></li>
-          <li><a href="#">Terms of Use</a></li>
-          <li><a href="#">Service</a></li>
-          <li><a href="warranty.html">Warranty</a></li>
-          <li><a href="#">Store Locator</a></li>
-          <li><a href="#">Service Center</a></li>
-        </ul>
-      </div>
-  
-      <div class="footercol">
-        <h1>About Us</h1>
-        <ul>
-          <li><a href="#">Xiaomi</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Leadership Team</a></li>
-          <li><a href="#">Trust Center</a></li>
-        </ul>
-      </div>
-  
-      <div class="footercol">
-        <h1>Follow Us</h1>
-        <ul id="menu">
-          <li>
-            <a href="#" aria-label="Instagram">
-              <img class="footer-img" src="Images/instagram.png" alt="">
-            </a>
-          </li>
-          <li>
-            <a href="#" aria-label="LinkedIn">
-              <img class="footer-img" src="Images/linkedin.png" alt="">
-            </a>
-          </li>
-          <li>
-            <a href="#" aria-label="Facebook">
-              <img class="footer-img" src="Images/facebook.png" alt="">
-            </a>
-          </li>
-          <li>
-            <a href="#" aria-label="WhatsApp">
-              <img class="footer-img" src="Images/whatsapp.png" alt="">
-            </a>
-          </li>
-        </ul>
-      </div>
-  
-      <div class="footercol">
-        <h1>Download Our App</h1>
-        <ul id="menu">
-          <li>
-            <a href="#">
-              <img class="footer-code" src="Images/QRcode.webp" alt="Download app QR code">
-            </a>
-          </li>
-        </ul>
-      </div>
-  
-      <div class="footercol">
-        <h1>Stay Updated</h1>
-        <p class="footer-text">Subscribe to our newsletter</p>
-        <form class="subscribe-form" aria-label="Newsletter subscription">
-          <input type="email" placeholder="Your E-mail Address..." class="email-input" aria-label="Email address" required>
-          <button type="submit" class="submit-button" aria-label="Subscribe to newsletter">&gt;</button>
-        </form>
-      </div>
-    </div>
-  
-    <div class="footer-bottom">
-      <p>Copyright &copy; 2010 - 2025 Xiaomi. All Rights Reserved</p>
-    </div>
-  </footer>
+    <!-- FOOTER -->
+    <footer>
+      <div class="footercontainer">
+        <div class="footercol">
+          <h1>SUPPORT</h1>
+          <ul>
+            <li><a href="#">User Guide</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Service</a></li>
+            <li><a href="warranty.html">Warranty</a></li>
+            <li><a href="#">Store Locator</a></li>
+            <li><a href="#">Service Center</a></li>
+          </ul>
+        </div>
 
+        <div class="footercol">
+          <h1>About Us</h1>
+          <ul>
+            <li><a href="#">Xiaomi</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Leadership Team</a></li>
+            <li><a href="#">Trust Center</a></li>
+          </ul>
+        </div>
 
-<!-- Search functionality -->
-<script>
-    const searchInput = document.querySelector('.search-input');
-    const cards = [...document.querySelectorAll('.post-card')];
-    searchInput.addEventListener('input', e => {
+        <div class="footercol">
+          <h1>Follow Us</h1>
+          <ul id="menu">
+            <li>
+              <a href="#" aria-label="Instagram">
+                <img class="footer-img" src="Images/instagram.png" alt="" />
+              </a>
+            </li>
+            <li>
+              <a href="#" aria-label="LinkedIn">
+                <img class="footer-img" src="Images/linkedin.png" alt="" />
+              </a>
+            </li>
+            <li>
+              <a href="#" aria-label="Facebook">
+                <img class="footer-img" src="Images/facebook.png" alt="" />
+              </a>
+            </li>
+            <li>
+              <a href="#" aria-label="WhatsApp">
+                <img class="footer-img" src="Images/whatsapp.png" alt="" />
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footercol">
+          <h1>Download Our App</h1>
+          <ul id="menu">
+            <li>
+              <a href="#">
+                <img
+                  class="footer-code"
+                  src="Images/QRcode.webp"
+                  alt="Download app QR code"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footercol">
+          <h1>Stay Updated</h1>
+          <p class="footer-text">Subscribe to our newsletter</p>
+          <form class="subscribe-form" aria-label="Newsletter subscription">
+            <input
+              type="email"
+              placeholder="Your E-mail Address..."
+              class="email-input"
+              aria-label="Email address"
+              required
+            />
+            <button
+              type="submit"
+              class="submit-button"
+              aria-label="Subscribe to newsletter"
+            >
+              &gt;
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>Copyright &copy; 2010 - 2025 Xiaomi. All Rights Reserved</p>
+      </div>
+    </footer>
+
+    <!-- Search functionality -->
+    <script>
+      const searchInput = document.querySelector(".search-input");
+      const cards = [...document.querySelectorAll(".post-card")];
+      searchInput.addEventListener("input", (e) => {
         const term = e.target.value.toLowerCase();
-        cards.forEach(card => {
-            const text = card.textContent.toLowerCase();
-            card.style.display = text.includes(term) ? '' : 'none';
+        cards.forEach((card) => {
+          const text = card.textContent.toLowerCase();
+          card.style.display = text.includes(term) ? "" : "none";
         });
-    });
-</script>
-</body>
+      });
+    </script>
+  </body>
 </html>

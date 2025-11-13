@@ -10,7 +10,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="accessory.css" />
-    <link rel="icon" href="https://i02.appmifile.com/i18n/scm/favicon.png">
+    <link rel="icon" href="https://i02.appmifile.com/i18n/scm/favicon.png" />
   </head>
   <body>
     <div class="announcement-bar">
@@ -19,7 +19,22 @@
 
     <div class="nav-container">
       <nav>
-        <div class="logo">XIAOMI</div>
+        <a href="index.html" class="logo-container">
+          <div class="logo-bg"></div>
+
+          <svg class="logo-icon" width="36" height="36" viewBox="0 0 36 36">
+            <text x="18" y="26" text-anchor="middle" class="mi-text">MI</text>
+          </svg>
+
+          <svg class="home-icon" width="28" height="28" viewBox="0 0 24 24">
+            <path
+              class="home-path"
+              d="M12 3L4 9v12h16V9l-8-6zm6 16h-3v-6H9v6H6v-9l6-4.5L18 10v9z"
+            />
+          </svg>
+        </a>
+
+        <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
 
         <ul class="nav-links">
           <li class="nav-item">
@@ -87,29 +102,31 @@
     </div>
 
     <section class="hero-section">
-      <!-- Background Image - Replace with your actual image -->
       <img
         src="Images/hero4.jpg"
         alt="Watch straps background"
         class="hero-background"
       />
 
-      <!-- Dark overlay -->
       <div class="hero-overlay"></div>
 
-      <!-- Hero Content -->
       <div class="hero-content">
         <div class="hero-label">ACCESSORIES</div>
         <h1 class="hero-title">STRAPS</h1>
         <div class="hero-cta">
-          <a href="https://shopee.sg/Xiaomi-Smart-Band-10-Fitness-Tracker-i.237295326.40006017343" target="_blank" rel="noopener noreferrer" class="hero-button hero-button-primary">Shop Now</a>
+          <a
+            href="https://shopee.sg/Xiaomi-Smart-Band-10-Fitness-Tracker-i.237295326.40006017343"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hero-button hero-button-primary"
+            >Shop Now</a
+          >
           <a href="product.html" class="hero-button hero-button-secondary"
             >Explore Collection</a
           >
         </div>
       </div>
 
-      <!-- Scroll Indicator -->
       <div class="scroll-indicator">
         <svg
           viewBox="0 0 24 24"
@@ -437,5 +454,82 @@
         <p>Copyright &copy; 2010 - 2025 Xiaomi. All Rights Reserved</p>
       </div>
     </footer>
+
+    <script>
+      // Mobile Menu Toggle
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navLinks = document.querySelector(".nav-links");
+      const navItems = document.querySelectorAll(".nav-item");
+
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener("click", function () {
+          navLinks.classList.toggle("open");
+          this.textContent = navLinks.classList.contains("open") ? "✕" : "☰";
+          document.body.style.overflow = navLinks.classList.contains("open")
+            ? "hidden"
+            : "";
+        });
+
+        // Toggle dropdowns on click for mobile/tablet
+        navItems.forEach((item) => {
+          const link = item.querySelector(".nav-link");
+          const dropdown = item.querySelector(".dropdown");
+
+          if (dropdown) {
+            link.addEventListener("click", function (e) {
+              if (window.innerWidth <= 1024) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                // Close other open dropdowns
+                navItems.forEach((otherItem) => {
+                  const otherDropdown = otherItem.querySelector(".dropdown");
+                  if (otherDropdown && otherDropdown !== dropdown) {
+                    otherDropdown.classList.remove("active");
+                  }
+                });
+
+                dropdown.classList.toggle("active");
+              }
+            });
+          }
+        });
+
+        // Close menu when clicking on a link or outside
+        document
+          .querySelectorAll(".nav-link, .dropdown-link")
+          .forEach((link) => {
+            link.addEventListener("click", function () {
+              if (
+                navLinks.classList.contains("open") &&
+                this.getAttribute("href") !== "#"
+              ) {
+                navLinks.classList.remove("open");
+                menuToggle.textContent = "☰";
+                document.body.style.overflow = "";
+                // Close any open dropdown on navigation
+                navItems.forEach((item) =>
+                  item.querySelector(".dropdown")?.classList.remove("active")
+                );
+              }
+            });
+          });
+
+        document.addEventListener("click", function (e) {
+          if (
+            !navLinks.contains(e.target) &&
+            !menuToggle.contains(e.target) &&
+            navLinks.classList.contains("open")
+          ) {
+            navLinks.classList.remove("open");
+            menuToggle.textContent = "☰";
+            document.body.style.overflow = "";
+            navItems.forEach((item) =>
+              item.querySelector(".dropdown")?.classList.remove("active")
+            );
+          }
+        });
+      }
+    </script>
   </body>
 </html>

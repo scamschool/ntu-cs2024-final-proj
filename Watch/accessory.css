@@ -44,7 +44,8 @@ body {
 
 .nav-container {
   background-color: var(--color-light-neutral);
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 100;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
@@ -58,11 +59,71 @@ nav {
   padding: 20px 40px;
 }
 
-.logo {
-  font-size: 24px;
-  font-weight: 700; /* Adjusted for consistency */
-  letter-spacing: 2px;
-  color: var(--color-primary); /* Black Logo */
+.logo-container {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.logo-container:hover {
+  transform: scale(1.05);
+}
+
+.logo-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ff6700;
+  border-radius: 12px;
+  transition: background 0.3s ease;
+}
+
+.logo-container:hover .logo-bg {
+  background: #ff7700;
+}
+
+.logo-icon,
+.home-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.logo-icon {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.home-icon {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+.logo-container:hover .logo-icon {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+.logo-container:hover .home-icon {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* MI Logo SVG */
+.mi-text {
+  fill: white;
+  font-size: 32px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+
+/* Home Icon SVG */
+.home-path {
+  fill: white;
 }
 
 .nav-links {
@@ -125,6 +186,19 @@ nav {
   visibility: visible;
 }
 
+/* Mobile dropdown styles - important for JS functionality */
+.dropdown.active {
+  opacity: 1;
+  visibility: visible;
+  position: static;
+  transform: none;
+  margin-top: 10px;
+  padding: 0 10px;
+  box-shadow: none;
+  border: none;
+  /* This makes it visible on mobile */
+}
+
 .dropdown-link {
   display: block;
   padding: 10px 15px;
@@ -151,6 +225,23 @@ nav {
 
 .cart-icon:hover {
   stroke: var(--color-accent); /* Orange Hover (Small accent) */
+}
+
+/* Mobile Menu Toggle Button */
+.menu-toggle {
+  display: none; /* Hidden on Desktop */
+  cursor: pointer;
+  font-size: 28px;
+  color: var(--color-dark-text);
+  border: none;
+  background: transparent;
+  padding: 8px;
+  transition: color 0.3s;
+  z-index: 1000;
+}
+
+.menu-toggle:hover {
+  color: var(--color-accent);
 }
 
 /* ------------------------------------------- */
@@ -294,36 +385,6 @@ nav {
   }
 }
 
-/* Responsive (No color change needed here) */
-@media (max-width: 1024px) {
-  .hero-title {
-    font-size: 80px;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-content {
-    padding: 0 30px;
-  }
-
-  .hero-title {
-    font-size: 60px;
-  }
-
-  .hero-label {
-    font-size: 11px;
-  }
-
-  .hero-cta {
-    flex-direction: column;
-    max-width: 300px;
-  }
-
-  .hero-button {
-    text-align: center;
-  }
-}
-
 /* ------------------------------------------- */
 /* --- PRODUCT GRID HEADER --- */
 /* ------------------------------------------- */
@@ -458,26 +519,6 @@ h1 {
 .product-card:hover .product-price {
   opacity: 1;
   transform: translateY(0);
-}
-
-/* Responsive design (No color change needed here) */
-@media (max-width: 768px) {
-  .products-grid {
-    grid-template-columns: 1fr;
-    max-width: 400px;
-  }
-
-  .product-image-container {
-    max-width: 300px;
-  }
-
-  nav {
-    padding: 20px;
-  }
-
-  .container {
-    padding: 0 20px;
-  }
 }
 
 /* ------------------------------------------- */
@@ -615,17 +656,6 @@ ul#menu li {
   background: var(--color-accent-light);
 }
 
-@media (max-width: 768px) {
-  .footercontainer {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .footercol {
-    margin: 15px 0;
-  }
-}
-
 .footer-bottom {
   text-align: center;
   padding: 20px;
@@ -668,4 +698,174 @@ section {
 
 .text-accent {
   color: var(--color-accent);
+}
+
+/* ------------------------------------------- */
+/* --- RESPONSIVENESS --- */
+/* ------------------------------------------- */
+
+/* Large Tablets and smaller (max-width: 1024px) */
+@media (max-width: 1024px) {
+  nav {
+    padding: 20px;
+  }
+
+  /* Navigation Toggle */
+  .menu-toggle {
+    display: block;
+    order: 3;
+    z-index: 1010; /* Above the nav container */
+  }
+
+  /* Navigation Links (Mobile Sidebar) */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%;
+    max-width: 350px;
+    height: 100vh;
+    background-color: var(--color-light-neutral);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 80px 20px 20px;
+    gap: 10px;
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    overflow-y: auto;
+  }
+
+  .nav-links.open {
+    transform: translateX(0);
+  }
+
+  .nav-item {
+    width: 100%;
+    border-bottom: 1px solid var(--color-light-bg-tint);
+  }
+
+  .nav-item:last-child {
+    border-bottom: none;
+    margin-top: 10px; /* Separate cart icon */
+  }
+
+  .nav-link {
+    font-size: 17px;
+    padding: 12px 0;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .dropdown {
+    /* Set display for mobile menu items */
+    position: static;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    margin-top: 0;
+    padding: 0 10px;
+    box-shadow: none;
+    border: none;
+    display: none; /* Controlled by JS .active class */
+  }
+
+  .dropdown.active {
+    display: block;
+  }
+
+  .dropdown-link {
+    background-color: var(--color-light-bg-tint);
+    border-radius: 0;
+    padding: 10px 15px;
+    font-size: 14px;
+    margin-bottom: 1px;
+  }
+
+  .cart-icon {
+    margin: 10px 0;
+    align-self: flex-end;
+  }
+
+  /* Hero Section */
+  .hero-content {
+    padding: 0 40px;
+  }
+
+  .hero-title {
+    font-size: 80px;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    max-width: 300px;
+  }
+
+  .hero-button {
+    width: 100%;
+  }
+
+  /* Product Grid */
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 0;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .footercontainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footercol {
+    margin: 15px 0;
+  }
+}
+
+/* Mobile Devices (max-width: 550px) */
+@media (max-width: 550px) {
+  /* Global */
+  h1 {
+    font-size: 32px;
+  }
+  .header {
+    margin-bottom: 30px;
+  }
+
+  /* Hero Section */
+  .hero-content {
+    padding: 0 20px;
+  }
+
+  .hero-title {
+    font-size: 50px;
+  }
+
+  .hero-label {
+    font-size: 10px;
+  }
+
+  .hero-button {
+    padding: 12px 30px;
+  }
+
+  /* Product Grid */
+  .products-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    gap: 30px;
+  }
+
+  .product-name {
+    font-size: 18px;
+  }
+
+  .product-image-container {
+    max-width: 320px;
+  }
 }

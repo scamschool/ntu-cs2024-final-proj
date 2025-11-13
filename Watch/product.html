@@ -1,760 +1,958 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8" />
     <title>Products - Xiaomi Smart Band 10</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        :root {
-            --color-primary: #000000;
-            --color-secondary: #53565a;
-            --color-accent: #ff6900;
-            --color-accent-light: #ff8533;
-            --color-light-neutral: #ffffff;
-            --color-dark-text: #000000;
-            --color-light-bg-tint: #f8f8f8;
-        }
+      :root {
+        --color-primary: #000000;
+        --color-secondary: #53565a;
+        --color-accent: #ff6900;
+        --color-accent-light: #ff8533;
+        --color-light-neutral: #ffffff;
+        --color-dark-text: #000000;
+        --color-light-bg-tint: #f8f8f8;
+      }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: var(--color-light-neutral);
-            overflow-x: hidden;
-        }
+      body {
+        font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background-color: var(--color-light-neutral);
+        overflow-x: hidden;
+      }
 
-        /* Navigation */
-        .announcement-bar {
-            background-color: var(--color-secondary);
-            text-align: center;
-            padding: 12px 20px;
-            font-size: 14px;
-            color: var(--color-light-neutral);
-            border-bottom: 1px solid #4a4d51;
-            font-weight: 500;
-        }
+      /* Navigation */
+      .announcement-bar {
+        background-color: var(--color-secondary);
+        text-align: center;
+        padding: 12px 20px;
+        font-size: 14px;
+        color: var(--color-light-neutral);
+        border-bottom: 1px solid #4a4d51;
+        font-weight: 500;
+      }
 
-        .nav-container {
-            background-color: var(--color-light-neutral);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        }
+      .nav-container {
+        background-color: var(--color-light-neutral);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
 
-        nav {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 40px;
-        }
+      nav {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 40px;
+      }
 
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--color-primary);
-        }
+      .logo-container {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
 
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-            align-items: center;
-        }
+      .logo-container:hover {
+        transform: scale(1.05);
+      }
 
-        .nav-link {
-            text-decoration: none;
-            color: var(--color-dark-text);
-            font-size: 15px;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
+      .logo-bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #ff6700;
+        border-radius: 12px;
+        transition: background 0.3s ease;
+      }
 
-        .nav-link:hover {
-            color: var(--color-accent);
-        }
+      .logo-container:hover .logo-bg {
+        background: #ff7700;
+      }
 
-        .cart-icon {
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-            stroke: var(--color-dark-text);
-            transition: stroke 0.3s;
-        }
+      .logo-icon,
+      .home-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
 
-        .cart-icon:hover {
-            stroke: var(--color-accent);
-        }
+      .logo-icon {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
 
-        /* Page Hero */
-        .page-hero {
-            text-align: center;
-            padding: 100px 40px 80px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+      .home-icon {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+      }
 
-        .page-hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            font-weight: 800;
-            color: var(--color-dark-text);
-            margin-bottom: 24px;
-            letter-spacing: -2px;
-            line-height: 1.1;
-        }
+      .logo-container:hover .logo-icon {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+      }
 
-        .page-hero p {
-            font-size: clamp(1.1rem, 2vw, 1.375rem);
-            color: var(--color-secondary);
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.6;
-            font-weight: 400;
-        }
+      .logo-container:hover .home-icon {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
 
-        /* Product Section Base */
-        .product-section {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 120px 40px;
-            overflow: hidden;
-        }
+      /* MI Logo SVG */
+      .mi-text {
+        fill: white;
+        font-size: 32px;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+      }
 
+      /* Home Icon SVG */
+      .home-path {
+        fill: white;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 40px;
+        list-style: none;
+        align-items: center;
+      }
+
+      .nav-link {
+        text-decoration: none;
+        color: var(--color-dark-text);
+        font-size: 15px;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .nav-link:hover {
+        color: var(--color-accent);
+      }
+
+      .cart-icon {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        stroke: var(--color-dark-text);
+        transition: stroke 0.3s;
+      }
+
+      .cart-icon:hover {
+        stroke: var(--color-accent);
+      }
+
+      /* Page Hero */
+      .page-hero {
+        text-align: center;
+        padding: 100px 40px 80px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .page-hero h1 {
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        font-weight: 800;
+        color: var(--color-dark-text);
+        margin-bottom: 24px;
+        letter-spacing: -2px;
+        line-height: 1.1;
+      }
+
+      .page-hero p {
+        font-size: clamp(1.1rem, 2vw, 1.375rem);
+        color: var(--color-secondary);
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.6;
+        font-weight: 400;
+      }
+
+      /* Product Section Base */
+      .product-section {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 120px 40px;
+        overflow: hidden;
+      }
+
+      .product-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+
+      .product-info {
+        z-index: 2;
+      }
+
+      .product-badge {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        padding: 8px 20px;
+        border-radius: 30px;
+        margin-bottom: 24px;
+      }
+
+      .product-title {
+        font-size: clamp(2.5rem, 4vw, 4rem);
+        font-weight: 800;
+        margin-bottom: 24px;
+        line-height: 1.1;
+        letter-spacing: -1.5px;
+      }
+
+      .product-description {
+        font-size: clamp(1rem, 1.5vw, 1.25rem);
+        line-height: 1.7;
+        margin-bottom: 32px;
+        font-weight: 400;
+      }
+
+      .product-features {
+        list-style: none;
+        margin-bottom: 40px;
+      }
+
+      .product-features li {
+        font-size: 1rem;
+        line-height: 1.8;
+        padding-left: 32px;
+        position: relative;
+        margin-bottom: 12px;
+      }
+
+      .product-features li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        font-weight: 700;
+        font-size: 1.2rem;
+      }
+
+      .product-cta {
+        display: inline-flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 16px 40px;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: 2px solid transparent;
+        display: inline-block;
+      }
+
+      .btn-primary {
+        background-color: var(--color-primary);
+        color: var(--color-light-neutral);
+        border-color: var(--color-primary);
+      }
+
+      .btn-primary:hover {
+        background-color: var(--color-accent);
+        border-color: var(--color-accent);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(255, 105, 0, 0.3);
+      }
+
+      .btn-secondary {
+        background-color: transparent;
+        border-color: currentColor;
+      }
+
+      .btn-secondary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .product-gallery {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        z-index: 2;
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 24px;
+        aspect-ratio: 4/3;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      }
+
+      .gallery-item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .gallery-item:nth-child(1) {
+        grid-column: span 2;
+        aspect-ratio: 16/9;
+      }
+
+      /* Band 10 Pro - Premium/Rugged (Black) */
+      .band-pro {
+        background: linear-gradient(
+          135deg,
+          #000000 0%,
+          #1a1a1a 50%,
+          #2d2d2d 100%
+        );
+        color: var(--color-light-neutral);
+      }
+
+      .band-pro::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 105, 0, 0.15) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .band-pro .product-badge {
+        background-color: var(--color-accent);
+        color: var(--color-light-neutral);
+      }
+
+      .band-pro .product-features li::before {
+        color: var(--color-accent);
+      }
+
+      .band-pro .btn-secondary {
+        color: var(--color-light-neutral);
+        border-color: var(--color-light-neutral);
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .band-pro .btn-secondary:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+      }
+
+      /* Band 10 - Standard (White) */
+      .band-standard {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+        color: var(--color-dark-text);
+      }
+
+      .band-standard::before {
+        content: "";
+        position: absolute;
+        bottom: -30%;
+        left: -10%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          rgba(0, 0, 0, 0.03) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .band-standard .product-badge {
+        background-color: var(--color-primary);
+        color: var(--color-light-neutral);
+      }
+
+      .band-standard .product-features li::before {
+        color: var(--color-primary);
+      }
+
+      .band-standard .btn-secondary {
+        color: var(--color-dark-text);
+        border-color: var(--color-dark-text);
+      }
+
+      .band-standard .btn-secondary:hover {
+        background-color: var(--color-light-bg-tint);
+      }
+
+      /* Band 10 Lite - Budget/Playful (Teal & Orange) */
+      .band-lite {
+        background: linear-gradient(
+          135deg,
+          #00a99d 0%,
+          #1fc7b9 40%,
+          #ff8533 100%
+        );
+        color: var(--color-light-neutral);
+      }
+
+      .band-lite::before {
+        content: "";
+        position: absolute;
+        top: 20%;
+        right: 10%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.15) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .band-lite::after {
+        content: "";
+        position: absolute;
+        bottom: 10%;
+        left: 5%;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 133, 51, 0.2) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .band-lite .product-badge {
+        background-color: rgba(255, 255, 255, 0.25);
+        color: var(--color-light-neutral);
+        border: 2px solid rgba(255, 255, 255, 0.4);
+      }
+
+      .band-lite .product-features li::before {
+        color: #ffffff;
+      }
+
+      .band-lite .btn-primary {
+        background-color: var(--color-light-neutral);
+        color: #00a99d;
+        border-color: var(--color-light-neutral);
+      }
+
+      .band-lite .btn-primary:hover {
+        background-color: #ffd700;
+        color: var(--color-dark-text);
+        border-color: #ffd700;
+      }
+
+      .band-lite .btn-secondary {
+        color: var(--color-light-neutral);
+        border-color: var(--color-light-neutral);
+        background-color: rgba(255, 255, 255, 0.15);
+      }
+
+      .band-lite .btn-secondary:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+
+      /* Floating CTA */
+      .floating-cta {
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        z-index: 1000;
+        animation: fadeInUp 1s ease;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .cta-button {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: linear-gradient(
+          135deg,
+          var(--color-primary) 0%,
+          #1a1a1a 100%
+        );
+        color: var(--color-light-neutral);
+        font-size: 1rem;
+        font-weight: 700;
+        padding: 18px 36px;
+        border-radius: 50px;
+        text-decoration: none;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .cta-button:hover {
+        background: linear-gradient(
+          135deg,
+          var(--color-accent) 0%,
+          var(--color-accent-light) 100%
+        );
+        transform: translateY(-3px);
+        box-shadow: 0 15px 50px rgba(255, 105, 0, 0.5);
+      }
+
+      .cta-icon {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.3s ease;
+      }
+
+      .cta-button:hover .cta-icon {
+        transform: translateX(5px);
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--color-primary);
+        color: var(--color-light-neutral);
+        padding: 60px 40px 20px;
+      }
+
+      .footercontainer {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        max-width: 1400px;
+        margin: 0 auto 40px;
+      }
+
+      .footercol h1 {
+        font-size: 18px;
+        margin-bottom: 24px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+
+      .footercol a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-size: 15px;
+        transition: color 0.3s ease;
+        display: block;
+        margin-bottom: 12px;
+      }
+
+      .footercol a:hover {
+        color: var(--color-accent);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding: 24px 0;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 14px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 40px;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
         .product-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .product-info {
-            z-index: 2;
-        }
-
-        .product-badge {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            padding: 8px 20px;
-            border-radius: 30px;
-            margin-bottom: 24px;
-        }
-
-        .product-title {
-            font-size: clamp(2.5rem, 4vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 24px;
-            line-height: 1.1;
-            letter-spacing: -1.5px;
-        }
-
-        .product-description {
-            font-size: clamp(1rem, 1.5vw, 1.25rem);
-            line-height: 1.7;
-            margin-bottom: 32px;
-            font-weight: 400;
-        }
-
-        .product-features {
-            list-style: none;
-            margin-bottom: 40px;
-        }
-
-        .product-features li {
-            font-size: 1rem;
-            line-height: 1.8;
-            padding-left: 32px;
-            position: relative;
-            margin-bottom: 12px;
-        }
-
-        .product-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-
-        .product-cta {
-            display: inline-flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 16px 40px;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 2px solid transparent;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background-color: var(--color-primary);
-            color: var(--color-light-neutral);
-            border-color: var(--color-primary);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--color-accent);
-            border-color: var(--color-accent);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 105, 0, 0.3);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            border-color: currentColor;
-        }
-
-        .btn-secondary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+          gap: 60px;
         }
 
         .product-gallery {
-            position: relative;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            z-index: 2;
+          gap: 16px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        nav {
+          padding: 16px 24px;
         }
 
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 24px;
-            aspect-ratio: 4/3;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        .nav-links {
+          gap: 20px;
+          font-size: 14px;
         }
 
-        .gallery-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        .page-hero {
+          padding: 80px 24px 60px;
         }
 
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        .product-section {
+          padding: 80px 24px;
+          min-height: auto;
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.1);
+        .product-content {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .product-gallery {
+          order: -1;
         }
 
         .gallery-item:nth-child(1) {
-            grid-column: span 2;
-            aspect-ratio: 16/9;
+          grid-column: span 2;
         }
 
-        /* Band 10 Pro - Premium/Rugged (Black) */
-        .band-pro {
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #2d2d2d 100%);
-            color: var(--color-light-neutral);
-        }
-
-        .band-pro::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255,105,0,0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .band-pro .product-badge {
-            background-color: var(--color-accent);
-            color: var(--color-light-neutral);
-        }
-
-        .band-pro .product-features li::before {
-            color: var(--color-accent);
-        }
-
-        .band-pro .btn-secondary {
-            color: var(--color-light-neutral);
-            border-color: var(--color-light-neutral);
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .band-pro .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
-        }
-
-        /* Band 10 - Standard (White) */
-        .band-standard {
-            background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
-            color: var(--color-dark-text);
-        }
-
-        .band-standard::before {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(0,0,0,0.03) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .band-standard .product-badge {
-            background-color: var(--color-primary);
-            color: var(--color-light-neutral);
-        }
-
-        .band-standard .product-features li::before {
-            color: var(--color-primary);
-        }
-
-        .band-standard .btn-secondary {
-            color: var(--color-dark-text);
-            border-color: var(--color-dark-text);
-        }
-
-        .band-standard .btn-secondary:hover {
-            background-color: var(--color-light-bg-tint);
-        }
-
-        /* Band 10 Lite - Budget/Playful (Teal & Orange) */
-        .band-lite {
-            background: linear-gradient(135deg, #00a99d 0%, #1fc7b9 40%, #ff8533 100%);
-            color: var(--color-light-neutral);
-        }
-
-        .band-lite::before {
-            content: '';
-            position: absolute;
-            top: 20%;
-            right: 10%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .band-lite::after {
-            content: '';
-            position: absolute;
-            bottom: 10%;
-            left: 5%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255,133,51,0.2) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .band-lite .product-badge {
-            background-color: rgba(255, 255, 255, 0.25);
-            color: var(--color-light-neutral);
-            border: 2px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .band-lite .product-features li::before {
-            color: #ffffff;
-        }
-
-        .band-lite .btn-primary {
-            background-color: var(--color-light-neutral);
-            color: #00a99d;
-            border-color: var(--color-light-neutral);
-        }
-
-        .band-lite .btn-primary:hover {
-            background-color: #ffd700;
-            color: var(--color-dark-text);
-            border-color: #ffd700;
-        }
-
-        .band-lite .btn-secondary {
-            color: var(--color-light-neutral);
-            border-color: var(--color-light-neutral);
-            background-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .band-lite .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-        }
-
-        /* Floating CTA */
         .floating-cta {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            z-index: 1000;
-            animation: fadeInUp 1s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+          bottom: 24px;
+          right: 24px;
         }
 
         .cta-button {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(135deg, var(--color-primary) 0%, #1a1a1a 100%);
-            color: var(--color-light-neutral);
-            font-size: 1rem;
-            font-weight: 700;
-            padding: 18px 36px;
-            border-radius: 50px;
-            text-decoration: none;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+          padding: 16px 28px;
+          font-size: 0.9rem;
         }
 
-        .cta-button:hover {
-            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 50px rgba(255, 105, 0, 0.5);
-        }
-
-        .cta-icon {
-            width: 20px;
-            height: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .cta-button:hover .cta-icon {
-            transform: translateX(5px);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--color-primary);
-            color: var(--color-light-neutral);
-            padding: 60px 40px 20px;
+        .btn {
+          padding: 14px 32px;
+          font-size: 0.95rem;
         }
 
         .footercontainer {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            max-width: 1400px;
-            margin: 0 auto 40px;
+          grid-template-columns: 1fr;
+          gap: 32px;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .product-cta {
+          flex-direction: column;
+          width: 100%;
         }
 
-        .footercol h1 {
-            font-size: 18px;
-            margin-bottom: 24px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+        .btn {
+          width: 100%;
+          text-align: center;
         }
-
-        .footercol a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            font-size: 15px;
-            transition: color 0.3s ease;
-            display: block;
-            margin-bottom: 12px;
-        }
-
-        .footercol a:hover {
-            color: var(--color-accent);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding: 24px 0;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 14px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 40px;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .product-content {
-                gap: 60px;
-            }
-
-            .product-gallery {
-                gap: 16px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                padding: 16px 24px;
-            }
-
-            .nav-links {
-                gap: 20px;
-                font-size: 14px;
-            }
-
-            .page-hero {
-                padding: 80px 24px 60px;
-            }
-
-            .product-section {
-                padding: 80px 24px;
-                min-height: auto;
-            }
-
-            .product-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .product-gallery {
-                order: -1;
-            }
-
-            .gallery-item:nth-child(1) {
-                grid-column: span 2;
-            }
-
-            .floating-cta {
-                bottom: 24px;
-                right: 24px;
-            }
-
-            .cta-button {
-                padding: 16px 28px;
-                font-size: 0.9rem;
-            }
-
-            .btn {
-                padding: 14px 32px;
-                font-size: 0.95rem;
-            }
-
-            .footercontainer {
-                grid-template-columns: 1fr;
-                gap: 32px;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .product-cta {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .btn {
-                width: 100%;
-                text-align: center;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="announcement-bar">
-        Free strap of your choice when you buy now
+      Free strap of your choice when you buy now
     </div>
 
     <div class="nav-container">
-        <nav>
-            <div class="logo">XIAOMI</div>
-            <ul class="nav-links">
-                <li><a href="#" class="nav-link">Shop</a></li>
-                <li><a href="#" class="nav-link">Health Features</a></li>
-                <li><a href="#" class="nav-link">Experience</a></li>
-                <li><a href="#" class="nav-link">For Organizations</a></li>
-                <li>
-                    <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="9" cy="21" r="1"></circle>
-                        <circle cx="20" cy="21" r="1"></circle>
-                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                    </svg>
-                </li>
-            </ul>
-        </nav>
+      <nav>
+        <a href="index.html" class="logo-container">
+          <div class="logo-bg"></div>
+
+          <!-- MI Logo -->
+          <svg class="logo-icon" width="36" height="36" viewBox="0 0 36 36">
+            <text x="18" y="26" text-anchor="middle" class="mi-text">MI</text>
+          </svg>
+
+          <!-- Home Icon -->
+          <svg class="home-icon" width="28" height="28" viewBox="0 0 24 24">
+            <path
+              class="home-path"
+              d="M12 3L4 9v12h16V9l-8-6zm6 16h-3v-6H9v6H6v-9l6-4.5L18 10v9z"
+            />
+          </svg>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#" class="nav-link">Shop</a></li>
+          <li><a href="#" class="nav-link">Health Features</a></li>
+          <li><a href="#" class="nav-link">Experience</a></li>
+          <li><a href="#" class="nav-link">For Organizations</a></li>
+          <li>
+            <svg
+              class="cart-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path
+                d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+              ></path>
+            </svg>
+          </li>
+        </ul>
+      </nav>
     </div>
 
     <!-- Page Hero -->
     <section class="page-hero">
-        <h1>Find Your Perfect Band</h1>
-        <p>Three exceptional models designed for your unique lifestyle. From extreme adventures to everyday elegance.</p>
+      <h1>Find Your Perfect Band</h1>
+      <p>
+        Three exceptional models designed for your unique lifestyle. From
+        extreme adventures to everyday elegance.
+      </p>
     </section>
 
     <!-- Band 10 Pro - Premium/Rugged -->
     <section class="product-section band-pro">
-        <div class="product-content">
-            <div class="product-info">
-                <span class="product-badge">PRO SERIES</span>
-                <h2 class="product-title">Smart Band 10 Pro</h2>
-                <p class="product-description">Built for extreme performance. The ultimate companion for athletes and adventurers who demand the absolute best.</p>
-                <ul class="product-features">
-                    <li>Premium titanium body – ultra-lightweight and durable</li>
-                    <li>Sapphire crystal display – scratch-resistant elegance</li>
-                    <li>Advanced dual-frequency GPS for precision tracking</li>
-                    <li>WR100 water resistance – dive up to 40 meters</li>
-                    <li>150+ professional sports modes</li>
-                </ul>
-                <div class="product-cta">
-                    <a href="https://shopee.sg/Xiaomi-Smart-Band-10-Fitness-Tracker-i.237295326.40006017343" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Buy Pro</a>
-                    <a href="specs.html" class="btn btn-secondary">Compare Models</a>
-                </div>
-            </div>
-            <div class="product-gallery">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1200&q=80" alt="Cycling with Smart Band 10 Pro">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&q=80" alt="Hiking adventure">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80" alt="Scuba diving">
-                </div>
-            </div>
+      <div class="product-content">
+        <div class="product-info">
+          <span class="product-badge">PRO SERIES</span>
+          <h2 class="product-title">Smart Band 10 Pro</h2>
+          <p class="product-description">
+            Built for extreme performance. The ultimate companion for athletes
+            and adventurers who demand the absolute best.
+          </p>
+          <ul class="product-features">
+            <li>Premium titanium body – ultra-lightweight and durable</li>
+            <li>Sapphire crystal display – scratch-resistant elegance</li>
+            <li>Advanced dual-frequency GPS for precision tracking</li>
+            <li>WR100 water resistance – dive up to 40 meters</li>
+            <li>150+ professional sports modes</li>
+          </ul>
+          <div class="product-cta">
+            <a
+              href="https://shopee.sg/Xiaomi-Smart-Band-10-Fitness-Tracker-i.237295326.40006017343"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
+              >Buy Pro</a
+            >
+            <a href="specs.html" class="btn btn-secondary">Compare Models</a>
+          </div>
         </div>
+        <div class="product-gallery">
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1200&q=80"
+              alt="Cycling with Smart Band 10 Pro"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&q=80"
+              alt="Hiking adventure"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80"
+              alt="Scuba diving"
+            />
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Band 10 - Standard -->
     <section class="product-section band-standard">
-        <div class="product-content">
-            <div class="product-gallery">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1200&q=80" alt="Professional wearing Smart Band 10">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80" alt="Fitness tracking">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1434682881908-b43d0467b798?w=600&q=80" alt="Daily lifestyle">
-                </div>
-            </div>
-            <div class="product-info">
-                <span class="product-badge">BEST SELLER</span>
-                <h2 class="product-title">Smart Band 10</h2>
-                <p class="product-description">The perfect balance of style and performance. Premium features for everyday wellness and fitness tracking.</p>
-                <ul class="product-features">
-                    <li>Stainless steel body – refined and durable</li>
-                    <li>Always-on AMOLED display with vibrant colors</li>
-                    <li>Comprehensive health monitoring 24/7</li>
-                    <li>5ATM water resistance for swimming</li>
-                    <li>21-day battery life in typical use</li>
-                </ul>
-                <div class="product-cta">
-                    <a href="https://shopee.sg/Xiaomi-Smart-Band-10-Fitness-Tracker-i.237295326.40006017343" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Shop Band 10</a>
-                    <a href="specs.html" class="btn btn-secondary">View Specs</a>
-                </div>
-            </div>
+      <div class="product-content">
+        <div class="product-gallery">
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1200&q=80"
+              alt="Professional wearing Smart Band 10"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80"
+              alt="Fitness tracking"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1434682881908-b43d0467b798?w=600&q=80"
+              alt="Daily lifestyle"
+            />
+          </div>
         </div>
+        <div class="product-info">
+          <span class="product-badge">BEST SELLER</span>
+          <h2 class="product-title">Smart Band 10</h2>
+          <p class="product-description">
+            The perfect balance of style and performance. Premium features for
+            everyday wellness and fitness tracking.
+          </p>
+          <ul class="product-features">
+            <li>Stainless steel body – refined and durable</li>
+            <li>Always-on AMOLED display with vibrant colors</li>
+            <li>Comprehensive health monitoring 24/7</li>
+            <li>5ATM water resistance for swimming</li>
+            <li>21-day battery life in typical use</li>
+          </ul>
+          <div class="product-cta">
+            <a
+              href="https://shopee.sg/Xiaomi-Smart-Band-10-Fitness-Tracker-i.237295326.40006017343"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
+              >Shop Band 10</a
+            >
+            <a href="specs.html" class="btn btn-secondary">View Specs</a>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Band 10 Lite - Budget/Playful -->
     <section class="product-section band-lite">
-        <div class="product-content">
-            <div class="product-info">
-                <span class="product-badge">AFFORDABLE CHOICE</span>
-                <h2 class="product-title">Smart Band 10 Lite</h2>
-                <p class="product-description">Smart fitness for everyone. Vibrant colors, essential features, and incredible value that doesn't compromise on quality.</p>
-                <ul class="product-features">
-                    <li>Colorful aluminum body – lightweight and fun</li>
-                    <li>Bright display with multiple watch faces</li>
-                    <li>Essential health tracking features</li>
-                    <li>Water-resistant for everyday wear</li>
-                    <li>Extended battery life up to 14 days</li>
-                </ul>
-                <div class="product-cta">
-                    <a href="https://shopee.sg/Xiaomi-Smart-Band-10-Fitness-Tracker-i.237295326.40006017343" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get Lite</a>
-                    <a href="accessory.html" class="btn btn-secondary">Customise Yours</a>
-                </div>
-            </div>
-            <div class="product-gallery">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1483721310020-03333e577078?w=1200&q=80" alt="Colorful lifestyle with Band 10 Lite">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1518644730709-0835105d9daa?w=600&q=80" alt="Yoga and wellness">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&q=80" alt="Active lifestyle">
-                </div>
-            </div>
+      <div class="product-content">
+        <div class="product-info">
+          <span class="product-badge">AFFORDABLE CHOICE</span>
+          <h2 class="product-title">Smart Band 10 Lite</h2>
+          <p class="product-description">
+            Smart fitness for everyone. Vibrant colors, essential features, and
+            incredible value that doesn't compromise on quality.
+          </p>
+          <ul class="product-features">
+            <li>Colorful aluminum body – lightweight and fun</li>
+            <li>Bright display with multiple watch faces</li>
+            <li>Essential health tracking features</li>
+            <li>Water-resistant for everyday wear</li>
+            <li>Extended battery life up to 14 days</li>
+          </ul>
+          <div class="product-cta">
+            <a
+              href="https://shopee.sg/Xiaomi-Smart-Band-10-Fitness-Tracker-i.237295326.40006017343"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
+              >Get Lite</a
+            >
+            <a href="accessory.html" class="btn btn-secondary"
+              >Customise Yours</a
+            >
+          </div>
         </div>
+        <div class="product-gallery">
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1483721310020-03333e577078?w=1200&q=80"
+              alt="Colorful lifestyle with Band 10 Lite"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1518644730709-0835105d9daa?w=600&q=80"
+              alt="Yoga and wellness"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&q=80"
+              alt="Active lifestyle"
+            />
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Floating CTA Button -->
     <div class="floating-cta">
-        <a href="accessory.html" class="cta-button">
-            <span>Explore Customisability</span>
-            <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-        </a>
+      <a href="accessory.html" class="cta-button">
+        <span>Explore Customisability</span>
+        <svg
+          class="cta-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
     </div>
 
     <footer>
-        <div class="footercontainer">
-            <div class="footercol">
-                <h1>SUPPORT</h1>
-                <a href="#">User Guide</a>
-                <a href="#">Terms of Use</a>
-                <a href="#">Service</a>
-                <a href="#">Warranty</a>
-                <a href="#">Store Locator</a>
-                <a href="#">Service Center</a>
-            </div>
-            <div class="footercol">
-                <h1>About Us</h1>
-                <a href="#">Xiaomi</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Leadership Team</a>
-                <a href="#">Trust Center</a>
-            </div>
-            <div class="footercol">
-                <h1>Follow Us</h1>
-                <a href="#">Instagram</a>
-                <a href="#">LinkedIn</a>
-                <a href="#">Facebook</a>
-                <a href="#">WhatsApp</a>
-            </div>
-            <div class="footercol">
-                <h1>Stay Updated</h1>
-                <p style="color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.6; margin-top: 8px;">Subscribe to our newsletter for the latest updates and exclusive offers.</p>
-            </div>
+      <div class="footercontainer">
+        <div class="footercol">
+          <h1>SUPPORT</h1>
+          <a href="#">User Guide</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Service</a>
+          <a href="#">Warranty</a>
+          <a href="#">Store Locator</a>
+          <a href="#">Service Center</a>
         </div>
-        <div class="footer-bottom">
-            <p>Copyright © 2010 - 2025 Xiaomi. All Rights Reserved</p>
+        <div class="footercol">
+          <h1>About Us</h1>
+          <a href="#">Xiaomi</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Leadership Team</a>
+          <a href="#">Trust Center</a>
         </div>
+        <div class="footercol">
+          <h1>Follow Us</h1>
+          <a href="#">Instagram</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Facebook</a>
+          <a href="#">WhatsApp</a>
+        </div>
+        <div class="footercol">
+          <h1>Stay Updated</h1>
+          <p
+            style="
+              color: rgba(255, 255, 255, 0.7);
+              font-size: 14px;
+              line-height: 1.6;
+              margin-top: 8px;
+            "
+          >
+            Subscribe to our newsletter for the latest updates and exclusive
+            offers.
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Copyright © 2010 - 2025 Xiaomi. All Rights Reserved</p>
+      </div>
     </footer>
-</body>
+  </body>
 </html>

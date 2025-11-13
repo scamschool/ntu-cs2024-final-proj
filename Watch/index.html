@@ -10,7 +10,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="mystyle.css" />
-    <link rel="icon" href="https://i02.appmifile.com/i18n/scm/favicon.png">
+    <link rel="icon" href="https://i02.appmifile.com/i18n/scm/favicon.png" />
   </head>
   <body>
     <div class="announcement-bar">
@@ -19,7 +19,22 @@
 
     <div class="nav-container">
       <nav>
-        <a href="index.html" class="logo">XIAOMI</a>
+        <a href="index.html" class="logo-container">
+          <div class="logo-bg"></div>
+
+          <!-- MI Logo -->
+          <svg class="logo-icon" width="36" height="36" viewBox="0 0 36 36">
+            <text x="18" y="26" text-anchor="middle" class="mi-text">MI</text>
+          </svg>
+
+          <!-- Home Icon -->
+          <svg class="home-icon" width="28" height="28" viewBox="0 0 24 24">
+            <path
+              class="home-path"
+              d="M12 3L4 9v12h16V9l-8-6zm6 16h-3v-6H9v6H6v-9l6-4.5L18 10v9z"
+            />
+          </svg>
+        </a>
 
         <ul class="nav-links">
           <li class="nav-item">
@@ -55,7 +70,11 @@
           </li>
 
           <li class="nav-item">
-            <a href="https://shopee.sg/Xiaomi-Smart-Band-10-Fitness-Tracker-i.237295326.40006017343" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://shopee.sg/Xiaomi-Smart-Band-10-Fitness-Tracker-i.237295326.40006017343"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <svg
                 class="cart-icon"
                 viewBox="0 0 24 24"
@@ -854,9 +873,87 @@
           </div>
         </div>
 
+        <div class="discount-unlock-form">
+          <div class="form-header-unlock">
+            <span class="form-icon">🎁</span>
+            <h3 class="form-title">Unlock Your Exclusive Xiaomi Discount</h3>
+            <p class="form-subtitle">
+              Enter your email now to instantly receive your FREE Bonus Strap +
+              the accessory discount code.
+            </p>
+          </div>
+
+          <form
+            class="unlock-form"
+            onsubmit="event.preventDefault(); document.querySelector('.unlock-form').style.display='none'; document.querySelector('.form-success').classList.add('active');"
+          >
+            <div class="form-group-unlock">
+              <input
+                type="email"
+                placeholder="Your E-mail Address..."
+                class="email-input-unlock"
+                required
+              />
+            </div>
+
+            <div class="checkbox-wrapper">
+              <input
+                type="checkbox"
+                id="consent"
+                name="consent"
+                checked
+                required
+              />
+              <label for="consent" class="checkbox-label">
+                Yes, send me my FREE Strap and exclusive deals. I agree to the
+                <a
+                  href="#"
+                  class="text-accent"
+                  style="color: var(--color-accent)"
+                  >Privacy Policy</a
+                >.
+              </label>
+            </div>
+
+            <button type="submit" class="unlock-btn">
+              <span class="unlock-btn-text">Claim My Offer & Free Strap</span>
+            </button>
+            <p class="form-note">
+              We promise no spam. Check your inbox instantly!
+            </p>
+          </form>
+
+          <div class="form-success">
+            <span class="success-icon">🎉</span>
+            <h3 class="success-title">Success! Your Code is Ready!</h3>
+            <p class="success-message">
+              Check your email for full details. Use the unique code below at
+              checkout.
+            </p>
+            <div class="discount-code">
+              <div class="code-label">Your 15% Accessory Discount Code</div>
+              <div class="code-value">XIAOMI15OFF</div>
+            </div>
+            <a
+              href="https://shopee.sg/Xiaomi-Smart-Band-10-Fitness-Tracker-i.237295326.40006017343
+"
+              class="unlock-btn"
+              style="background: var(--color-primary)"
+            >
+              Go to Shop Now
+            </a>
+          </div>
+        </div>
+
         <!-- CTA Button -->
         <div class="cta-button-wrapper">
-          <a href="#" class="cta-button">Get My Smart Band Now</a>
+          <a
+            href="https://shopee.sg/Xiaomi-Smart-Band-10-Fitness-Tracker-i.237295326.40006017343
+"
+            class="cta-button"
+            target="_blank"
+            >Get My Smart Band Now</a
+          >
         </div>
 
         <!-- Trust Badges -->

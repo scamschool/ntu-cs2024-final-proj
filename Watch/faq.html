@@ -1,1480 +1,2051 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FAQ - Xiaomi Smart Band 10</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="https://i02.appmifile.com/i18n/scm/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="https://i02.appmifile.com/i18n/scm/favicon.png" />
     <style>
-        /* ------------------------------------------- */
-        /* --- COLOR VARIABLES FOR BRAND CONSISTENCY --- */
-        /* ------------------------------------------- */
-        :root {
-            --color-primary: #000000;
-            --color-secondary: #53565a;
-            --color-light-neutral: #ffffff;
-            --color-light-bg-tint: #f8f8f8;
-            --color-accent: #ff6900;
-            --color-accent-light: #ff8533;
-            --color-dark-text: #000000;
-            scroll-behavior: smooth;   /* <-- add only this line */
-        }
+      /* ------------------------------------------- */
+      /* --- COLOR VARIABLES FOR BRAND CONSISTENCY --- */
+      /* ------------------------------------------- */
+      :root {
+        --color-primary: #000000;
+        --color-secondary: #53565a;
+        --color-light-neutral: #ffffff;
+        --color-light-bg-tint: #f8f8f8;
+        --color-accent: #ff6900;
+        --color-accent-light: #ff8533;
+        --color-dark-text: #000000;
+        scroll-behavior: smooth; /* <-- add only this line */
+      }
 
-        /* ------------------------------------------- */
-        /* --- GLOBAL RESET & BASE STYLES --- */
-        /* ------------------------------------------- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      /* ------------------------------------------- */
+      /* --- GLOBAL RESET & BASE STYLES --- */
+      /* ------------------------------------------- */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-                     Ubuntu, Cantarell, sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            background-color: var(--color-light-neutral);
-            color: var(--color-dark-text);
-            line-height: 1.6;
-        }
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: var(--color-light-neutral);
+        color: var(--color-dark-text);
+        line-height: 1.6;
+      }
 
-        h1, h2, h3 {
-            font-weight: 700;
-        }
+      h1,
+      h2,
+      h3 {
+        font-weight: 700;
+      }
 
-        /* ------------------------------------------- */
-        /* --- NAVIGATION --- */
-        /* ------------------------------------------- */
-        .nav-container {
-            background-color: var(--color-light-neutral);
-            position: relative;
-            z-index: 100;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
+      /* ------------------------------------------- */
+      /* --- NAVIGATION --- */
+      /* ------------------------------------------- */
+      .nav-container {
+        background-color: var(--color-light-neutral);
+        position: relative;
+        z-index: 100;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
 
-        nav {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 40px;
-        }
+      nav {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 40px;
+      }
 
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--color-primary);
-        }
+      .logo-container {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
 
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-            align-items: center;
-        }
+      .logo-container:hover {
+        transform: scale(1.05);
+      }
 
-        .nav-link {
-            text-decoration: none;
-            color: var(--color-dark-text);
-            font-size: 15px;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
+      .logo-bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #ff6700;
+        border-radius: 12px;
+        transition: background 0.3s ease;
+      }
 
-        .nav-link:hover {
-            color: var(--color-accent);
-        }
+      .logo-container:hover .logo-bg {
+        background: #ff7700;
+      }
 
-        .cart-icon {
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-            stroke: var(--color-dark-text);
-            transition: stroke 0.3s;
-        }
+      .logo-icon,
+      .home-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
 
-        .cart-icon:hover {
-            stroke: var(--color-accent);
-        }
+      .logo-icon {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
 
-        /* ------------------------------------------- */
-        /* --- FAQ HERO SECTION --- */
-        /* ------------------------------------------- */
-        .faq-hero {
-            background-color: var(--color-primary);
-            color: var(--color-light-neutral);
-            text-align: center;
-            padding: 60px 20px;
-            position: relative;
-        }
+      .home-icon {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+      }
 
-        .faq-hero h1 {
-            font-size: clamp(2rem, 4vw, 2.5rem);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
+      .logo-container:hover .logo-icon {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+      }
 
-        .faq-icon {
-            width: 60px;
-            height: 60px;
-            margin: 30px auto 0;
-            background-color: var(--color-light-neutral);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--color-primary);
-            font-weight: 700;
-        }
+      .logo-container:hover .home-icon {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
 
-        /* ------------------------------------------- */
-        /* --- FAQ NAVIGATION TABS --- */
-        /* ------------------------------------------- */
-        .faq-tabs {
-            background-color: var(--color-light-neutral);
-            border-bottom: 1px solid #e0e0e0;
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
+      /* MI Logo SVG */
+      .mi-text {
+        fill: white;
+        font-size: 32px;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+      }
 
+      /* Home Icon SVG */
+      .home-path {
+        fill: white;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 40px;
+        list-style: none;
+        align-items: center;
+      }
+
+      .nav-link {
+        text-decoration: none;
+        color: var(--color-dark-text);
+        font-size: 15px;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .nav-link:hover {
+        color: var(--color-accent);
+      }
+
+      .cart-icon {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        stroke: var(--color-dark-text);
+        transition: stroke 0.3s;
+      }
+
+      .cart-icon:hover {
+        stroke: var(--color-accent);
+      }
+
+      /* ------------------------------------------- */
+      /* --- FAQ HERO SECTION --- */
+      /* ------------------------------------------- */
+      .faq-hero {
+        background-color: var(--color-primary);
+        color: var(--color-light-neutral);
+        text-align: center;
+        padding: 60px 20px;
+        position: relative;
+      }
+
+      .faq-hero h1 {
+        font-size: clamp(2rem, 4vw, 2.5rem);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      .faq-icon {
+        width: 60px;
+        height: 60px;
+        margin: 30px auto 0;
+        background-color: var(--color-light-neutral);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--color-primary);
+        font-weight: 700;
+      }
+
+      /* ------------------------------------------- */
+      /* --- FAQ NAVIGATION TABS --- */
+      /* ------------------------------------------- */
+      .faq-tabs {
+        background-color: var(--color-light-neutral);
+        border-bottom: 1px solid #e0e0e0;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .tabs-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 20px;
+      }
+
+      .tab-btn {
+        padding: 12px 24px;
+        background: transparent;
+        border: none;
+        color: var(--color-dark-text);
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-bottom: 2px solid transparent;
+      }
+
+      .tab-btn:hover {
+        color: var(--color-accent);
+      }
+
+      .tab-btn.active {
+        color: var(--color-primary);
+        border-bottom: 2px solid var(--color-primary);
+        font-weight: 600;
+      }
+
+      /* ------------------------------------------- */
+      /* --- CATEGORY SELECTOR --- */
+      /* ------------------------------------------- */
+      .category-selector {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      .select-wrapper {
+        position: relative;
+        width: 100%;
+      }
+
+      .category-select {
+        width: 100%;
+        padding: 15px 40px 15px 20px;
+        font-size: 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: var(--color-light-neutral);
+        color: var(--color-dark-text);
+        cursor: pointer;
+        appearance: none;
+        font-family: inherit;
+        font-weight: 500;
+      }
+
+      .select-wrapper::after {
+        content: "▼";
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: var(--color-secondary);
+        font-size: 12px;
+      }
+
+      /* ------------------------------------------- */
+      /* --- FAQ CONTENT SECTION --- */
+      /* ------------------------------------------- */
+      .faq-content {
+        max-width: 800px;
+        margin: 60px auto;
+        padding: 0 20px;
+      }
+
+      .faq-category-title {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: var(--color-primary);
+        text-align: center;
+      }
+
+      .expand-all-btn {
+        display: block;
+        margin: 30px auto;
+        padding: 10px 24px;
+        background: transparent;
+        border: 1px solid var(--color-primary);
+        color: var(--color-primary);
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 4px;
+      }
+
+      .expand-all-btn:hover {
+        background-color: var(--color-primary);
+        color: var(--color-light-neutral);
+      }
+
+      /* ------------------------------------------- */
+      /* --- FAQ ACCORDION ITEMS --- */
+      /* ------------------------------------------- */
+      .faq-item {
+        border-bottom: 1px solid #e0e0e0;
+        transition: all 0.3s ease;
+      }
+
+      .faq-question {
+        width: 100%;
+        padding: 25px 50px 25px 0;
+        background: transparent;
+        border: none;
+        text-align: left;
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--color-dark-text);
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s ease;
+        line-height: 1.5;
+        letter-spacing: 0.3px;
+      }
+
+      .faq-question:hover {
+        color: var(--color-accent);
+      }
+
+      .faq-question::after {
+        content: "+";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 28px;
+        font-weight: 300;
+        color: var(--color-primary);
+        transition: transform 0.3s ease;
+      }
+
+      .faq-item.active .faq-question::after {
+        content: "−";
+        transform: translateY(-50%) rotate(0deg);
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, padding 0.4s ease;
+        padding: 0 50px 0 0;
+        color: var(--color-secondary);
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      .faq-item.active .faq-answer {
+        max-height: 1000px;
+        padding: 0 50px 25px 0;
+      }
+
+      .faq-answer p {
+        margin-bottom: 15px;
+      }
+
+      .faq-answer ul {
+        margin-left: 20px;
+        margin-bottom: 15px;
+      }
+
+      .faq-answer li {
+        margin-bottom: 8px;
+      }
+
+      .faq-answer strong {
+        color: var(--color-dark-text);
+      }
+
+      /* ------------------------------------------- */
+      /* --- CONTACT SECTION --- */
+      /* ------------------------------------------- */
+      .still-questions {
+        background-color: var(--color-light-bg-tint);
+        text-align: center;
+        padding: 80px 20px;
+        margin-top: 80px;
+      }
+
+      .still-questions h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+        color: var(--color-primary);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .contact-btn {
+        display: inline-block;
+        padding: 16px 40px;
+        background-color: var(--color-primary);
+        color: var(--color-light-neutral);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+      }
+
+      .contact-btn:hover {
+        background-color: var(--color-accent);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(255, 105, 0, 0.3);
+      }
+
+      /* ----------  NEW FOOTER (lookbook-style)  ---------- */
+      footer {
+        background-color: #000;
+        color: #fff;
+      }
+      .footercontainer {
+        background-color: #000;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 60px 40px;
+        flex-wrap: wrap;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .footercol {
+        margin: 24px;
+        text-align: center;
+      }
+      .footercol h1 {
+        font-size: 1.5rem;
+        margin-bottom: 24px;
+        color: #fff;
+        font-weight: 600;
+      }
+      .footercol ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .footercol li {
+        margin-bottom: 12px;
+      }
+      .footercol a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: color 0.3s ease;
+      }
+      .footercol a:hover {
+        color: #ff6900;
+      }
+      .footercol a:visited {
+        color: #e0e0e0;
+      }
+      #menu {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        padding: 0;
+      }
+      #menu li {
+        display: inline-block;
+        margin-bottom: 0;
+      }
+      .footer-img {
+        width: 35px;
+        height: 35px;
+        transition: transform 0.3s ease;
+        filter: brightness(0.9);
+      }
+      .footer-img:hover {
+        transform: scale(1.1);
+        filter: brightness(1) drop-shadow(0 0 8px #ff6900);
+      }
+      .footer-code {
+        width: 160px;
+        height: 160px;
+        border: 2px solid #ff6900;
+        padding: 5px;
+        border-radius: 12px;
+      }
+      .footer-text {
+        max-width: 300px;
+        font-style: italic;
+        font-size: 0.875rem;
+        margin: 15px auto;
+        color: #e0e0e0;
+        line-height: 1.6;
+      }
+      .subscribe-form {
+        display: flex;
+        width: 100%;
+        max-width: 300px;
+        margin: 24px auto 0;
+        height: 48px;
+        border: 2px solid #ff6900;
+        overflow: hidden;
+        border-radius: 24px;
+        transition: box-shadow 0.3s ease;
+      }
+      .subscribe-form:focus-within {
+        box-shadow: 0 0 0 3px rgba(255, 105, 0, 0.3);
+      }
+      .email-input {
+        flex-grow: 1;
+        padding: 0 24px;
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-size: 0.875rem;
+        outline: none;
+      }
+      .email-input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .submit-button {
+        background: #ff6900;
+        color: #fff;
+        width: 48px;
+        border: none;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 1.25rem;
+        transition: background 0.3s ease;
+      }
+      .submit-button:hover {
+        background: #ff8533;
+      }
+      .footer-bottom {
+        text-align: center;
+        padding: 24px;
+        color: #888;
+        font-size: 0.875rem;
+        background-color: #0a0a0a;
+        border-top: 1px solid #53565a;
+      }
+
+      /* ----------  RESPONSIVE TWEAKS (same breakpoints as aboutus1)  ---------- */
+      @media (max-width: 768px) {
+        .footercontainer {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        .footercol {
+          margin: 24px 0;
+          width: 100%;
+        }
+      }
+
+      /* ------------------------------------------- */
+      /* --- RESPONSIVE DESIGN --- */
+      /* ------------------------------------------- */
+      @media (max-width: 1024px) {
         .tabs-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            padding: 20px;
+          padding: 15px;
+          gap: 8px;
         }
 
         .tab-btn {
-            padding: 12px 24px;
-            background: transparent;
-            border: none;
-            color: var(--color-dark-text);
-            font-size: 14px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-bottom: 2px solid transparent;
+          padding: 10px 18px;
+          font-size: 13px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        nav {
+          padding: 15px 20px;
+          flex-wrap: wrap;
         }
 
-        .tab-btn:hover {
-            color: var(--color-accent);
+        .logo {
+          font-size: 20px;
+        }
+
+        .nav-links {
+          gap: 15px;
+          flex-wrap: wrap;
+          justify-content: flex-end;
+        }
+
+        .nav-link {
+          font-size: 13px;
+        }
+
+        .cart-icon {
+          width: 20px;
+          height: 20px;
+        }
+
+        .faq-hero {
+          padding: 40px 20px;
+        }
+
+        .faq-hero h1 {
+          font-size: 1.5rem;
+          letter-spacing: 1px;
+        }
+
+        .faq-icon {
+          width: 50px;
+          height: 50px;
+          font-size: 1.25rem;
+          margin: 20px auto 0;
+        }
+
+        .tabs-container {
+          flex-direction: column;
+          align-items: stretch;
+          padding: 0;
+          gap: 0;
+        }
+
+        .tab-btn {
+          text-align: left;
+          padding: 15px 20px;
+          border-bottom: 1px solid #e0e0e0;
+          border-radius: 0;
         }
 
         .tab-btn.active {
-            color: var(--color-primary);
-            border-bottom: 2px solid var(--color-primary);
-            font-weight: 600;
+          border-left: 3px solid var(--color-primary);
+          border-bottom: 1px solid #e0e0e0;
         }
 
-        /* ------------------------------------------- */
-        /* --- CATEGORY SELECTOR --- */
-        /* ------------------------------------------- */
         .category-selector {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .select-wrapper {
-            position: relative;
-            width: 100%;
+          margin: 30px auto;
+          padding: 0 15px;
         }
 
         .category-select {
-            width: 100%;
-            padding: 15px 40px 15px 20px;
-            font-size: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background-color: var(--color-light-neutral);
-            color: var(--color-dark-text);
-            cursor: pointer;
-            appearance: none;
-            font-family: inherit;
-            font-weight: 500;
+          padding: 12px 35px 12px 15px;
+          font-size: 14px;
         }
 
-        .select-wrapper::after {
-            content: '▼';
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-            color: var(--color-secondary);
-            font-size: 12px;
-        }
-
-        /* ------------------------------------------- */
-        /* --- FAQ CONTENT SECTION --- */
-        /* ------------------------------------------- */
         .faq-content {
-            max-width: 800px;
-            margin: 60px auto;
-            padding: 0 20px;
+          margin: 40px auto;
+          padding: 0 15px;
         }
 
         .faq-category-title {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            color: var(--color-primary);
-            text-align: center;
+          font-size: 1.5rem;
+          margin-bottom: 15px;
         }
 
         .expand-all-btn {
-            display: block;
-            margin: 30px auto;
-            padding: 10px 24px;
-            background: transparent;
-            border: 1px solid var(--color-primary);
-            color: var(--color-primary);
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 4px;
-        }
-
-        .expand-all-btn:hover {
-            background-color: var(--color-primary);
-            color: var(--color-light-neutral);
-        }
-
-        /* ------------------------------------------- */
-        /* --- FAQ ACCORDION ITEMS --- */
-        /* ------------------------------------------- */
-        .faq-item {
-            border-bottom: 1px solid #e0e0e0;
-            transition: all 0.3s ease;
+          margin: 20px auto;
+          padding: 8px 20px;
+          font-size: 12px;
         }
 
         .faq-question {
-            width: 100%;
-            padding: 25px 50px 25px 0;
-            background: transparent;
-            border: none;
-            text-align: left;
-            font-size: 15px;
-            font-weight: 500;
-            color: var(--color-dark-text);
-            cursor: pointer;
-            position: relative;
-            transition: all 0.3s ease;
-            line-height: 1.5;
-            letter-spacing: 0.3px;
-        }
-
-        .faq-question:hover {
-            color: var(--color-accent);
+          padding: 20px 40px 20px 0;
+          font-size: 14px;
         }
 
         .faq-question::after {
-            content: '+';
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 28px;
-            font-weight: 300;
-            color: var(--color-primary);
-            transition: transform 0.3s ease;
-        }
-
-        .faq-item.active .faq-question::after {
-            content: '−';
-            transform: translateY(-50%) rotate(0deg);
+          font-size: 24px;
+          right: 5px;
         }
 
         .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.4s ease;
-            padding: 0 50px 0 0;
-            color: var(--color-secondary);
-            font-size: 15px;
-            line-height: 1.7;
+          padding: 0 40px 0 0;
+          font-size: 14px;
         }
 
         .faq-item.active .faq-answer {
-            max-height: 1000px;
-            padding: 0 50px 25px 0;
-        }
-
-        .faq-answer p {
-            margin-bottom: 15px;
+          padding: 0 40px 20px 0;
         }
 
         .faq-answer ul {
-            margin-left: 20px;
-            margin-bottom: 15px;
+          margin-left: 15px;
         }
 
-        .faq-answer li {
-            margin-bottom: 8px;
-        }
-
-        .faq-answer strong {
-            color: var(--color-dark-text);
-        }
-
-        /* ------------------------------------------- */
-        /* --- CONTACT SECTION --- */
-        /* ------------------------------------------- */
         .still-questions {
-            background-color: var(--color-light-bg-tint);
-            text-align: center;
-            padding: 80px 20px;
-            margin-top: 80px;
+          padding: 60px 20px;
+          margin-top: 60px;
         }
 
         .still-questions h2 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: var(--color-primary);
-            letter-spacing: 1px;
-            text-transform: uppercase;
+          font-size: 1.5rem;
+          margin-bottom: 20px;
         }
 
         .contact-btn {
-            display: inline-block;
-            padding: 16px 40px;
-            background-color: var(--color-primary);
-            color: var(--color-light-neutral);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+          padding: 14px 32px;
+          font-size: 13px;
         }
 
-        .contact-btn:hover {
-            background-color: var(--color-accent);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 105, 0, 0.3);
+        .footercontainer {
+          flex-direction: column;
+          align-items: center;
+          padding: 30px 20px;
         }
 
-        /* ----------  NEW FOOTER (lookbook-style)  ---------- */
-        footer{background-color:#000;color:#fff}
-        .footercontainer{
-            background-color:#000;
-            display:flex;
-            flex-direction:row;
-            justify-content:space-around;
-            padding:60px 40px;
-            flex-wrap:wrap;
-            max-width:1400px;
-            margin:0 auto;
-        }
-        .footercol{margin:24px;text-align:center}
-        .footercol h1{
-            font-size:1.5rem;
-            margin-bottom:24px;
-            color:#fff;
-            font-weight:600
-        }
-        .footercol ul{list-style:none;padding:0;margin:0}
-        .footercol li{margin-bottom:12px}
-        .footercol a{
-            color:#fff;
-            text-decoration:none;
-            font-size:1rem;
-            transition:color .3s ease
-        }
-        .footercol a:hover{color:#ff6900}
-        .footercol a:visited{color:#e0e0e0}
-        #menu{
-            display:flex;
-            gap:15px;
-            justify-content:center;
-            padding:0
-        }
-        #menu li{display:inline-block;margin-bottom:0}
-        .footer-img{
-            width:35px;
-            height:35px;
-            transition:transform .3s ease;
-            filter:brightness(.9)
-        }
-        .footer-img:hover{
-            transform:scale(1.1);
-            filter:brightness(1) drop-shadow(0 0 8px #ff6900)
-        }
-        .footer-code{
-            width:160px;
-            height:160px;
-            border:2px solid #ff6900;
-            padding:5px;
-            border-radius:12px
-        }
-        .footer-text{
-            max-width:300px;
-            font-style:italic;
-            font-size:.875rem;
-            margin:15px auto;
-            color:#e0e0e0;
-            line-height:1.6
-        }
-        .subscribe-form{
-            display:flex;
-            width:100%;
-            max-width:300px;
-            margin:24px auto 0;
-            height:48px;
-            border:2px solid #ff6900;
-            overflow:hidden;
-            border-radius:24px;
-            transition:box-shadow .3s ease
-        }
-        .subscribe-form:focus-within{box-shadow:0 0 0 3px rgba(255,105,0,.3)}
-        .email-input{
-            flex-grow:1;
-            padding:0 24px;
-            background:transparent;
-            border:none;
-            color:#fff;
-            font-size:.875rem;
-            outline:none
-        }
-        .email-input::placeholder{color:rgba(255,255,255,.5)}
-        .submit-button{
-            background:#ff6900;
-            color:#fff;
-            width:48px;
-            border:none;
-            cursor:pointer;
-            font-weight:700;
-            font-size:1.25rem;
-            transition:background .3s ease
-        }
-        .submit-button:hover{background:#ff8533}
-        .footer-bottom{
-            text-align:center;
-            padding:24px;
-            color:#888;
-            font-size:.875rem;
-            background-color:#0a0a0a;
-            border-top:1px solid #53565a
+        .footercol {
+          margin: 15px 0;
+          width: 100%;
         }
 
-        /* ----------  RESPONSIVE TWEAKS (same breakpoints as aboutus1)  ---------- */
-        @media (max-width:768px){
-            .footercontainer{flex-direction:column;align-items:center;text-align:center}
-            .footercol{margin:24px 0;width:100%}
+        .footercol h3 {
+          font-size: 16px;
         }
 
-        /* ------------------------------------------- */
-        /* --- RESPONSIVE DESIGN --- */
-        /* ------------------------------------------- */
-        @media (max-width: 1024px) {
-            .tabs-container {
-                padding: 15px;
-                gap: 8px;
-            }
+        .footercol a {
+          font-size: 14px;
+        }
+      }
 
-            .tab-btn {
-                padding: 10px 18px;
-                font-size: 13px;
-            }
+      @media (max-width: 480px) {
+        .nav-links {
+          width: 100%;
+          justify-content: space-between;
+          margin-top: 10px;
         }
 
-        @media (max-width: 768px) {
-            nav {
-                padding: 15px 20px;
-                flex-wrap: wrap;
-            }
-
-            .logo {
-                font-size: 20px;
-            }
-
-            .nav-links {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: flex-end;
-            }
-
-            .nav-link {
-                font-size: 13px;
-            }
-
-            .cart-icon {
-                width: 20px;
-                height: 20px;
-            }
-
-            .faq-hero {
-                padding: 40px 20px;
-            }
-
-            .faq-hero h1 {
-                font-size: 1.5rem;
-                letter-spacing: 1px;
-            }
-
-            .faq-icon {
-                width: 50px;
-                height: 50px;
-                font-size: 1.25rem;
-                margin: 20px auto 0;
-            }
-
-            .tabs-container {
-                flex-direction: column;
-                align-items: stretch;
-                padding: 0;
-                gap: 0;
-            }
-
-            .tab-btn {
-                text-align: left;
-                padding: 15px 20px;
-                border-bottom: 1px solid #e0e0e0;
-                border-radius: 0;
-            }
-
-            .tab-btn.active {
-                border-left: 3px solid var(--color-primary);
-                border-bottom: 1px solid #e0e0e0;
-            }
-
-            .category-selector {
-                margin: 30px auto;
-                padding: 0 15px;
-            }
-
-            .category-select {
-                padding: 12px 35px 12px 15px;
-                font-size: 14px;
-            }
-
-            .faq-content {
-                margin: 40px auto;
-                padding: 0 15px;
-            }
-
-            .faq-category-title {
-                font-size: 1.5rem;
-                margin-bottom: 15px;
-            }
-
-            .expand-all-btn {
-                margin: 20px auto;
-                padding: 8px 20px;
-                font-size: 12px;
-            }
-
-            .faq-question {
-                padding: 20px 40px 20px 0;
-                font-size: 14px;
-            }
-
-            .faq-question::after {
-                font-size: 24px;
-                right: 5px;
-            }
-
-            .faq-answer {
-                padding: 0 40px 0 0;
-                font-size: 14px;
-            }
-
-            .faq-item.active .faq-answer {
-                padding: 0 40px 20px 0;
-            }
-
-            .faq-answer ul {
-                margin-left: 15px;
-            }
-
-            .still-questions {
-                padding: 60px 20px;
-                margin-top: 60px;
-            }
-
-            .still-questions h2 {
-                font-size: 1.5rem;
-                margin-bottom: 20px;
-            }
-
-            .contact-btn {
-                padding: 14px 32px;
-                font-size: 13px;
-            }
-
-            .footercontainer {
-                flex-direction: column;
-                align-items: center;
-                padding: 30px 20px;
-            }
-
-            .footercol {
-                margin: 15px 0;
-                width: 100%;
-            }
-
-            .footercol h3 {
-                font-size: 16px;
-            }
-
-            .footercol a {
-                font-size: 14px;
-            }
+        .faq-hero h1 {
+          font-size: 1.25rem;
         }
 
-        @media (max-width: 480px) {
-            .nav-links {
-                width: 100%;
-                justify-content: space-between;
-                margin-top: 10px;
-            }
-
-            .faq-hero h1 {
-                font-size: 1.25rem;
-            }
-
-            .faq-question {
-                padding: 18px 35px 18px 0;
-                font-size: 13px;
-            }
-
-            .faq-question::after {
-                font-size: 20px;
-            }
-
-            .faq-answer {
-                padding: 0 35px 0 0;
-                font-size: 13px;
-            }
-
-            .faq-item.active .faq-answer {
-                padding: 0 35px 18px 0;
-            }
+        .faq-question {
+          padding: 18px 35px 18px 0;
+          font-size: 13px;
         }
+
+        .faq-question::after {
+          font-size: 20px;
+        }
+
+        .faq-answer {
+          padding: 0 35px 0 0;
+          font-size: 13px;
+        }
+
+        .faq-item.active .faq-answer {
+          padding: 0 35px 18px 0;
+        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Navigation -->
     <div class="nav-container">
-        <nav>
-            <div class="logo">XIAOMI</div>
-            <ul class="nav-links">
-                <li><a href="#" class="nav-link">Home</a></li>
-                <li><a href="#" class="nav-link">Products</a></li>
-                <li><a href="#" class="nav-link">About</a></li>
-                <li><a href="#" class="nav-link">Support</a></li>
-                <li>
-                    <svg class="cart-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                    </svg>
-                </li>
-            </ul>
-        </nav>
+      <nav>
+        <a href="index.html" class="logo-container">
+          <div class="logo-bg"></div>
+
+          <!-- MI Logo -->
+          <svg class="logo-icon" width="36" height="36" viewBox="0 0 36 36">
+            <text x="18" y="26" text-anchor="middle" class="mi-text">MI</text>
+          </svg>
+
+          <!-- Home Icon -->
+          <svg class="home-icon" width="28" height="28" viewBox="0 0 24 24">
+            <path
+              class="home-path"
+              d="M12 3L4 9v12h16V9l-8-6zm6 16h-3v-6H9v6H6v-9l6-4.5L18 10v9z"
+            />
+          </svg>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#" class="nav-link">Home</a></li>
+          <li><a href="#" class="nav-link">Products</a></li>
+          <li><a href="#" class="nav-link">About</a></li>
+          <li><a href="#" class="nav-link">Support</a></li>
+          <li>
+            <svg
+              class="cart-icon"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+              ></path>
+            </svg>
+          </li>
+        </ul>
+      </nav>
     </div>
 
     <!-- Hero Section -->
     <div class="faq-hero">
-        <h1>Frequently Asked Questions</h1>
-        <div class="faq-icon">?</div>
+      <h1>Frequently Asked Questions</h1>
+      <div class="faq-icon">?</div>
     </div>
 
     <!-- FAQ Tabs -->
     <div class="faq-tabs">
-        <div class="tabs-container">
-            <button class="tab-btn active" data-category="product">Product Information</button>
-            <button class="tab-btn" data-category="features">Features & Functions</button>
-            <button class="tab-btn" data-category="setup">Setup & Pairing</button>
-            <button class="tab-btn" data-category="health">Health Tracking</button>
-            <button class="tab-btn" data-category="battery">Battery & Charging</button>
-            <button class="tab-btn" data-category="warranty">Warranty & Support</button>
-        </div>
+      <div class="tabs-container">
+        <button class="tab-btn active" data-category="product">
+          Product Information
+        </button>
+        <button class="tab-btn" data-category="features">
+          Features & Functions
+        </button>
+        <button class="tab-btn" data-category="setup">Setup & Pairing</button>
+        <button class="tab-btn" data-category="health">Health Tracking</button>
+        <button class="tab-btn" data-category="battery">
+          Battery & Charging
+        </button>
+        <button class="tab-btn" data-category="warranty">
+          Warranty & Support
+        </button>
+      </div>
     </div>
 
     <!-- Category Selector -->
     <div class="category-selector">
-        <div class="select-wrapper">
-            <select class="category-select" id="categorySelect">
-                <option value="product">Product Information</option>
-                <option value="features">Features & Functions</option>
-                <option value="setup">Setup & Pairing</option>
-                <option value="health">Health Tracking</option>
-                <option value="battery">Battery & Charging</option>
-                <option value="warranty">Warranty & Support</option>
-            </select>
-        </div>
+      <div class="select-wrapper">
+        <select class="category-select" id="categorySelect">
+          <option value="product">Product Information</option>
+          <option value="features">Features & Functions</option>
+          <option value="setup">Setup & Pairing</option>
+          <option value="health">Health Tracking</option>
+          <option value="battery">Battery & Charging</option>
+          <option value="warranty">Warranty & Support</option>
+        </select>
+      </div>
     </div>
 
     <!-- FAQ Content -->
     <div class="faq-content">
-        <h2 class="faq-category-title">Product Information</h2>
-        <button class="expand-all-btn" onclick="toggleAll()">Expand All</button>
+      <h2 class="faq-category-title">Product Information</h2>
+      <button class="expand-all-btn" onclick="toggleAll()">Expand All</button>
 
-        <!-- Product Information Questions -->
-        <div class="faq-section" data-section="product">
-            <div class="faq-item">
-                <button class="faq-question">What features does the Xiaomi Smart Band 10 offer?</button>
-                <div class="faq-answer">
-                    <p>The Xiaomi Smart Band 10 is our most advanced fitness tracker, featuring:</p>
-                    <ul>
-                        <li><strong>1.62" AMOLED Display:</strong> Vibrant 326 PPI screen with always-on display support</li>
-                        <li><strong>200+ Watch Faces:</strong> Customizable designs to match your style</li>
-                        <li><strong>150+ Sports Modes:</strong> Track everything from running to yoga</li>
-                        <li><strong>Professional Health Monitoring:</strong> Heart rate, SpO2, sleep, stress, and women's health tracking</li>
-                        <li><strong>14-Day Battery Life:</strong> Extended usage on a single charge</li>
-                        <li><strong>5 ATM Water Resistance:</strong> Swim-proof up to 50 meters</li>
-                        <li><strong>Smart Notifications:</strong> Call, message, and app alerts</li>
-                        <li><strong>GPS Connectivity:</strong> Accurate distance and route tracking</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">What's new in the Smart Band 10 compared to previous models?</button>
-                <div class="faq-answer">
-                    <p>The Smart Band 10 brings significant improvements:</p>
-                    <ul>
-                        <li>20% larger display with thinner bezels for better viewing experience</li>
-                        <li>Enhanced health sensors with improved accuracy for heart rate and SpO2</li>
-                        <li>Longer battery life - up to 14 days (vs 12 days on Band 9)</li>
-                        <li>Faster charging with magnetic charging dock</li>
-                        <li>New AI-powered workout suggestions based on your fitness level</li>
-                        <li>Improved sleep tracking with REM sleep analysis</li>
-                        <li>More durable with Corning Gorilla Glass protection</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">What's included in the Smart Band 10 box?</button>
-                <div class="faq-answer">
-                    <p>Your Xiaomi Smart Band 10 package includes:</p>
-                    <ul>
-                        <li>Xiaomi Smart Band 10 device (with pre-installed strap)</li>
-                        <li>Magnetic charging cable</li>
-                        <li>User manual and quick start guide</li>
-                        <li>Warranty card</li>
-                    </ul>
-                    <p><strong>Note:</strong> Additional straps in different colors and materials are sold separately.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">Is the Smart Band 10 compatible with my smartphone?</button>
-                <div class="faq-answer">
-                    <p>The Xiaomi Smart Band 10 is compatible with a wide range of devices:</p>
-                    <p><strong>Android:</strong> Devices running Android 6.0 or later<br>
-                    <strong>iOS:</strong> iPhone models running iOS 12.0 or later</p>
-                    <p>You'll need to download the <strong>Mi Fitness app</strong> (formerly Xiaomi Wear) from the Google Play Store or Apple App Store to pair and manage your Smart Band 10.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">Can I replace the strap on my Smart Band 10?</button>
-                <div class="faq-answer">
-                    <p>Yes! The Xiaomi Smart Band 10 features a quick-release strap system that makes changing bands easy and tool-free.</p>
-                    <p>We offer a variety of official straps including:</p>
-                    <ul>
-                        <li>Silicone sport straps (multiple colors)</li>
-                        <li>Woven nylon straps</li>
-                        <li>Premium leather straps</li>
-                        <li>Stainless steel metal bands</li>
-                    </ul>
-                    <p>All straps are available on Xiaomi.com and authorized retailers.</p>
-                </div>
-            </div>
+      <!-- Product Information Questions -->
+      <div class="faq-section" data-section="product">
+        <div class="faq-item">
+          <button class="faq-question">
+            What features does the Xiaomi Smart Band 10 offer?
+          </button>
+          <div class="faq-answer">
+            <p>
+              The Xiaomi Smart Band 10 is our most advanced fitness tracker,
+              featuring:
+            </p>
+            <ul>
+              <li>
+                <strong>1.62" AMOLED Display:</strong> Vibrant 326 PPI screen
+                with always-on display support
+              </li>
+              <li>
+                <strong>200+ Watch Faces:</strong> Customizable designs to match
+                your style
+              </li>
+              <li>
+                <strong>150+ Sports Modes:</strong> Track everything from
+                running to yoga
+              </li>
+              <li>
+                <strong>Professional Health Monitoring:</strong> Heart rate,
+                SpO2, sleep, stress, and women's health tracking
+              </li>
+              <li>
+                <strong>14-Day Battery Life:</strong> Extended usage on a single
+                charge
+              </li>
+              <li>
+                <strong>5 ATM Water Resistance:</strong> Swim-proof up to 50
+                meters
+              </li>
+              <li>
+                <strong>Smart Notifications:</strong> Call, message, and app
+                alerts
+              </li>
+              <li>
+                <strong>GPS Connectivity:</strong> Accurate distance and route
+                tracking
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <!-- Features & Functions Questions -->
-        <div class="faq-section" data-section="features" style="display: none;">
-            <div class="faq-item">
-                <button class="faq-question">How do I navigate the Smart Band 10 interface?</button>
-                <div class="faq-answer">
-                    <p>The Smart Band 10 uses a combination of touchscreen gestures and a single side button:</p>
-                    <ul>
-                        <li><strong>Swipe up/down:</strong> Navigate through menus and notifications</li>
-                        <li><strong>Swipe left/right:</strong> Switch between widgets and watch faces</li>
-                        <li><strong>Tap:</strong> Select items or return to home screen</li>
-                        <li><strong>Press side button:</strong> Wake screen, access quick menu, or return home</li>
-                        <li><strong>Long-press side button:</strong> Access voice assistant or emergency contacts</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">Can I receive notifications on my Smart Band 10?</button>
-                <div class="faq-answer">
-                    <p>Yes! The Smart Band 10 displays notifications from your smartphone including:</p>
-                    <ul>
-                        <li>Incoming calls with caller ID</li>
-                        <li>Text messages (SMS and messaging apps)</li>
-                        <li>Social media notifications (WhatsApp, Instagram, Facebook, etc.)</li>
-                        <li>Email alerts</li>
-                        <li>Calendar reminders</li>
-                        <li>App notifications (customizable in Mi Fitness app)</li>
-                    </ul>
-                    <p>You can customize which apps send notifications through the Mi Fitness app settings.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">Does the Smart Band 10 have GPS?</button>
-                <div class="faq-answer">
-                    <p>The Smart Band 10 features <strong>connected GPS</strong>, which means it uses your smartphone's GPS to track your route and distance during outdoor activities.</p>
-                    <p><strong>How it works:</strong> When you start a workout that requires GPS (running, cycling, hiking), the band connects to your phone's GPS. This provides accurate tracking while preserving battery life on the band itself.</p>
-                    <p><strong>Note:</strong> Your phone must be with you and Bluetooth must be enabled for GPS tracking to work.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">Can I control music playback with the Smart Band 10?</button>
-                <div class="faq-answer">
-                    <p>Yes! The Smart Band 10 includes music controls that let you:</p>
-                    <ul>
-                        <li>Play/pause music</li>
-                        <li>Skip to next/previous track</li>
-                        <li>Adjust volume</li>
-                        <li>See song and artist information</li>
-                    </ul>
-                    <p>The music control feature works with most popular music apps including Spotify, Apple Music, YouTube Music, and your phone's default music player.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">What sports modes are available?</button>
-                <div class="faq-answer">
-                    <p>The Smart Band 10 offers 150+ sports modes including:</p>
-                    <p><strong>Popular Activities:</strong> Running, Walking, Cycling, Swimming, Treadmill, Elliptical, Rowing, Yoga, Pilates</p>
-                    <p><strong>Ball Sports:</strong> Basketball, Soccer, Tennis, Badminton, Table Tennis, Volleyball</p>
-                    <p><strong>Water Sports:</strong> Swimming (pool & open water), Surfing, Water Polo</p>
-                    <p><strong>Winter Sports:</strong> Skiing, Snowboarding, Ice Skating</p>
-                    <p><strong>Combat Sports:</strong> Boxing, Kickboxing, Martial Arts, Wrestling</p>
-                    <p>Each mode tracks relevant metrics and provides post-workout analysis in the Mi Fitness app.</p>
-                </div>
-            </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            What's new in the Smart Band 10 compared to previous models?
+          </button>
+          <div class="faq-answer">
+            <p>The Smart Band 10 brings significant improvements:</p>
+            <ul>
+              <li>
+                20% larger display with thinner bezels for better viewing
+                experience
+              </li>
+              <li>
+                Enhanced health sensors with improved accuracy for heart rate
+                and SpO2
+              </li>
+              <li>
+                Longer battery life - up to 14 days (vs 12 days on Band 9)
+              </li>
+              <li>Faster charging with magnetic charging dock</li>
+              <li>
+                New AI-powered workout suggestions based on your fitness level
+              </li>
+              <li>Improved sleep tracking with REM sleep analysis</li>
+              <li>More durable with Corning Gorilla Glass protection</li>
+            </ul>
+          </div>
         </div>
 
-        <!-- Setup & Pairing Questions -->
-        <div class="faq-section" data-section="setup" style="display: none;">
-            <div class="faq-item">
-                <button class="faq-question">How do I set up my Smart Band 10 for the first time?</button>
-                <div class="faq-answer">
-                    <p><strong>Step-by-step setup:</strong></p>
-                    <ol style="margin-left: 20px;">
-                        <li>Charge your Smart Band 10 fully before first use</li>
-                        <li>Download the <strong>Mi Fitness app</strong> from Google Play Store or Apple App Store</li>
-                        <li>Open the app and create a Xiaomi account (or sign in if you have one)</li>
-                        <li>Tap the "+" icon and select "Band"</li>
-                        <li>Choose "Smart Band 10" from the device list</li>
-                        <li>Wake up your band by pressing the side button</li>
-                        <li>Follow the on-screen pairing instructions</li>
-                        <li>Grant necessary permissions (Bluetooth, notifications, etc.)</li>
-                        <li>Complete your personal profile for accurate health tracking</li>
-                    </ol>
-                    <p>The entire setup process takes about 5 minutes.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">My Smart Band 10 won't pair with my phone. What should I do?</button>
-                <div class="faq-answer">
-                    <p>If you're having trouble pairing, try these troubleshooting steps:</p>
-                    <ul>
-                        <li>Ensure Bluetooth is enabled on your phone</li>
-                        <li>Make sure your band is charged (at least 20% battery)</li>
-                        <li>Keep your phone within 0.5 meters of the band during pairing</li>
-                        <li>Restart both your phone and Smart Band 10</li>
-                        <li>Forget any previous Bluetooth connections to the band in your phone settings</li>
-                        <li>Update the Mi Fitness app to the latest version</li>
-                        <li>Reset your band: Go to Settings > System > Factory Reset</li>
-                    </ul>
-                    <p><strong>Important:</strong> Don't pair the band through your phone's Bluetooth settings. Always use the Mi Fitness app for pairing.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">Can I pair my Smart Band 10 with multiple devices?</button>
-                <div class="faq-answer">
-                    <p>The Smart Band 10 can only be connected to one smartphone at a time. However, you can switch between devices:</p>
-                    <p><strong>To switch devices:</strong></p>
-                    <ol style="margin-left: 20px;">
-                        <li>Unpair the band from the current device in the Mi Fitness app</li>
-                        <li>Open Mi Fitness on the new device</li>
-                        <li>Add the band through the app following normal pairing steps</li>
-                    </ol>
-                    <p><strong>Note:</strong> Your health and activity data will sync to your Xiaomi account, so it's accessible from any device once you sign in.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">How do I update the firmware on my Smart Band 10?</button>
-                <div class="faq-answer">
-                    <p>Firmware updates bring new features and improvements. To update:</p>
-                    <ol style="margin-left: 20px;">
-                        <li>Ensure your band has at least 20% battery</li>
-                        <li>Connect to Wi-Fi (recommended) or stable mobile data</li>
-                        <li>Open the Mi Fitness app</li>
-                        <li>Go to Profile > Smart Band 10 > Firmware Update</li>
-                        <li>If an update is available, tap "Download and Update"</li>
-                        <li>Keep the band near your phone during the update (10-15 minutes)</li>
-                        <li>Don't use the band until the update completes and it restarts</li>
-                    </ol>
-                    <p>The app will notify you when updates are available.</p>
-                </div>
-            </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            What's included in the Smart Band 10 box?
+          </button>
+          <div class="faq-answer">
+            <p>Your Xiaomi Smart Band 10 package includes:</p>
+            <ul>
+              <li>Xiaomi Smart Band 10 device (with pre-installed strap)</li>
+              <li>Magnetic charging cable</li>
+              <li>User manual and quick start guide</li>
+              <li>Warranty card</li>
+            </ul>
+            <p>
+              <strong>Note:</strong> Additional straps in different colors and
+              materials are sold separately.
+            </p>
+          </div>
         </div>
 
-        <!-- Health Tracking Questions -->
-        <div class="faq-section" data-section="health" style="display: none;">
-            <div class="faq-item">
-                <button class="faq-question">How accurate is the heart rate monitoring?</button>
-                <div class="faq-answer">
-                    <p>The Smart Band 10 uses an advanced PPG (photoplethysmography) sensor that provides medical-grade accuracy for resting heart rate measurements.</p>
-                    <p><strong>Accuracy factors:</strong></p>
-                    <ul>
-                        <li>Wear the band snugly (1-2 fingers width above wrist bone)</li>
-                        <li>Keep the sensor area clean and free from sweat/moisture buildup</li>
-                        <li>For best results during workouts, tighten the band slightly</li>
-                        <li>Tattoos or scars on the wrist may affect accuracy</li>
-                    </ul>
-                    <p>The band monitors your heart rate continuously and alerts you if it detects unusually high or low readings.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">What is SpO2 monitoring and how does it work?</button>
-                <div class="faq-answer">
-                    <p>SpO2 (blood oxygen saturation) measures the percentage of oxygen in your blood. Normal levels are typically 95-100%.</p>
-                    <p><strong>The Smart Band 10 can measure SpO2:</strong></p>
-                    <ul>
-                        <li><strong>On-demand:</strong> Manually check anytime through the device</li>
-                        <li><strong>During sleep:</strong> Automatic monitoring to detect breathing irregularities</li>
-                        <li><strong>During workouts:</strong> Track oxygen levels during intense exercise</li>
-                    </ul>
-                    <p><strong>How to take a measurement:</strong> Stay still, keep your arm at heart level, and wait 30 seconds for results.</p>
-                    <p><strong>Note:</strong> This feature is for fitness purposes only and not intended for medical diagnosis.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">How does sleep tracking work on the Smart Band 10?</button>
-                <div class="faq-answer">
-                    <p>The Smart Band 10 uses advanced algorithms to automatically detect when you fall asleep and wake up, tracking:</p>
-                    <ul>
-                        <li><strong>Sleep stages:</strong> Deep sleep, Light sleep, REM sleep, and Awake time</li>
-                        <li><strong>Sleep quality score:</strong> 0-100 rating based on duration and stage distribution</li>
-                        <li><strong>Sleep breathing quality:</strong> Detects breathing irregularities</li>
-                        <li><strong>Heart rate during sleep:</strong> Tracks resting heart rate patterns</li>
-                        <li><strong>Nap detection:</strong> Recognizes daytime naps over 20 minutes</li>
-                    </ul>
-                    <p>View detailed sleep insights and personalized suggestions in the Mi Fitness app each morning.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">What is stress monitoring and how can it help me?</button>
-                <div class="faq-answer">
-                    <p>The Smart Band 10 measures your stress level using heart rate variability (HRV) analysis, providing a score from 1-100:</p>
-                    <ul>
-                        <li><strong>Relaxed (1-29):</strong> Low stress, good recovery state</li>
-                        <li><strong>Normal (30-59):</strong> Balanced stress levels</li>
-                        <li><strong>Medium (60-79):</strong> Elevated stress, consider taking a break</li>
-                        <li><strong>High (80-100):</strong> High stress detected</li>
-                    </ul>
-                    <p><strong>Features:</strong></p>
-                    <ul>
-                        <li>All-day automatic stress monitoring</li>
-                        <li>Breathing exercises to help reduce stress</li>
-                        <li>Stress alerts when levels are consistently high</li>
-                        <li>Weekly stress trends and patterns in the app</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">Does the Smart Band 10 track women's health?</button>
-                <div class="faq-answer">
-                    <p>Yes! The Smart Band 10 includes comprehensive women's health tracking:</p>
-                    <ul>
-                        <li><strong>Menstrual cycle tracking:</strong> Log periods and predict future cycles</li>
-                        <li><strong>Fertility window prediction:</strong> Estimates ovulation and fertile days</li>
-                        <li><strong>Symptom logging:</strong> Track mood, symptoms, and flow intensity</li>
-                        <li><strong>Reminders:</strong> Get notified before your period starts</li>
-                        <li><strong>Pregnancy mode:</strong> Track pregnancy weeks and milestones</li>
-                    </ul>
-                    <p>All data is private and encrypted. Set up women's health tracking in the Mi Fitness app under Profile > Health settings.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">Can I share my health data with other apps?</button>
-                <div class="faq-answer">
-                    <p>Yes, the Smart Band 10 integrates with popular health platforms:</p>
-                    <ul>
-                        <li><strong>Google Fit:</strong> Sync steps, calories, heart rate, and workouts</li>
-                        <li><strong>Apple Health:</strong> Share all health metrics with iPhone's Health app</li>
-                        <li><strong>Strava:</strong> Automatically upload workout activities</li>
-                    </ul>
-                    <p><strong>To enable:</strong> Open Mi Fitness app > Profile > Third-party access > Select the app you want to connect</p>
-                    <p>You control which data is shared and can disconnect at any time.</p>
-                </div>
-            </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Is the Smart Band 10 compatible with my smartphone?
+          </button>
+          <div class="faq-answer">
+            <p>
+              The Xiaomi Smart Band 10 is compatible with a wide range of
+              devices:
+            </p>
+            <p>
+              <strong>Android:</strong> Devices running Android 6.0 or later<br />
+              <strong>iOS:</strong> iPhone models running iOS 12.0 or later
+            </p>
+            <p>
+              You'll need to download the
+              <strong>Mi Fitness app</strong> (formerly Xiaomi Wear) from the
+              Google Play Store or Apple App Store to pair and manage your Smart
+              Band 10.
+            </p>
+          </div>
         </div>
 
-        <!-- Battery & Charging Questions -->
-        <div class="faq-section" data-section="battery" style="display: none;">
-            <div class="faq-item">
-                <button class="faq-question">How long does the battery last on the Smart Band 10?</button>
-                <div class="faq-answer">
-                    <p>Battery life varies based on usage, but typical performance includes:</p>
-                    <ul>
-                        <li><strong>Typical use:</strong> Up to 14 days</li>
-                        <li><strong>Heavy use:</strong> 7-9 days (always-on display, frequent GPS workouts, continuous health monitoring)</li>
-                        <li><strong>Power saver mode:</strong> Up to 21 days</li>
-                    </ul>
-                    <p><strong>Battery-draining features:</strong></p>
-                    <ul>
-                        <li>Always-on display</li>
-                        <li>Frequent notifications</li>
-                        <li>Continuous SpO2 monitoring</li>
-                        <li>GPS-enabled workouts</li>
-                        <li>Maximum brightness settings</li>
-                    </ul>
-                    <p>Adjust these settings in the band or Mi Fitness app to optimize battery life.</p>
-                </div>
-            </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Can I replace the strap on my Smart Band 10?
+          </button>
+          <div class="faq-answer">
+            <p>
+              Yes! The Xiaomi Smart Band 10 features a quick-release strap
+              system that makes changing bands easy and tool-free.
+            </p>
+            <p>We offer a variety of official straps including:</p>
+            <ul>
+              <li>Silicone sport straps (multiple colors)</li>
+              <li>Woven nylon straps</li>
+              <li>Premium leather straps</li>
+              <li>Stainless steel metal bands</li>
+            </ul>
+            <p>
+              All straps are available on Xiaomi.com and authorized retailers.
+            </p>
+          </div>
+        </div>
+      </div>
 
-            <div class="faq-item">
-                <button class="faq-question">How do I charge my Smart Band 10?</button>
-                <div class="faq-answer">
-                    <p>The Smart Band 10 uses a magnetic charging cable:</p>
-                    <ol style="margin-left: 20px;">
-                        <li>Align the magnetic charging pins on the cable with the contacts on the back of the band</li>
-                        <li>The magnets will snap into place automatically</li>
-                        <li>Plug the USB end into a power adapter, computer, or power bank</li>
-                        <li>The band will vibrate and show charging animation</li>
-                        <li>Full charge takes approximately 1.5-2 hours</li>
-                    </ol>
-                    <p><strong>Tips:</strong></p>
-                    <ul>
-                        <li>Clean the charging contacts regularly with a dry cloth</li>
-                        <li>Use a 5V/1A or higher USB adapter for best results</li>
-                        <li>You can use the band while it's charging</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">My battery drains faster than expected. What should I do?</button>
-                <div class="faq-answer">
-                    <p>If you're experiencing rapid battery drain, try these solutions:</p>
-                    <ul>
-                        <li><strong>Turn off always-on display:</strong> Settings > Display > Always-on display</li>
-                        <li><strong>Reduce brightness:</strong> Swipe down > Adjust brightness slider</li>
-                        <li><strong>Disable continuous SpO2:</strong> Mi Fitness app > Device settings > Health monitoring</li>
-                        <li><strong>Limit notifications:</strong> Only enable essential apps</li>
-                        <li><strong>Update firmware:</strong> Ensure you have the latest software</li>
-                        <li><strong>Restart the band:</strong> Settings > System > Restart</li>
-                        <li><strong>Factory reset (last resort):</strong> Settings > System > Factory reset</li>
-                    </ul>
-                    <p>If issues persist after trying these steps, contact Xiaomi Support for assistance.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">What is power saver mode and when should I use it?</button>
-                <div class="faq-answer">
-                    <p>Power saver mode extends battery life by disabling non-essential features. When enabled:</p>
-                    <p><strong>Disabled features:</strong></p>
-                    <ul>
-                        <li>Heart rate monitoring (except manual checks)</li>
-                        <li>SpO2 monitoring</li>
-                        <li>Stress monitoring</li>
-                        <li>Sleep tracking</li>
-                        <li>Automatic screen wake</li>
-                    </ul>
-                    <p><strong>Active features:</strong></p>
-                    <ul>
-                        <li>Time display</li>
-                        <li>Basic step counting</li>
-                        <li>Alarms</li>
-                        <li>Manual workout tracking</li>
-                    </ul>
-                    <p><strong>When to use:</strong> Activate power saver mode when your battery is low and you won't be able to charge soon, or during extended trips.</p>
-                    <p><strong>To enable:</strong> Settings > Battery > Power saver mode</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">Can I replace the battery in my Smart Band 10?</button>
-                <div class="faq-answer">
-                    <p>No, the Smart Band 10 has a sealed, non-replaceable battery. This design ensures water resistance and optimal performance.</p>
-                    <p><strong>Battery specifications:</strong></p>
-                    <ul>
-                        <li>Capacity: 250mAh lithium-polymer battery</li>
-                        <li>Expected lifespan: 500+ charge cycles (approximately 2-3 years)</li>
-                        <li>Performance gradually degrades over time</li>
-                    </ul>
-                    <p>To maximize battery lifespan:</p>
-                    <ul>
-                        <li>Avoid extreme temperatures during charging</li>
-                        <li>Don't let the battery fully discharge regularly</li>
-                        <li>Charge when battery reaches 10-20%</li>
-                    </ul>
-                    <p>If your battery performance significantly decreases within the warranty period, contact Xiaomi Support for evaluation.</p>
-                </div>
-            </div>
+      <!-- Features & Functions Questions -->
+      <div class="faq-section" data-section="features" style="display: none">
+        <div class="faq-item">
+          <button class="faq-question">
+            How do I navigate the Smart Band 10 interface?
+          </button>
+          <div class="faq-answer">
+            <p>
+              The Smart Band 10 uses a combination of touchscreen gestures and a
+              single side button:
+            </p>
+            <ul>
+              <li>
+                <strong>Swipe up/down:</strong> Navigate through menus and
+                notifications
+              </li>
+              <li>
+                <strong>Swipe left/right:</strong> Switch between widgets and
+                watch faces
+              </li>
+              <li>
+                <strong>Tap:</strong> Select items or return to home screen
+              </li>
+              <li>
+                <strong>Press side button:</strong> Wake screen, access quick
+                menu, or return home
+              </li>
+              <li>
+                <strong>Long-press side button:</strong> Access voice assistant
+                or emergency contacts
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <!-- Warranty & Support Questions -->
-        <div class="faq-section" data-section="warranty" style="display: none;">
-            <div class="faq-item">
-                <button class="faq-question">What warranty coverage does the Smart Band 10 include?</button>
-                <div class="faq-answer">
-                    <p>The Xiaomi Smart Band 10 includes a <strong>1-year limited warranty</strong> from the date of purchase that covers:</p>
-                    <ul>
-                        <li>Manufacturing defects</li>
-                        <li>Hardware malfunctions under normal use</li>
-                        <li>Faulty components or materials</li>
-                        <li>Battery performance issues (if capacity drops below 70% within warranty period)</li>
-                    </ul>
-                    <p><strong>Not covered:</strong></p>
-                    <ul>
-                        <li>Physical damage (drops, cracks, scratches)</li>
-                        <li>Water damage from misuse beyond rated depth</li>
-                        <li>Damage from unauthorized repairs or modifications</li>
-                        <li>Normal wear and tear (scratches, band wear)</li>
-                        <li>Loss or theft</li>
-                    </ul>
-                    <p>Keep your purchase receipt as proof of warranty. Extended warranty options may be available at purchase.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">How do I make a warranty claim?</button>
-                <div class="faq-answer">
-                    <p>To file a warranty claim for your Smart Band 10:</p>
-                    <ol style="margin-left: 20px;">
-                        <li><strong>Gather information:</strong> Have your purchase receipt, serial number, and photos/videos of the issue ready</li>
-                        <li><strong>Contact support:</strong> Visit support.xiaomi.com or call our customer service hotline</li>
-                        <li><strong>Describe the issue:</strong> Provide detailed information about the problem</li>
-                        <li><strong>Troubleshooting:</strong> Our team may guide you through troubleshooting steps</li>
-                        <li><strong>Evaluation:</strong> If necessary, you'll receive instructions to send the device for inspection</li>
-                        <li><strong>Resolution:</strong> Approved claims result in repair or replacement (typically 7-14 business days)</li>
-                    </ol>
-                    <p><strong>Required documents:</strong></p>
-                    <ul>
-                        <li>Original or digital copy of purchase receipt</li>
-                        <li>Completed warranty claim form</li>
-                        <li>Government-issued ID</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">Where can I get my Smart Band 10 repaired?</button>
-                <div class="faq-answer">
-                    <p>Xiaomi offers multiple repair options:</p>
-                    <p><strong>1. Authorized Service Centers:</strong></p>
-                    <ul>
-                        <li>Find the nearest center at xiaomi.com/service-centers</li>
-                        <li>Walk-in or appointment-based service</li>
-                        <li>Same-day diagnosis in most cases</li>
-                    </ul>
-                    <p><strong>2. Mail-in Repair Service:</strong></p>
-                    <ul>
-                        <li>Request a prepaid shipping label through support</li>
-                        <li>Pack securely and ship to designated repair center</li>
-                        <li>Receive updates via email/SMS</li>
-                    </ul>
-                    <p><strong>3. On-site Support (select regions):</strong></p>
-                    <ul>
-                        <li>Schedule a technician visit for certain issues</li>
-                        <li>Subject to availability and location</li>
-                    </ul>
-                    <p><strong>Important:</strong> Only use authorized Xiaomi service providers. Unauthorized repairs void your warranty.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">My Smart Band 10 isn't working properly. What should I try first?</button>
-                <div class="faq-answer">
-                    <p>Before contacting support, try these basic troubleshooting steps:</p>
-                    <p><strong>For general issues:</strong></p>
-                    <ul>
-                        <li><strong>Restart the band:</strong> Press and hold the side button for 10 seconds</li>
-                        <li><strong>Charge the battery:</strong> Ensure it has at least 20% charge</li>
-                        <li><strong>Reconnect Bluetooth:</strong> Turn off/on Bluetooth on your phone</li>
-                        <li><strong>Update firmware:</strong> Check for available updates in Mi Fitness app</li>
-                    </ul>
-                    <p><strong>For syncing issues:</strong></p>
-                    <ul>
-                        <li>Open the Mi Fitness app and manually sync</li>
-                        <li>Check that the app has necessary permissions</li>
-                        <li>Ensure stable internet connection</li>
-                    </ul>
-                    <p><strong>For touch/display issues:</strong></p>
-                    <ul>
-                        <li>Clean the screen with a soft, dry cloth</li>
-                        <li>Remove screen protector if recently applied</li>
-                        <li>Adjust touch sensitivity in settings</li>
-                    </ul>
-                    <p><strong>Last resort:</strong> Factory reset (Settings > System > Factory reset). Note: This erases all data on the band.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">How do I contact Xiaomi customer support?</button>
-                <div class="faq-answer">
-                    <p>We offer multiple ways to reach our support team:</p>
-                    <p><strong>Online Support:</strong></p>
-                    <ul>
-                        <li><strong>Website:</strong> support.xiaomi.com (Live chat available 24/7)</li>
-                        <li><strong>Email:</strong> support@xiaomi.com (Response within 24-48 hours)</li>
-                        <li><strong>Community Forum:</strong> community.xiaomi.com (User discussions and official responses)</li>
-                    </ul>
-                    <p><strong>Phone Support:</strong></p>
-                    <ul>
-                        <li>Check xiaomi.com/contact for your region's phone number</li>
-                        <li>Available Monday-Friday, 9 AM - 6 PM local time</li>
-                    </ul>
-                    <p><strong>Social Media:</strong></p>
-                    <ul>
-                        <li>Twitter: @XiaomiSupport</li>
-                        <li>Facebook: facebook.com/xiaomiglobal</li>
-                        <li>Instagram: @xiaomi.global</li>
-                    </ul>
-                    <p><strong>Mi Fitness App:</strong></p>
-                    <ul>
-                        <li>Go to Profile > Help & Support > Contact Us</li>
-                        <li>Direct messaging with support agents</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">Are there any software updates planned for the Smart Band 10?</button>
-                <div class="faq-answer">
-                    <p>Yes! Xiaomi is committed to providing regular software updates for the Smart Band 10, including:</p>
-                    <p><strong>Typical update frequency:</strong></p>
-                    <ul>
-                        <li>Major updates: 2-3 times per year (new features)</li>
-                        <li>Minor updates: Monthly (bug fixes, improvements)</li>
-                        <li>Security updates: As needed</li>
-                    </ul>
-                    <p><strong>Recent and upcoming features:</strong></p>
-                    <ul>
-                        <li>New watch faces and customization options</li>
-                        <li>Additional sports modes</li>
-                        <li>Enhanced sleep analysis algorithms</li>
-                        <li>Improved battery optimization</li>
-                        <li>Third-party app integrations</li>
-                    </ul>
-                    <p>Updates are delivered over-the-air through the Mi Fitness app. You'll receive notifications when updates are available.</p>
-                    <p><strong>Support period:</strong> Xiaomi typically provides software support for 3-4 years from product launch.</p>
-                </div>
-            </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Can I receive notifications on my Smart Band 10?
+          </button>
+          <div class="faq-answer">
+            <p>
+              Yes! The Smart Band 10 displays notifications from your smartphone
+              including:
+            </p>
+            <ul>
+              <li>Incoming calls with caller ID</li>
+              <li>Text messages (SMS and messaging apps)</li>
+              <li>
+                Social media notifications (WhatsApp, Instagram, Facebook, etc.)
+              </li>
+              <li>Email alerts</li>
+              <li>Calendar reminders</li>
+              <li>App notifications (customizable in Mi Fitness app)</li>
+            </ul>
+            <p>
+              You can customize which apps send notifications through the Mi
+              Fitness app settings.
+            </p>
+          </div>
         </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Does the Smart Band 10 have GPS?</button>
+          <div class="faq-answer">
+            <p>
+              The Smart Band 10 features <strong>connected GPS</strong>, which
+              means it uses your smartphone's GPS to track your route and
+              distance during outdoor activities.
+            </p>
+            <p>
+              <strong>How it works:</strong> When you start a workout that
+              requires GPS (running, cycling, hiking), the band connects to your
+              phone's GPS. This provides accurate tracking while preserving
+              battery life on the band itself.
+            </p>
+            <p>
+              <strong>Note:</strong> Your phone must be with you and Bluetooth
+              must be enabled for GPS tracking to work.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Can I control music playback with the Smart Band 10?
+          </button>
+          <div class="faq-answer">
+            <p>Yes! The Smart Band 10 includes music controls that let you:</p>
+            <ul>
+              <li>Play/pause music</li>
+              <li>Skip to next/previous track</li>
+              <li>Adjust volume</li>
+              <li>See song and artist information</li>
+            </ul>
+            <p>
+              The music control feature works with most popular music apps
+              including Spotify, Apple Music, YouTube Music, and your phone's
+              default music player.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">What sports modes are available?</button>
+          <div class="faq-answer">
+            <p>The Smart Band 10 offers 150+ sports modes including:</p>
+            <p>
+              <strong>Popular Activities:</strong> Running, Walking, Cycling,
+              Swimming, Treadmill, Elliptical, Rowing, Yoga, Pilates
+            </p>
+            <p>
+              <strong>Ball Sports:</strong> Basketball, Soccer, Tennis,
+              Badminton, Table Tennis, Volleyball
+            </p>
+            <p>
+              <strong>Water Sports:</strong> Swimming (pool & open water),
+              Surfing, Water Polo
+            </p>
+            <p>
+              <strong>Winter Sports:</strong> Skiing, Snowboarding, Ice Skating
+            </p>
+            <p>
+              <strong>Combat Sports:</strong> Boxing, Kickboxing, Martial Arts,
+              Wrestling
+            </p>
+            <p>
+              Each mode tracks relevant metrics and provides post-workout
+              analysis in the Mi Fitness app.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Setup & Pairing Questions -->
+      <div class="faq-section" data-section="setup" style="display: none">
+        <div class="faq-item">
+          <button class="faq-question">
+            How do I set up my Smart Band 10 for the first time?
+          </button>
+          <div class="faq-answer">
+            <p><strong>Step-by-step setup:</strong></p>
+            <ol style="margin-left: 20px">
+              <li>Charge your Smart Band 10 fully before first use</li>
+              <li>
+                Download the <strong>Mi Fitness app</strong> from Google Play
+                Store or Apple App Store
+              </li>
+              <li>
+                Open the app and create a Xiaomi account (or sign in if you have
+                one)
+              </li>
+              <li>Tap the "+" icon and select "Band"</li>
+              <li>Choose "Smart Band 10" from the device list</li>
+              <li>Wake up your band by pressing the side button</li>
+              <li>Follow the on-screen pairing instructions</li>
+              <li>
+                Grant necessary permissions (Bluetooth, notifications, etc.)
+              </li>
+              <li>
+                Complete your personal profile for accurate health tracking
+              </li>
+            </ol>
+            <p>The entire setup process takes about 5 minutes.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            My Smart Band 10 won't pair with my phone. What should I do?
+          </button>
+          <div class="faq-answer">
+            <p>
+              If you're having trouble pairing, try these troubleshooting steps:
+            </p>
+            <ul>
+              <li>Ensure Bluetooth is enabled on your phone</li>
+              <li>Make sure your band is charged (at least 20% battery)</li>
+              <li>
+                Keep your phone within 0.5 meters of the band during pairing
+              </li>
+              <li>Restart both your phone and Smart Band 10</li>
+              <li>
+                Forget any previous Bluetooth connections to the band in your
+                phone settings
+              </li>
+              <li>Update the Mi Fitness app to the latest version</li>
+              <li>Reset your band: Go to Settings > System > Factory Reset</li>
+            </ul>
+            <p>
+              <strong>Important:</strong> Don't pair the band through your
+              phone's Bluetooth settings. Always use the Mi Fitness app for
+              pairing.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Can I pair my Smart Band 10 with multiple devices?
+          </button>
+          <div class="faq-answer">
+            <p>
+              The Smart Band 10 can only be connected to one smartphone at a
+              time. However, you can switch between devices:
+            </p>
+            <p><strong>To switch devices:</strong></p>
+            <ol style="margin-left: 20px">
+              <li>
+                Unpair the band from the current device in the Mi Fitness app
+              </li>
+              <li>Open Mi Fitness on the new device</li>
+              <li>
+                Add the band through the app following normal pairing steps
+              </li>
+            </ol>
+            <p>
+              <strong>Note:</strong> Your health and activity data will sync to
+              your Xiaomi account, so it's accessible from any device once you
+              sign in.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            How do I update the firmware on my Smart Band 10?
+          </button>
+          <div class="faq-answer">
+            <p>
+              Firmware updates bring new features and improvements. To update:
+            </p>
+            <ol style="margin-left: 20px">
+              <li>Ensure your band has at least 20% battery</li>
+              <li>Connect to Wi-Fi (recommended) or stable mobile data</li>
+              <li>Open the Mi Fitness app</li>
+              <li>Go to Profile > Smart Band 10 > Firmware Update</li>
+              <li>If an update is available, tap "Download and Update"</li>
+              <li>
+                Keep the band near your phone during the update (10-15 minutes)
+              </li>
+              <li>
+                Don't use the band until the update completes and it restarts
+              </li>
+            </ol>
+            <p>The app will notify you when updates are available.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Health Tracking Questions -->
+      <div class="faq-section" data-section="health" style="display: none">
+        <div class="faq-item">
+          <button class="faq-question">
+            How accurate is the heart rate monitoring?
+          </button>
+          <div class="faq-answer">
+            <p>
+              The Smart Band 10 uses an advanced PPG (photoplethysmography)
+              sensor that provides medical-grade accuracy for resting heart rate
+              measurements.
+            </p>
+            <p><strong>Accuracy factors:</strong></p>
+            <ul>
+              <li>Wear the band snugly (1-2 fingers width above wrist bone)</li>
+              <li>
+                Keep the sensor area clean and free from sweat/moisture buildup
+              </li>
+              <li>
+                For best results during workouts, tighten the band slightly
+              </li>
+              <li>Tattoos or scars on the wrist may affect accuracy</li>
+            </ul>
+            <p>
+              The band monitors your heart rate continuously and alerts you if
+              it detects unusually high or low readings.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            What is SpO2 monitoring and how does it work?
+          </button>
+          <div class="faq-answer">
+            <p>
+              SpO2 (blood oxygen saturation) measures the percentage of oxygen
+              in your blood. Normal levels are typically 95-100%.
+            </p>
+            <p><strong>The Smart Band 10 can measure SpO2:</strong></p>
+            <ul>
+              <li>
+                <strong>On-demand:</strong> Manually check anytime through the
+                device
+              </li>
+              <li>
+                <strong>During sleep:</strong> Automatic monitoring to detect
+                breathing irregularities
+              </li>
+              <li>
+                <strong>During workouts:</strong> Track oxygen levels during
+                intense exercise
+              </li>
+            </ul>
+            <p>
+              <strong>How to take a measurement:</strong> Stay still, keep your
+              arm at heart level, and wait 30 seconds for results.
+            </p>
+            <p>
+              <strong>Note:</strong> This feature is for fitness purposes only
+              and not intended for medical diagnosis.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            How does sleep tracking work on the Smart Band 10?
+          </button>
+          <div class="faq-answer">
+            <p>
+              The Smart Band 10 uses advanced algorithms to automatically detect
+              when you fall asleep and wake up, tracking:
+            </p>
+            <ul>
+              <li>
+                <strong>Sleep stages:</strong> Deep sleep, Light sleep, REM
+                sleep, and Awake time
+              </li>
+              <li>
+                <strong>Sleep quality score:</strong> 0-100 rating based on
+                duration and stage distribution
+              </li>
+              <li>
+                <strong>Sleep breathing quality:</strong> Detects breathing
+                irregularities
+              </li>
+              <li>
+                <strong>Heart rate during sleep:</strong> Tracks resting heart
+                rate patterns
+              </li>
+              <li>
+                <strong>Nap detection:</strong> Recognizes daytime naps over 20
+                minutes
+              </li>
+            </ul>
+            <p>
+              View detailed sleep insights and personalized suggestions in the
+              Mi Fitness app each morning.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            What is stress monitoring and how can it help me?
+          </button>
+          <div class="faq-answer">
+            <p>
+              The Smart Band 10 measures your stress level using heart rate
+              variability (HRV) analysis, providing a score from 1-100:
+            </p>
+            <ul>
+              <li>
+                <strong>Relaxed (1-29):</strong> Low stress, good recovery state
+              </li>
+              <li><strong>Normal (30-59):</strong> Balanced stress levels</li>
+              <li>
+                <strong>Medium (60-79):</strong> Elevated stress, consider
+                taking a break
+              </li>
+              <li><strong>High (80-100):</strong> High stress detected</li>
+            </ul>
+            <p><strong>Features:</strong></p>
+            <ul>
+              <li>All-day automatic stress monitoring</li>
+              <li>Breathing exercises to help reduce stress</li>
+              <li>Stress alerts when levels are consistently high</li>
+              <li>Weekly stress trends and patterns in the app</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Does the Smart Band 10 track women's health?
+          </button>
+          <div class="faq-answer">
+            <p>
+              Yes! The Smart Band 10 includes comprehensive women's health
+              tracking:
+            </p>
+            <ul>
+              <li>
+                <strong>Menstrual cycle tracking:</strong> Log periods and
+                predict future cycles
+              </li>
+              <li>
+                <strong>Fertility window prediction:</strong> Estimates
+                ovulation and fertile days
+              </li>
+              <li>
+                <strong>Symptom logging:</strong> Track mood, symptoms, and flow
+                intensity
+              </li>
+              <li>
+                <strong>Reminders:</strong> Get notified before your period
+                starts
+              </li>
+              <li>
+                <strong>Pregnancy mode:</strong> Track pregnancy weeks and
+                milestones
+              </li>
+            </ul>
+            <p>
+              All data is private and encrypted. Set up women's health tracking
+              in the Mi Fitness app under Profile > Health settings.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Can I share my health data with other apps?
+          </button>
+          <div class="faq-answer">
+            <p>
+              Yes, the Smart Band 10 integrates with popular health platforms:
+            </p>
+            <ul>
+              <li>
+                <strong>Google Fit:</strong> Sync steps, calories, heart rate,
+                and workouts
+              </li>
+              <li>
+                <strong>Apple Health:</strong> Share all health metrics with
+                iPhone's Health app
+              </li>
+              <li>
+                <strong>Strava:</strong> Automatically upload workout activities
+              </li>
+            </ul>
+            <p>
+              <strong>To enable:</strong> Open Mi Fitness app > Profile >
+              Third-party access > Select the app you want to connect
+            </p>
+            <p>
+              You control which data is shared and can disconnect at any time.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Battery & Charging Questions -->
+      <div class="faq-section" data-section="battery" style="display: none">
+        <div class="faq-item">
+          <button class="faq-question">
+            How long does the battery last on the Smart Band 10?
+          </button>
+          <div class="faq-answer">
+            <p>
+              Battery life varies based on usage, but typical performance
+              includes:
+            </p>
+            <ul>
+              <li><strong>Typical use:</strong> Up to 14 days</li>
+              <li>
+                <strong>Heavy use:</strong> 7-9 days (always-on display,
+                frequent GPS workouts, continuous health monitoring)
+              </li>
+              <li><strong>Power saver mode:</strong> Up to 21 days</li>
+            </ul>
+            <p><strong>Battery-draining features:</strong></p>
+            <ul>
+              <li>Always-on display</li>
+              <li>Frequent notifications</li>
+              <li>Continuous SpO2 monitoring</li>
+              <li>GPS-enabled workouts</li>
+              <li>Maximum brightness settings</li>
+            </ul>
+            <p>
+              Adjust these settings in the band or Mi Fitness app to optimize
+              battery life.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            How do I charge my Smart Band 10?
+          </button>
+          <div class="faq-answer">
+            <p>The Smart Band 10 uses a magnetic charging cable:</p>
+            <ol style="margin-left: 20px">
+              <li>
+                Align the magnetic charging pins on the cable with the contacts
+                on the back of the band
+              </li>
+              <li>The magnets will snap into place automatically</li>
+              <li>
+                Plug the USB end into a power adapter, computer, or power bank
+              </li>
+              <li>The band will vibrate and show charging animation</li>
+              <li>Full charge takes approximately 1.5-2 hours</li>
+            </ol>
+            <p><strong>Tips:</strong></p>
+            <ul>
+              <li>Clean the charging contacts regularly with a dry cloth</li>
+              <li>Use a 5V/1A or higher USB adapter for best results</li>
+              <li>You can use the band while it's charging</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            My battery drains faster than expected. What should I do?
+          </button>
+          <div class="faq-answer">
+            <p>
+              If you're experiencing rapid battery drain, try these solutions:
+            </p>
+            <ul>
+              <li>
+                <strong>Turn off always-on display:</strong> Settings > Display
+                > Always-on display
+              </li>
+              <li>
+                <strong>Reduce brightness:</strong> Swipe down > Adjust
+                brightness slider
+              </li>
+              <li>
+                <strong>Disable continuous SpO2:</strong> Mi Fitness app >
+                Device settings > Health monitoring
+              </li>
+              <li>
+                <strong>Limit notifications:</strong> Only enable essential apps
+              </li>
+              <li>
+                <strong>Update firmware:</strong> Ensure you have the latest
+                software
+              </li>
+              <li>
+                <strong>Restart the band:</strong> Settings > System > Restart
+              </li>
+              <li>
+                <strong>Factory reset (last resort):</strong> Settings > System
+                > Factory reset
+              </li>
+            </ul>
+            <p>
+              If issues persist after trying these steps, contact Xiaomi Support
+              for assistance.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            What is power saver mode and when should I use it?
+          </button>
+          <div class="faq-answer">
+            <p>
+              Power saver mode extends battery life by disabling non-essential
+              features. When enabled:
+            </p>
+            <p><strong>Disabled features:</strong></p>
+            <ul>
+              <li>Heart rate monitoring (except manual checks)</li>
+              <li>SpO2 monitoring</li>
+              <li>Stress monitoring</li>
+              <li>Sleep tracking</li>
+              <li>Automatic screen wake</li>
+            </ul>
+            <p><strong>Active features:</strong></p>
+            <ul>
+              <li>Time display</li>
+              <li>Basic step counting</li>
+              <li>Alarms</li>
+              <li>Manual workout tracking</li>
+            </ul>
+            <p>
+              <strong>When to use:</strong> Activate power saver mode when your
+              battery is low and you won't be able to charge soon, or during
+              extended trips.
+            </p>
+            <p>
+              <strong>To enable:</strong> Settings > Battery > Power saver mode
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Can I replace the battery in my Smart Band 10?
+          </button>
+          <div class="faq-answer">
+            <p>
+              No, the Smart Band 10 has a sealed, non-replaceable battery. This
+              design ensures water resistance and optimal performance.
+            </p>
+            <p><strong>Battery specifications:</strong></p>
+            <ul>
+              <li>Capacity: 250mAh lithium-polymer battery</li>
+              <li>
+                Expected lifespan: 500+ charge cycles (approximately 2-3 years)
+              </li>
+              <li>Performance gradually degrades over time</li>
+            </ul>
+            <p>To maximize battery lifespan:</p>
+            <ul>
+              <li>Avoid extreme temperatures during charging</li>
+              <li>Don't let the battery fully discharge regularly</li>
+              <li>Charge when battery reaches 10-20%</li>
+            </ul>
+            <p>
+              If your battery performance significantly decreases within the
+              warranty period, contact Xiaomi Support for evaluation.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Warranty & Support Questions -->
+      <div class="faq-section" data-section="warranty" style="display: none">
+        <div class="faq-item">
+          <button class="faq-question">
+            What warranty coverage does the Smart Band 10 include?
+          </button>
+          <div class="faq-answer">
+            <p>
+              The Xiaomi Smart Band 10 includes a
+              <strong>1-year limited warranty</strong> from the date of purchase
+              that covers:
+            </p>
+            <ul>
+              <li>Manufacturing defects</li>
+              <li>Hardware malfunctions under normal use</li>
+              <li>Faulty components or materials</li>
+              <li>
+                Battery performance issues (if capacity drops below 70% within
+                warranty period)
+              </li>
+            </ul>
+            <p><strong>Not covered:</strong></p>
+            <ul>
+              <li>Physical damage (drops, cracks, scratches)</li>
+              <li>Water damage from misuse beyond rated depth</li>
+              <li>Damage from unauthorized repairs or modifications</li>
+              <li>Normal wear and tear (scratches, band wear)</li>
+              <li>Loss or theft</li>
+            </ul>
+            <p>
+              Keep your purchase receipt as proof of warranty. Extended warranty
+              options may be available at purchase.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">How do I make a warranty claim?</button>
+          <div class="faq-answer">
+            <p>To file a warranty claim for your Smart Band 10:</p>
+            <ol style="margin-left: 20px">
+              <li>
+                <strong>Gather information:</strong> Have your purchase receipt,
+                serial number, and photos/videos of the issue ready
+              </li>
+              <li>
+                <strong>Contact support:</strong> Visit support.xiaomi.com or
+                call our customer service hotline
+              </li>
+              <li>
+                <strong>Describe the issue:</strong> Provide detailed
+                information about the problem
+              </li>
+              <li>
+                <strong>Troubleshooting:</strong> Our team may guide you through
+                troubleshooting steps
+              </li>
+              <li>
+                <strong>Evaluation:</strong> If necessary, you'll receive
+                instructions to send the device for inspection
+              </li>
+              <li>
+                <strong>Resolution:</strong> Approved claims result in repair or
+                replacement (typically 7-14 business days)
+              </li>
+            </ol>
+            <p><strong>Required documents:</strong></p>
+            <ul>
+              <li>Original or digital copy of purchase receipt</li>
+              <li>Completed warranty claim form</li>
+              <li>Government-issued ID</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Where can I get my Smart Band 10 repaired?
+          </button>
+          <div class="faq-answer">
+            <p>Xiaomi offers multiple repair options:</p>
+            <p><strong>1. Authorized Service Centers:</strong></p>
+            <ul>
+              <li>Find the nearest center at xiaomi.com/service-centers</li>
+              <li>Walk-in or appointment-based service</li>
+              <li>Same-day diagnosis in most cases</li>
+            </ul>
+            <p><strong>2. Mail-in Repair Service:</strong></p>
+            <ul>
+              <li>Request a prepaid shipping label through support</li>
+              <li>Pack securely and ship to designated repair center</li>
+              <li>Receive updates via email/SMS</li>
+            </ul>
+            <p><strong>3. On-site Support (select regions):</strong></p>
+            <ul>
+              <li>Schedule a technician visit for certain issues</li>
+              <li>Subject to availability and location</li>
+            </ul>
+            <p>
+              <strong>Important:</strong> Only use authorized Xiaomi service
+              providers. Unauthorized repairs void your warranty.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            My Smart Band 10 isn't working properly. What should I try first?
+          </button>
+          <div class="faq-answer">
+            <p>
+              Before contacting support, try these basic troubleshooting steps:
+            </p>
+            <p><strong>For general issues:</strong></p>
+            <ul>
+              <li>
+                <strong>Restart the band:</strong> Press and hold the side
+                button for 10 seconds
+              </li>
+              <li>
+                <strong>Charge the battery:</strong> Ensure it has at least 20%
+                charge
+              </li>
+              <li>
+                <strong>Reconnect Bluetooth:</strong> Turn off/on Bluetooth on
+                your phone
+              </li>
+              <li>
+                <strong>Update firmware:</strong> Check for available updates in
+                Mi Fitness app
+              </li>
+            </ul>
+            <p><strong>For syncing issues:</strong></p>
+            <ul>
+              <li>Open the Mi Fitness app and manually sync</li>
+              <li>Check that the app has necessary permissions</li>
+              <li>Ensure stable internet connection</li>
+            </ul>
+            <p><strong>For touch/display issues:</strong></p>
+            <ul>
+              <li>Clean the screen with a soft, dry cloth</li>
+              <li>Remove screen protector if recently applied</li>
+              <li>Adjust touch sensitivity in settings</li>
+            </ul>
+            <p>
+              <strong>Last resort:</strong> Factory reset (Settings > System >
+              Factory reset). Note: This erases all data on the band.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            How do I contact Xiaomi customer support?
+          </button>
+          <div class="faq-answer">
+            <p>We offer multiple ways to reach our support team:</p>
+            <p><strong>Online Support:</strong></p>
+            <ul>
+              <li>
+                <strong>Website:</strong> support.xiaomi.com (Live chat
+                available 24/7)
+              </li>
+              <li>
+                <strong>Email:</strong> support@xiaomi.com (Response within
+                24-48 hours)
+              </li>
+              <li>
+                <strong>Community Forum:</strong> community.xiaomi.com (User
+                discussions and official responses)
+              </li>
+            </ul>
+            <p><strong>Phone Support:</strong></p>
+            <ul>
+              <li>Check xiaomi.com/contact for your region's phone number</li>
+              <li>Available Monday-Friday, 9 AM - 6 PM local time</li>
+            </ul>
+            <p><strong>Social Media:</strong></p>
+            <ul>
+              <li>Twitter: @XiaomiSupport</li>
+              <li>Facebook: facebook.com/xiaomiglobal</li>
+              <li>Instagram: @xiaomi.global</li>
+            </ul>
+            <p><strong>Mi Fitness App:</strong></p>
+            <ul>
+              <li>Go to Profile > Help & Support > Contact Us</li>
+              <li>Direct messaging with support agents</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Are there any software updates planned for the Smart Band 10?
+          </button>
+          <div class="faq-answer">
+            <p>
+              Yes! Xiaomi is committed to providing regular software updates for
+              the Smart Band 10, including:
+            </p>
+            <p><strong>Typical update frequency:</strong></p>
+            <ul>
+              <li>Major updates: 2-3 times per year (new features)</li>
+              <li>Minor updates: Monthly (bug fixes, improvements)</li>
+              <li>Security updates: As needed</li>
+            </ul>
+            <p><strong>Recent and upcoming features:</strong></p>
+            <ul>
+              <li>New watch faces and customization options</li>
+              <li>Additional sports modes</li>
+              <li>Enhanced sleep analysis algorithms</li>
+              <li>Improved battery optimization</li>
+              <li>Third-party app integrations</li>
+            </ul>
+            <p>
+              Updates are delivered over-the-air through the Mi Fitness app.
+              You'll receive notifications when updates are available.
+            </p>
+            <p>
+              <strong>Support period:</strong> Xiaomi typically provides
+              software support for 3-4 years from product launch.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Still Have Questions Section -->
     <div class="still-questions">
-        <h2>Still Have Questions?</h2>
-        <a href="warranty.html" class="contact-btn">Contact Us</a>
+      <h2>Still Have Questions?</h2>
+      <a href="warranty.html" class="contact-btn">Contact Us</a>
     </div>
 
-<!-- FOOTER -->
-<footer>
-    <div class="footercontainer">
-      <div class="footercol">
-        <h1>SUPPORT</h1>
-        <ul>
-          <li><a href="#">User Guide</a></li>
-          <li><a href="#">Terms of Use</a></li>
-          <li><a href="#">Service</a></li>
-          <li><a href="warranty.html">Warranty</a></li>
-          <li><a href="#">Store Locator</a></li>
-          <li><a href="#">Service Center</a></li>
-        </ul>
-      </div>
-  
-      <div class="footercol">
-        <h1>About Us</h1>
-        <ul>
-          <li><a href="#">Xiaomi</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Leadership Team</a></li>
-          <li><a href="#">Trust Center</a></li>
-        </ul>
-      </div>
-  
-      <div class="footercol">
-        <h1>Follow Us</h1>
-        <ul id="menu">
-          <li>
-            <a href="#" aria-label="Instagram">
-              <img class="footer-img" src="Images/instagram.png" alt="">
-            </a>
-          </li>
-          <li>
-            <a href="#" aria-label="LinkedIn">
-              <img class="footer-img" src="Images/linkedin.png" alt="">
-            </a>
-          </li>
-          <li>
-            <a href="#" aria-label="Facebook">
-              <img class="footer-img" src="Images/facebook.png" alt="">
-            </a>
-          </li>
-          <li>
-            <a href="#" aria-label="WhatsApp">
-              <img class="footer-img" src="Images/whatsapp.png" alt="">
-            </a>
-          </li>
-        </ul>
-      </div>
-  
-      <div class="footercol">
-        <h1>Download Our App</h1>
-        <ul id="menu">
-          <li>
-            <a href="#">
-              <img class="footer-code" src="Images/QRcode.webp" alt="Download app QR code">
-            </a>
-          </li>
-        </ul>
-      </div>
-  
-      <div class="footercol">
-        <h1>Stay Updated</h1>
-        <p class="footer-text">Subscribe to our newsletter</p>
-        <form class="subscribe-form" aria-label="Newsletter subscription">
-          <input type="email" placeholder="Your E-mail Address..." class="email-input" aria-label="Email address" required>
-          <button type="submit" class="submit-button" aria-label="Subscribe to newsletter">&gt;</button>
-        </form>
-      </div>
-    </div>
-  
-    <div class="footer-bottom">
-      <p>Copyright &copy; 2010 - 2025 Xiaomi. All Rights Reserved</p>
-    </div>
-  </footer>
+    <!-- FOOTER -->
+    <footer>
+      <div class="footercontainer">
+        <div class="footercol">
+          <h1>SUPPORT</h1>
+          <ul>
+            <li><a href="#">User Guide</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Service</a></li>
+            <li><a href="warranty.html">Warranty</a></li>
+            <li><a href="#">Store Locator</a></li>
+            <li><a href="#">Service Center</a></li>
+          </ul>
+        </div>
 
+        <div class="footercol">
+          <h1>About Us</h1>
+          <ul>
+            <li><a href="#">Xiaomi</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Leadership Team</a></li>
+            <li><a href="#">Trust Center</a></li>
+          </ul>
+        </div>
+
+        <div class="footercol">
+          <h1>Follow Us</h1>
+          <ul id="menu">
+            <li>
+              <a href="#" aria-label="Instagram">
+                <img class="footer-img" src="Images/instagram.png" alt="" />
+              </a>
+            </li>
+            <li>
+              <a href="#" aria-label="LinkedIn">
+                <img class="footer-img" src="Images/linkedin.png" alt="" />
+              </a>
+            </li>
+            <li>
+              <a href="#" aria-label="Facebook">
+                <img class="footer-img" src="Images/facebook.png" alt="" />
+              </a>
+            </li>
+            <li>
+              <a href="#" aria-label="WhatsApp">
+                <img class="footer-img" src="Images/whatsapp.png" alt="" />
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footercol">
+          <h1>Download Our App</h1>
+          <ul id="menu">
+            <li>
+              <a href="#">
+                <img
+                  class="footer-code"
+                  src="Images/QRcode.webp"
+                  alt="Download app QR code"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footercol">
+          <h1>Stay Updated</h1>
+          <p class="footer-text">Subscribe to our newsletter</p>
+          <form class="subscribe-form" aria-label="Newsletter subscription">
+            <input
+              type="email"
+              placeholder="Your E-mail Address..."
+              class="email-input"
+              aria-label="Email address"
+              required
+            />
+            <button
+              type="submit"
+              class="submit-button"
+              aria-label="Subscribe to newsletter"
+            >
+              &gt;
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>Copyright &copy; 2010 - 2025 Xiaomi. All Rights Reserved</p>
+      </div>
+    </footer>
 
     <script>
-        // FAQ Accordion Functionality
-        const faqItems = document.querySelectorAll('.faq-item');
-        const faqQuestions = document.querySelectorAll('.faq-question');
+      // FAQ Accordion Functionality
+      const faqItems = document.querySelectorAll(".faq-item");
+      const faqQuestions = document.querySelectorAll(".faq-question");
 
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', () => {
-                const item = question.parentElement;
-                const isActive = item.classList.contains('active');
-                
-                // Close all items
-                faqItems.forEach(faqItem => {
-                    faqItem.classList.remove('active');
-                });
-                
-                // Open clicked item if it wasn't active
-                if (!isActive) {
-                    item.classList.add('active');
-                }
-            });
+      faqQuestions.forEach((question) => {
+        question.addEventListener("click", () => {
+          const item = question.parentElement;
+          const isActive = item.classList.contains("active");
+
+          // Close all items
+          faqItems.forEach((faqItem) => {
+            faqItem.classList.remove("active");
+          });
+
+          // Open clicked item if it wasn't active
+          if (!isActive) {
+            item.classList.add("active");
+          }
         });
+      });
 
-        // Toggle All Functionality
-        let allExpanded = false;
-        function toggleAll() {
-            const btn = document.querySelector('.expand-all-btn');
-            const visibleItems = document.querySelectorAll('.faq-section:not([style*="display: none"]) .faq-item');
-            
-            if (!allExpanded) {
-                visibleItems.forEach(item => item.classList.add('active'));
-                btn.textContent = 'Collapse All';
-                allExpanded = true;
-            } else {
-                visibleItems.forEach(item => item.classList.remove('active'));
-                btn.textContent = 'Expand All';
-                allExpanded = false;
-            }
+      // Toggle All Functionality
+      let allExpanded = false;
+      function toggleAll() {
+        const btn = document.querySelector(".expand-all-btn");
+        const visibleItems = document.querySelectorAll(
+          '.faq-section:not([style*="display: none"]) .faq-item'
+        );
+
+        if (!allExpanded) {
+          visibleItems.forEach((item) => item.classList.add("active"));
+          btn.textContent = "Collapse All";
+          allExpanded = true;
+        } else {
+          visibleItems.forEach((item) => item.classList.remove("active"));
+          btn.textContent = "Expand All";
+          allExpanded = false;
         }
+      }
 
-        // Tab Navigation
-        const tabButtons = document.querySelectorAll('.tab-btn');
-        const faqSections = document.querySelectorAll('.faq-section');
-        const categorySelect = document.getElementById('categorySelect');
-        const categoryTitle = document.querySelector('.faq-category-title');
+      // Tab Navigation
+      const tabButtons = document.querySelectorAll(".tab-btn");
+      const faqSections = document.querySelectorAll(".faq-section");
+      const categorySelect = document.getElementById("categorySelect");
+      const categoryTitle = document.querySelector(".faq-category-title");
 
-        const categoryTitles = {
-            product: 'Product Information',
-            features: 'Features & Functions',
-            setup: 'Setup & Pairing',
-            health: 'Health Tracking',
-            battery: 'Battery & Charging',
-            warranty: 'Warranty & Support'
-        };
+      const categoryTitles = {
+        product: "Product Information",
+        features: "Features & Functions",
+        setup: "Setup & Pairing",
+        health: "Health Tracking",
+        battery: "Battery & Charging",
+        warranty: "Warranty & Support",
+      };
 
-        function switchCategory(category) {
-            // Update tabs
-            tabButtons.forEach(btn => {
-                if (btn.dataset.category === category) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-
-            // Update sections
-            faqSections.forEach(section => {
-                if (section.dataset.section === category) {
-                    section.style.display = 'block';
-                } else {
-                    section.style.display = 'none';
-                }
-            });
-
-            // Update dropdown
-            categorySelect.value = category;
-
-            // Update title
-            categoryTitle.textContent = categoryTitles[category];
-
-            // Reset expand/collapse state
-            allExpanded = false;
-            document.querySelector('.expand-all-btn').textContent = 'Expand All';
-            faqItems.forEach(item => item.classList.remove('active'));
-
-            // Scroll to content
-            document.querySelector('.faq-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-
-        tabButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                switchCategory(btn.dataset.category);
-            });
+      function switchCategory(category) {
+        // Update tabs
+        tabButtons.forEach((btn) => {
+          if (btn.dataset.category === category) {
+            btn.classList.add("active");
+          } else {
+            btn.classList.remove("active");
+          }
         });
 
-        categorySelect.addEventListener('change', (e) => {
-            switchCategory(e.target.value);
+        // Update sections
+        faqSections.forEach((section) => {
+          if (section.dataset.section === category) {
+            section.style.display = "block";
+          } else {
+            section.style.display = "none";
+          }
         });
+
+        // Update dropdown
+        categorySelect.value = category;
+
+        // Update title
+        categoryTitle.textContent = categoryTitles[category];
+
+        // Reset expand/collapse state
+        allExpanded = false;
+        document.querySelector(".expand-all-btn").textContent = "Expand All";
+        faqItems.forEach((item) => item.classList.remove("active"));
+
+        // Scroll to content
+        document
+          .querySelector(".faq-content")
+          .scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      tabButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          switchCategory(btn.dataset.category);
+        });
+      });
+
+      categorySelect.addEventListener("change", (e) => {
+        switchCategory(e.target.value);
+      });
     </script>
-</body>
+  </body>
 </html>
