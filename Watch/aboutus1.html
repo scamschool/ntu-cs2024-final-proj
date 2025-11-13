@@ -116,24 +116,155 @@
         .award-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
         .award-card h4{font-size:1.125rem;margin-block-end:var(--space-xs);}
         .award-card p{font-size:.9375rem;color:var(--grey-30);}
+/* ============================================ */
+/* FOOTER */
+/* ============================================ */
+footer {
+  background-color: #000000;
+  color: #ffffff;
+}
 
-        /* ----------  FOOTER  (standardised)  ---------- */
-        footer{background:var(--black);color:#fff;}
-        .footercontainer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-xl);padding:var(--space-2xl) var(--space-sm);}
-        .footercol{flex:1 1 12rem;}
-        .footercol h4{font-size:1.0625rem;font-weight:var(--fw-6);margin-block-end:var(--space-sm);letter-spacing:.03em;}
-        .footercol a{display:inline-block;padding-block:.25rem;font-size:.9375rem;opacity:.85;transition:opacity var(--transition), color var(--transition);}
-        .footercol a:hover{opacity:1;color:var(--orange);}
-        .socials, .qr{display:flex;gap:var(--space-sm);margin-block-start:var(--space-xs);}
-        .footer-img, .footer-code{width:2.25rem;height:2.25rem;border-radius:6px;transition:transform var(--transition);}
-        .footer-code{width:9rem;height:9rem;border:2px solid var(--orange);}
-        .footer-img:hover, .footer-code:hover{transform:scale(1.08);}
-        .subscribe-form{display:flex;height:2.75rem;border:1px solid var(--orange);border-radius:6px;overflow:hidden;margin-block-start:var(--space-sm);max-width:18rem;}
-        .email-input{flex:1;border:none;background:transparent;padding-inline:var(--space-sm);color:#fff;}
-        .email-input::placeholder{color:rgba(255,255,255,.55);}
-        .submit-button{width:3rem;border:none;background:var(--orange);color:#fff;font-size:1.25rem;cursor:pointer;transition:background var(--transition);}
-        .submit-button:hover{background:var(--orange-l);}
-        .footer-bottom{text-align:center;padding:var(--space-lg) var(--space-sm);font-size:.8125rem;color:rgba(255,255,255,.55);border-top:1px solid rgba(255,255,255,.12);}
+.footercontainer {
+  background-color: #000000;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 60px 40px;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footercol {
+  margin: 24px;
+  text-align: center;
+}
+
+.footercol h1 {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.footercol ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footercol li {
+  margin-bottom: 12px;
+}
+
+.footercol a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.footercol a:hover {
+  color: #ff6900;
+}
+
+.footercol a:visited {
+  color: #e0e0e0;
+}
+
+ul#menu {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+ul#menu li {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+.footer-img {
+  width: 35px;
+  height: 35px;
+  transition: transform 0.3s ease;
+  filter: brightness(0.9);
+}
+
+.footer-img:hover {
+  transform: scale(1.1);
+  filter: brightness(1) drop-shadow(0 0 8px #ff6900);
+}
+
+.footer-code {
+  width: 160px;
+  height: 160px;
+  border: 2px solid #ff6900;
+  padding: 5px;
+  border-radius: 12px;
+}
+
+.footer-text {
+  max-width: 300px;
+  font-style: italic;
+  font-size: 0.875rem;
+  margin: 15px auto;
+  color: #e0e0e0;
+  line-height: 1.6;
+}
+
+.subscribe-form {
+  display: flex;
+  width: 100%;
+  max-width: 300px;
+  margin: 24px auto 0;
+  height: 48px;
+  border: 2px solid #ff6900;
+  overflow: hidden;
+  border-radius: 24px;
+  transition: box-shadow 0.3s ease;
+}
+
+.subscribe-form:focus-within {
+  box-shadow: 0 0 0 3px rgba(255, 105, 0, 0.3);
+}
+
+.email-input {
+  flex-grow: 1;
+  padding: 0 24px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 0.875rem;
+  outline: none;
+}
+
+.email-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.submit-button {
+  background: #ff6900;
+  color: #ffffff;
+  width: 48px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.25rem;
+  transition: background 0.3s ease;
+}
+
+.submit-button:hover {
+  background: #ff8533;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 24px;
+  color: #888888;
+  font-size: 0.875rem;
+  background-color: #0a0a0a;
+  border-top: 1px solid #53565a;
+}
 
         /* ----------  RESPONSIVE  ---------- */
         @media (max-width: 768px){
@@ -283,56 +414,86 @@
     </div>
 </section>
 
-<!-- FOOTER  (standardised) -->
+<!-- Footer -->
 <footer>
-    <div class="footercontainer container">
-        <div class="footercol">
-            <h4>Support</h4>
-            <ul>
-                <li><a href="#">User Guide</a></li>
-                <li><a href="#">Terms of Use</a></li>
-                <li><a href="#">Service</a></li>
-                <li><a href="warranty.html">Warranty</a></li>
-                <li><a href="#">Store Locator</a></li>
-                <li><a href="#">Service Center</a></li>
-            </ul>
-        </div>
-        <div class="footercol">
-            <h4>About Us</h4>
-            <ul>
-                <li><a href="#">Xiaomi</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Leadership Team</a></li>
-                <li><a href="#">Trust Center</a></li>
-            </ul>
-        </div>
-        <div class="footercol">
-            <h4>Follow Us</h4>
-            <ul class="socials">
-                <li><a href="#" aria-label="Instagram"><img class="footer-img" src="Images/instagram.png" alt=""></a></li>
-                <li><a href="#" aria-label="LinkedIn"><img class="footer-img" src="Images/linkedin.png" alt=""></a></li>
-                <li><a href="#" aria-label="Facebook"><img class="footer-img" src="Images/facebook.png" alt=""></a></li>
-                <li><a href="#" aria-label="WhatsApp"><img class="footer-img" src="Images/whatsapp.png" alt=""></a></li>
-            </ul>
-        </div>
-        <div class="footercol">
-            <h4>Download Our App</h4>
-            <a href="#" class="qr"><img class="footer-code" src="Images/QRcode.webp" alt="QR code"></a>
-        </div>
-        <div class="footercol">
-            <h4>Stay Updated</h4>
-            <p class="footer-text">Subscribe to our newsletter</p>
-            <form class="subscribe-form" onsubmit="return false;">
-                <label class="visually-hidden" for="email">Email address</label>
-                <input type="email" id="email" class="email-input" placeholder="Your email address" required>
-                <button class="submit-button" aria-label="Subscribe">&gt;</button>
-            </form>
-        </div>
+    <div class="footercontainer">
+      <div class="footercol">
+        <h1>SUPPORT</h1>
+        <ul>
+          <li><a href="#">User Guide</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Service</a></li>
+          <li><a href="warranty.html">Warranty</a></li>
+          <li><a href="#">Store Locator</a></li>
+          <li><a href="#">Service Center</a></li>
+        </ul>
+      </div>
+      <div class="footercol">
+        <h1>About Us</h1>
+        <ul>
+          <li><a href="#">Xiaomi</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Leadership Team</a></li>
+          <li><a href="#">Trust Center</a></li>
+        </ul>
+      </div>
+      <div class="footercol">
+        <h1>Follow Us</h1>
+        <ul id="menu">
+          <li>
+            <a href="#" aria-label="Instagram">
+              <img class="footer-img" src="Images/instagram.png" alt="" />
+            </a>
+          </li>
+          <li>
+            <a href="#" aria-label="LinkedIn">
+              <img class="footer-img" src="Images/linkedin.png" alt="" />
+            </a>
+          </li>
+          <li>
+            <a href="#" aria-label="Facebook">
+              <img class="footer-img" src="Images/facebook.png" alt="" />
+            </a>
+          </li>
+          <li>
+            <a href="#" aria-label="WhatsApp">
+              <img class="footer-img" src="Images/whatsapp.png" alt="" />
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="footercol">
+        <h1>Download Our App</h1>
+        <ul id="menu">
+          <li>
+            <a href="#">
+              <img class="footer-code" src="Images/QRcode.webp" alt="Download app QR code" />
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="footercol">
+        <h1>Stay Updated</h1>
+        <p class="footer-text">Subscribe to our newsletter</p>
+        <form class="subscribe-form" aria-label="Newsletter subscription">
+          <input
+            type="email"
+            placeholder="Your E-mail Address..."
+            class="email-input"
+            aria-label="Email address"
+            required
+          />
+          <button type="submit" class="submit-button" aria-label="Subscribe to newsletter">
+            &gt;
+          </button>
+        </form>
+      </div>
     </div>
+  
     <div class="footer-bottom">
-        <p>&copy; 2010 – 2025 Xiaomi. All rights reserved.</p>
+      <p>Copyright &copy; 2010 - 2025 Xiaomi. All Rights Reserved</p>
     </div>
-</footer>
+  </footer>
 
 <!-- tiny live-search helper -->
 <script>
