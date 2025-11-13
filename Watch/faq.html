@@ -52,13 +52,26 @@
       }
 
       /* ------------------------------------------- */
-      /* --- NAVIGATION --- */
+      /* --- NAVIGATION & HEADER --- */
       /* ------------------------------------------- */
+
+      .announcement-bar {
+        background-color: var(
+          --color-secondary
+        ); /* Deep Grey - Darker, less harsh than black */
+        text-align: center;
+        padding: 12px 20px;
+        font-size: 14px;
+        color: var(--color-light-neutral);
+        border-bottom: 1px solid #4a4d51;
+        font-weight: 500;
+      }
+
       .nav-container {
         background-color: var(--color-light-neutral);
         position: relative;
         z-index: 100;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       }
 
       nav {
@@ -144,16 +157,75 @@
         align-items: center;
       }
 
+      .nav-item {
+        position: relative;
+      }
+
       .nav-link {
         text-decoration: none;
-        color: var(--color-dark-text);
+        color: var(--color-dark-text); /* Black Text */
         font-size: 15px;
-        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 8px 0;
         transition: color 0.3s;
+        font-weight: 500;
       }
 
       .nav-link:hover {
-        color: var(--color-accent);
+        color: var(--color-accent); /* Orange Hover (Small accent) */
+      }
+
+      .arrow {
+        font-size: 12px;
+        transition: transform 0.3s;
+        color: var(--color-secondary); /* Deep Grey Arrow */
+      }
+
+      .nav-item:hover .arrow {
+        transform: rotate(180deg);
+        color: var(--color-accent); /* Orange Hover */
+      }
+
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--color-light-neutral);
+        min-width: 200px;
+        padding: 20px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s;
+        margin-top: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+        z-index: 101;
+        border-top: 2px solid var(--color-accent); /* Orange Accent Border (Small item) */
+      }
+
+      .nav-item:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .dropdown-link {
+        display: block;
+        padding: 10px 15px;
+        color: var(--color-dark-text);
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.2s;
+        border-radius: 4px;
+      }
+
+      .dropdown-link:hover {
+        background-color: var(
+          --color-light-bg-tint
+        ); /* Subtle Grey Hover Background */
+        color: var(--color-dark-text);
       }
 
       .cart-icon {
@@ -165,7 +237,7 @@
       }
 
       .cart-icon:hover {
-        stroke: var(--color-accent);
+        stroke: var(--color-accent); /* Orange Hover (Small accent) */
       }
 
       /* ------------------------------------------- */
