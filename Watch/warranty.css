@@ -166,15 +166,15 @@ nav {
 
 .nav-link {
   text-decoration: none;
-  color: var(--color-dark-text);
+  color: var(--color-dark-text); /* Black Text */
   font-size: 15px;
   display: flex;
   align-items: center;
   gap: 5px;
   padding: 8px 0;
   transition: color 0.3s;
+  font-weight: 500;
 }
-
 .nav-link:hover {
   color: var(--color-accent); /* Orange Hover (Small accent) */
 }

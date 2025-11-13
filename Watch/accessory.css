@@ -34,12 +34,15 @@ body {
 /* --- ANNOUNCEMENT BAR & NAVIGATION --- */
 /* ------------------------------------------- */
 .announcement-bar {
-  background-color: var(--color-light-bg-tint); /* Subtle Grey Background */
+  background-color: var(
+    --color-secondary
+  ); /* Deep Grey - Darker, less harsh than black */
   text-align: center;
   padding: 12px 20px;
   font-size: 14px;
-  color: var(--color-dark-text);
-  border-bottom: 1px solid #e0e0e0;
+  color: var(--color-light-neutral);
+  border-bottom: 1px solid #4a4d51;
+  font-weight: 500;
 }
 
 .nav-container {
@@ -139,13 +142,14 @@ nav {
 
 .nav-link {
   text-decoration: none;
-  color: var(--color-dark-text);
+  color: var(--color-dark-text); /* Black Text */
   font-size: 15px;
   display: flex;
   align-items: center;
   gap: 5px;
   padding: 8px 0;
   transition: color 0.3s;
+  font-weight: 500;
 }
 
 .nav-link:hover {
